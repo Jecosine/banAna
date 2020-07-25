@@ -1,7 +1,7 @@
 /*
  * @Author: Jecosine
  * @Date: 2020-07-25 16:30:23
- * @LastEditTime: 2020-07-25 16:57:36
+ * @LastEditTime: 2020-07-25 19:22:58
  * @LastEditors: Jecosine
  * @Description: In User Settings Edit
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BusinessMapper.java
@@ -13,7 +13,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import java.util.List;
 import swu.smxy.banana.entity.Business;
-
 
 public interface BusinessMapper {
 
