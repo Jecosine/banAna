@@ -1,7 +1,7 @@
 /*
  * @Author: Jecosine
  * @Date: 2020-07-25 16:30:23
- * @LastEditTime: 2020-07-26 13:31:05
+ * @LastEditTime: 2020-08-19 14:09:27
  * @LastEditors: Jecosine
  * @Description: In User Settings Edit
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BusinessMapper.java
@@ -13,13 +13,14 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import swu.smxy.banana.entity.Business;
 
 // @Repository
-// @Mapper
+@Component
 public interface BusinessMapper extends BaseMapper<Business> {
   /**
    * @description: 

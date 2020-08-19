@@ -1,18 +1,20 @@
 /*
  * @Date: 2020-07-26 12:22:49
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-26 12:40:04
+ * @LastEditTime: 2020-08-19 13:53:32
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BaseService.java
  */
 package swu.smxy.banana.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import swu.smxy.banana.dao.BaseMapper;
+import org.springframework.stereotype.Service;
 
+import swu.smxy.banana.dao.BaseMapper;
+@Service
 public abstract class BaseService<T> {
 
-  @Autowired
+  // @Autowired
   BaseMapper<T> mapper;
 
   public List<T> getAll() 

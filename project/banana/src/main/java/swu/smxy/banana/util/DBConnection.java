@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-07-25 18:38:45
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-08-19 12:21:49
+ */
 package swu.smxy.banana.util;
 
 import org.apache.ibatis.io.Resources;
@@ -8,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
-
 
 public class DBConnection {
   

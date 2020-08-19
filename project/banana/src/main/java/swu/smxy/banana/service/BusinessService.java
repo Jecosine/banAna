@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:06:41
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-26 13:31:29
+ * @LastEditTime: 2020-08-19 14:13:07
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BusinessService.java
  */ 
 package swu.smxy.banana.service;
@@ -19,7 +19,7 @@ import swu.smxy.banana.dao.BusinessMapper;
 import swu.smxy.banana.entity.Business;
 import swu.smxy.banana.util.DBConnection;
 
-// @Service
+@Service
 public class BusinessService extends BaseService<Business> {
   /**
    * @description: get all business instances
@@ -27,13 +27,18 @@ public class BusinessService extends BaseService<Business> {
    * @return: return list of Business instance
    */  
   // @Resource
-  private BusinessMapper mapper;
-  private SqlSessionFactory sqlSessionFactory = DBConnection.getFactory();
+  private BusinessMapper businessMapper;
+  @Resource(name="sqlSessionFactory")
+  private SqlSessionFactory sqlSessionFactory;
+  // private SqlSessionFactory sqlSessionFactory = DBConnection.getFactory();
 
   public List<Business> getAll()
   {
-    mapper = sqlSessionFactory.openSession().getMapper(BusinessMapper.class);
-    return mapper.getAll();
+    businessMapper = sqlSessionFactory.openSession().getMapper(BusinessMapper.class);
+    List<Business> list = businessMapper.getAll();
+    System.out.println("In Service: " + list.size());
+    
+    return list;
   }
   /**
    * @description: get Business instance by business instance id
@@ -42,6 +47,6 @@ public class BusinessService extends BaseService<Business> {
    */  
   public Business getById(String businessId)
   {
-    return mapper.getById(businessId);
+    return businessMapper.getById(businessId);
   }
 }

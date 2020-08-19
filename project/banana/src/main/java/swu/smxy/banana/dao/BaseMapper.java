@@ -1,16 +1,21 @@
 /*
  * @Date: 2020-07-25 17:56:25
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-26 12:39:46
+ * @LastEditTime: 2020-08-19 14:06:31
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BaseMapper.java
- */ 
+ */
 package swu.smxy.banana.dao;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+// @Component
+@Mapper
 public interface BaseMapper<T> {
 
   public List<T> getAll();

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:15:10
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-26 13:31:49
+ * @LastEditTime: 2020-08-19 13:16:57
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\BusinessController.java
  */
 package swu.smxy.banana.controller;
@@ -11,6 +11,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +31,17 @@ import swu.smxy.banana.util.DBConnection;
 public class BusinessController {
 
   // @Resource
-  // private BusinessService businessService;
+  @Autowired
+  private BusinessService businessService;
 
   @ResponseBody
   @RequestMapping(value="/getAll", method=RequestMethod.GET)
   public List<Business> getAll() {
-    SqlSession sqlSession = DBConnection.getFactory().openSession();
-    BusinessMapper businessMapper = sqlSession.getMapper(BusinessMapper.class);
-    // return businessService.getAll();
-    return businessMapper.getAll();
+    // SqlSession sqlSession = DBConnection.getFactory().openSession();
+    // BusinessMapper businessMapper = sqlSession.getMapper(BusinessMapper.class);
+    System.out.println("x");
+    return businessService.getAll();
+    // return businessMapper.getAll();
   }
   
 }
