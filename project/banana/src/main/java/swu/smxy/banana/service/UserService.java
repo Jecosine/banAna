@@ -1,13 +1,15 @@
 /*
  * @Date: 2020-07-25 17:00:29
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-25 17:05:07
+ * @LastEditTime: 2020-07-26 12:35:17
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\UserService.java
  */ 
 package swu.smxy.banana.service;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import swu.smxy.banana.entity.User;
 
+@Service
 public interface UserService {
   
   /**

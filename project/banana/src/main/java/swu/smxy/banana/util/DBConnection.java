@@ -1,17 +1,14 @@
-/*
- * @Date: 2020-07-25 18:38:45
- * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-25 19:54:11
- * @FilePath: \banana\src\main\java\swu\smxy\banana\ util\DBConnection.java
- */ 
 package swu.smxy.banana.util;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
+
 
 public class DBConnection {
   
@@ -19,6 +16,7 @@ public class DBConnection {
   private static SqlSessionFactory factory = null;
 
   private DBConnection() {}
+  
   public static SqlSessionFactory getFactory()
   {
     if (instance == null)
