@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:15:10
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 13:16:57
+ * @LastEditTime: 2020-08-19 14:30:04
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\BusinessController.java
  */
 package swu.smxy.banana.controller;
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import swu.smxy.banana.entity.*;
 import swu.smxy.banana.service.BusinessService;
 import swu.smxy.banana.dao.*;
-// import 
-import swu.smxy.banana.util.DBConnection;
+// import org.springframework.http.codec.json.Jackson2JsonDecoder;
+// import swu.smxy.banana.util.DBConnection;
 
 
 @RestController
@@ -34,12 +34,12 @@ public class BusinessController {
   @Autowired
   private BusinessService businessService;
 
-  @ResponseBody
   @RequestMapping(value="/getAll", method=RequestMethod.GET)
+  // @ResponseBody
   public List<Business> getAll() {
     // SqlSession sqlSession = DBConnection.getFactory().openSession();
     // BusinessMapper businessMapper = sqlSession.getMapper(BusinessMapper.class);
-    System.out.println("x");
+    // System.out.println("x");
     return businessService.getAll();
     // return businessMapper.getAll();
   }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-19 12:09:27
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 14:05:39
+ * @LastEditTime: 2020-08-19 14:29:50
  */
 package swu.smxy.banana.configuration;
 
@@ -43,6 +43,4 @@ public class BeanConfiguration {
     {
         return DBConnection.getFactory();
     }
-    // @Bean
-    // public Business
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:06:41
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 14:13:07
+ * @LastEditTime: 2020-08-19 14:16:58
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BusinessService.java
  */ 
 package swu.smxy.banana.service;
@@ -37,6 +37,7 @@ public class BusinessService extends BaseService<Business> {
     businessMapper = sqlSessionFactory.openSession().getMapper(BusinessMapper.class);
     List<Business> list = businessMapper.getAll();
     System.out.println("In Service: " + list.size());
+    System.out.println("\t" + list.get(0).toString());
     
     return list;
   }
