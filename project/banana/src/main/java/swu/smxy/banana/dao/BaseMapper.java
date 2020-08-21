@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:56:25
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 14:06:31
+ * @LastEditTime: 2020-08-21 22:54:08
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BaseMapper.java
  */
 package swu.smxy.banana.dao;
@@ -23,6 +23,8 @@ public interface BaseMapper<T>
     public List<T> getAll();
 
     public T getById(String entityId);
+    
+    public T getByName(String entityName);
 
     public int update(T entity);
 

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-26 12:22:49
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:56:25
+ * @LastEditTime: 2020-08-21 22:53:19
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BaseService.java
  */
 package swu.smxy.banana.service;
@@ -23,7 +23,10 @@ public abstract class BaseService<T>
     {
         return mapper.getAll();
     }
-
+    public T getByName(String entityName)
+    {
+        return mapper.getByName(entityName);
+    }
     public T getById(String entityId)
     {
         return mapper.getById(entityId);

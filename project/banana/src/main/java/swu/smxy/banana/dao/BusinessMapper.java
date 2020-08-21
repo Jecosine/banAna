@@ -1,7 +1,7 @@
 /*
  * @Author: Jecosine
  * @Date: 2020-07-25 16:30:23
- * @LastEditTime: 2020-08-21 20:56:17
+ * @LastEditTime: 2020-08-21 22:35:10
  * @LastEditors: Jecosine
  * @Description: In User Settings Edit
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BusinessMapper.java
@@ -32,13 +32,19 @@ public interface BusinessMapper extends BaseMapper<Business>
     public List<Business> getAll();
 
     /**
-     * @description:
-     * @param {type}
-     * @return:
+     * @description: get by id
+     * @param id - business id
+     * @return: Business with specified id
      */
     @Select("select * from business where businessId=#{businessId}")
     public Business getById(String businessId);
-
+    /**
+     * @description: get by name
+     * @param name - business name
+     * @return: Business with specified name
+     */
+    @Select("select * from business where businessName=#{businessName}")
+    public Business getByName(String businessName);
     // @Update("update business set ")
     // public int update(Business business);
 
