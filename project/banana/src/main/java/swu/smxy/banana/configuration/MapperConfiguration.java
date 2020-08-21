@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-19 12:09:27
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 13:32:18
+ * @LastEditTime: 2020-08-21 09:56:15
  */
 package swu.smxy.banana.configuration;
 
@@ -15,7 +15,6 @@ import swu.smxy.banana.util.DBConnection;
 // @Configuration
 @ComponentScan(value="swu.smxy.banana.dao")
 public class MapperConfiguration {
-
     @Bean(name="sqlSessionFactory")
     public SqlSessionFactory getFactory() 
     {
