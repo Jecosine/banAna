@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 22:17:03
+ * @LastEditTime: 2020-08-22 01:06:47
  */
 package swu.smxy.banana;
 
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
+// import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 // import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
@@ -35,9 +36,9 @@ class BananaApplicationTests
 
     @Autowired
     BusinessService bService;
-    // @Autowired
-    // UuidGenerator uuidGenerator;
-    // @Autowired
+    @Autowired
+    UuidGenerator uuidGenerator;
+    @Autowired
 
     @BeforeAll
     static void init()
@@ -53,11 +54,11 @@ class BananaApplicationTests
         System.out.println("in test");
     }
 
-    /**
-     * @description: uuid generator test
-     * @param {type} 
-     * @return {null} 
-     */    
+    // /**
+    //  * @description: uuid generator test
+    //  * @param {type} 
+    //  * @return {null} 
+    //  */    
     @Test
     @DisplayName("Util:Test uuid")
     void uuidTest()
@@ -67,11 +68,11 @@ class BananaApplicationTests
             assertEquals(i, UuidGenerator.getUuid(i).length());
         }
     }
-    /**
-     * @description: java bean test
-     * @param {type}
-     * @return {type}
-     */
+    // /**
+    //  * @description: java bean test
+    //  * @param {type}
+    //  * @return {type}
+    //  */
     @Test
     @DisplayName("Show all beans")
     void listAllBean()
@@ -87,48 +88,30 @@ class BananaApplicationTests
     /**
      * @description: test database connection
      */
-    @Nested
-    @Transactional
-    @DisplayName("Database:Test database connection")
-    class databaseConnectionTest
-    {
-        /**
-         * @description:
-         * @param {type}
-         * @return {type}
-         */
-        Business business;
+    // @Transactional
+    // @DisplayName("Database:Test database connection")
+    // class databaseConnectionTest
+    // {
+    //     /**
+    //      * @description:
+    //      * @param {type}
+    //      * @return {type}
+    //      */
+    //     Business business;
 
-        @BeforeAll
-        void init()
-        {
-            System.out.println("  Into nested test");
-            // business.setBusinessId();
-        }
-        // assert
-        @Test
-        void test()
-        {
-            System.out.println("    test!");
-        }
+    //     @BeforeAll
+    //     void init()
+    //     {
+    //         System.out.println("  Into nested test");
+    //         // business.setBusinessId();
+    //     }
+    //     // assert
+    //     @Test
+    //     void test()
+    //     {
+    //         System.out.println("    test!");
+    //     }
 
-    }
+    // }
 
-    /**
-     * @description: test businesss service
-     * @param {type}
-     * @return {type}
-     */
-    @Test
-    @DisplayName("Service:Business Service test")
-    void businessServiceTest()
-    {
-        // BusinessService bService = new BusinessService();
-        List<Business> businessList = bService.getAll();
-        System.out.println("Business count: " + businessList.size());
-        for (Business b : businessList)
-        {
-            System.out.println("  " + b.toString());
-        }
-    }
 }
