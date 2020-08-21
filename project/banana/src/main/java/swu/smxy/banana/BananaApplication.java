@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:56:02
+ * @LastEditTime: 2020-08-21 21:03:15
  * @FilePath: \banana\src\main\java\swu\smxy\banana\BananaApplication.java
  */
 package swu.smxy.banana;
@@ -23,7 +23,6 @@ public class BananaApplication
     public static void main(String[] args)
     {
         // DBConnection.getFactory();
-
         SpringApplication.run(BananaApplication.class, args);
 
     }

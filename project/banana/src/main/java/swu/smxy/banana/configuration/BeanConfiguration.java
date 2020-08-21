@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-19 12:09:27
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 18:54:16
+ * @LastEditTime: 2020-08-21 21:46:25
  */
 package swu.smxy.banana.configuration;
 
@@ -25,15 +25,20 @@ import swu.smxy.banana.util.DBConnection;
 @Configuration
 // @ComponentScan(value="swu.smxy.banana")
 @ComponentScans(value =
-{ @ComponentScan(value = "swu.smxy.banana.entity", includeFilters =
-        { @Filter(type = FilterType.ANNOTATION, classes =
-                { Component.class }) }, useDefaultFilters = false),
-        @ComponentScan(value = "swu.smxy.banana.dao", includeFilters =
-        { @Filter(type = FilterType.ANNOTATION, classes =
-        { Mapper.class }) }, useDefaultFilters = false),
-        @ComponentScan(value = "swu.smxy.banana.service", includeFilters =
-        { @Filter(type = FilterType.ANNOTATION, classes =
-        { Service.class }) }, useDefaultFilters = false) })
+{
+    @ComponentScan(value = "swu.smxy.banana.entity", includeFilters =
+    { @Filter(type = FilterType.ANNOTATION, classes =
+            { Component.class }) }, useDefaultFilters = false),
+    @ComponentScan(value = "swu.smxy.banana.dao", includeFilters =
+    { @Filter(type = FilterType.ANNOTATION, classes =
+    { Mapper.class }) }, useDefaultFilters = false),
+    @ComponentScan(value = "swu.smxy.banana.service", includeFilters =
+    { @Filter(type = FilterType.ANNOTATION, classes =
+    { Service.class }) }, useDefaultFilters = false),
+    @ComponentScan(value = "swu.smxy.banana.util", includeFilters =
+    { @Filter(type = FilterType.ANNOTATION, classes =
+    { Component.class }) }, useDefaultFilters = false) 
+})
 // @MapperScan(value = "swu.smxy.banana.dao")
 public class BeanConfiguration
 {

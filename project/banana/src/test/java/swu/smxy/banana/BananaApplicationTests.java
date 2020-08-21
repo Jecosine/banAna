@@ -1,9 +1,11 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:55:53
+ * @LastEditTime: 2020-08-21 22:17:03
  */
 package swu.smxy.banana;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ class BananaApplicationTests
     @Autowired
     BusinessService bService;
     // @Autowired
-
+    // UuidGenerator uuidGenerator;
     // @Autowired
 
     @BeforeAll
@@ -51,6 +53,20 @@ class BananaApplicationTests
         System.out.println("in test");
     }
 
+    /**
+     * @description: uuid generator test
+     * @param {type} 
+     * @return {null} 
+     */    
+    @Test
+    @DisplayName("Util:Test uuid")
+    void uuidTest()
+    {
+        for(int i = 1; i <= 32; i++)
+        {
+            assertEquals(i, UuidGenerator.getUuid(i).length());
+        }
+    }
     /**
      * @description: java bean test
      * @param {type}
@@ -86,9 +102,15 @@ class BananaApplicationTests
         @BeforeAll
         void init()
         {
-            business.setBusinessId(businessId);
+            System.out.println("  Into nested test");
+            // business.setBusinessId();
         }
         // assert
+        @Test
+        void test()
+        {
+            System.out.println("    test!");
+        }
 
     }
 
