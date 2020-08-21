@@ -24,23 +24,22 @@ import swu.smxy.banana.util.DBConnection;
 
 @Configuration
 // @ComponentScan(value="swu.smxy.banana")
-@ComponentScans(value = {
-    @ComponentScan(value = "swu.smxy.banana.entity", 
-        includeFilters = {@Filter(type = FilterType.ANNOTATION, classes = {Component.class})},
-        useDefaultFilters = false),
-    @ComponentScan(value = "swu.smxy.banana.dao", 
-        includeFilters = {@Filter(type = FilterType.ANNOTATION, classes = {Mapper.class})},
-        useDefaultFilters = false),
-    @ComponentScan(value = "swu.smxy.banana.service", 
-        includeFilters = {@Filter(type = FilterType.ANNOTATION, classes = {Service.class})},
-        useDefaultFilters = false)}
-)
+@ComponentScans(value =
+{ @ComponentScan(value = "swu.smxy.banana.entity", includeFilters =
+        { @Filter(type = FilterType.ANNOTATION, classes =
+                { Component.class }) }, useDefaultFilters = false),
+        @ComponentScan(value = "swu.smxy.banana.dao", includeFilters =
+        { @Filter(type = FilterType.ANNOTATION, classes =
+        { Mapper.class }) }, useDefaultFilters = false),
+        @ComponentScan(value = "swu.smxy.banana.service", includeFilters =
+        { @Filter(type = FilterType.ANNOTATION, classes =
+        { Service.class }) }, useDefaultFilters = false) })
 // @MapperScan(value = "swu.smxy.banana.dao")
 public class BeanConfiguration
 {
 
-    @Bean(name="sqlSessionFactory")
-    public SqlSessionFactory getFactory() 
+    @Bean(name = "sqlSessionFactory")
+    public SqlSessionFactory getFactory()
     {
         return DBConnection.getFactory();
     }

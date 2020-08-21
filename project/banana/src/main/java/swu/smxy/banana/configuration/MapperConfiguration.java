@@ -14,9 +14,11 @@ import swu.smxy.banana.util.DBConnection;
 
 // @Configuration
 @ComponentScan(value = "swu.smxy.banana.dao")
-public class MapperConfiguration {
+public class MapperConfiguration
+{
     @Bean(name = "sqlSessionFactory")
-    public SqlSessionFactory getFactory() {
+    public SqlSessionFactory getFactory()
+    {
         return DBConnection.getFactory();
     }
 }

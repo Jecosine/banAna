@@ -1,10 +1,16 @@
 /*
  * @Date: 2020-08-21 20:19:06
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:19:22
+ * @LastEditTime: 2020-08-21 20:33:15
  */
 package swu.smxy.banana.util;
 
-public class UuidGenerator {
-    
+import java.util.UUID;
+
+public class UuidGenerator
+{
+    public static void getUuid()
+    {
+
+    }
 }

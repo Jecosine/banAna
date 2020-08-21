@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-19 13:18:08
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 13:27:19
+ * @LastEditTime: 2020-08-21 20:28:56
  */
 package swu.smxy.banana.configuration;
 
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.FilterType;
 // @ComponentScan(value = "swu.smxy.banana", 
 //         includeFilters = {@Filter(type = FilterType.ANNOTATION, classes = {Service.class})},
 //         useDefaultFilters = false)
-public class ServiceConfiguration {
-    
+public class ServiceConfiguration
+{
+
 }

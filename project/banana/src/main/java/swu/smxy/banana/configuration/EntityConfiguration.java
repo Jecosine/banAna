@@ -14,6 +14,7 @@ import org.springframework.context.annotation.FilterType;
 
 // @Configuration
 // @ComponentScan(value = "swu.smxy.banana.entity")
-public class EntityConfiguration {
-    
+public class EntityConfiguration
+{
+
 }

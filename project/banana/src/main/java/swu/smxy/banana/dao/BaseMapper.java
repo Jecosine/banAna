@@ -14,24 +14,26 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 // @Component
 @Mapper
-public interface BaseMapper<T> {
+public interface BaseMapper<T>
+{
 
-  public List<T> getAll();
+    public List<T> getAll();
 
-  public T getById(String entityId);
-  
-  public int update(T entity);
+    public T getById(String entityId);
 
-  public int insertBatch(List<T> entities);
+    public int update(T entity);
 
-  public int insert(T entity);
-  
-  public int delete(T entity);
+    public int insertBatch(List<T> entities);
 
-  public int deleteBatch(List<T> entities);
+    public int insert(T entity);
 
-  public int deleteById(String entityId);
-  
+    public int delete(T entity);
+
+    public int deleteBatch(List<T> entities);
+
+    public int deleteById(String entityId);
+
 }

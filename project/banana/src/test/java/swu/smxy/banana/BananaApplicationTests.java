@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:18:29
+ * @LastEditTime: 2020-08-21 20:55:53
  */
 package swu.smxy.banana;
 
@@ -27,83 +27,86 @@ import swu.smxy.banana.entity.*;
 import swu.smxy.banana.util.*;
 
 @SpringBootTest
-class BananaApplicationTests {
+class BananaApplicationTests
+{
+    static ApplicationContext applicationContext;
 
-	static ApplicationContext applicationContext;
-	
-	@Autowired
-	BusinessService bService;
-	// @Autowired
-	
-	// @Autowired
+    @Autowired
+    BusinessService bService;
+    // @Autowired
 
-	
+    // @Autowired
 
-	@BeforeAll
-	static void init() {
-		System.out.println("before test");
-		applicationContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
-	}
+    @BeforeAll
+    static void init()
+    {
+        System.out.println("before test");
+        applicationContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+    }
 
-	@Test
-	@DisplayName("Successful get into test")
-	void contextLoads() {
-		System.out.println("in test");
-	}
+    @Test
+    @DisplayName("Successful get into test")
+    void contextLoads()
+    {
+        System.out.println("in test");
+    }
 
-	/**
-	 * @description: java bean test
-	 * @param {type}
-	 * @return {type}
-	 */
-	@Test
-	@DisplayName("Show all beans")
-	void listAllBean() {
-		System.out.println("Show all available bean.");
-		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-		for (String beanName : beanDefinitionNames) {
-			System.out.println("  beanName: " + beanName);
-		}
-	}
+    /**
+     * @description: java bean test
+     * @param {type}
+     * @return {type}
+     */
+    @Test
+    @DisplayName("Show all beans")
+    void listAllBean()
+    {
+        System.out.println("Show all available bean.");
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        for (String beanName : beanDefinitionNames)
+        {
+            System.out.println("  beanName: " + beanName);
+        }
+    }
 
-	/**
-  * @description: test database connection
-	*/
-	@Nested
-	@Transactional
-	@DisplayName("Database:Test database connection")
-	class databaseConnectionTest
-	{
-		/**
-		 * @description: 
-		 * @param {type} 
-		 * @return {type} 
-		 */	
-		Business business;
-		@BeforeAll
-		void init()
-		{
-			business.setBusinessId(businessId);
-		}
-		// assert
+    /**
+     * @description: test database connection
+     */
+    @Nested
+    @Transactional
+    @DisplayName("Database:Test database connection")
+    class databaseConnectionTest
+    {
+        /**
+         * @description:
+         * @param {type}
+         * @return {type}
+         */
+        Business business;
 
+        @BeforeAll
+        void init()
+        {
+            business.setBusinessId(businessId);
+        }
+        // assert
 
-	}
+    }
 
-	/**
-	 * @description: test businesss service
-	 * @param {type}
-	 * @return {type}
-	 */
-	@Test
-	@DisplayName("Service:Business Service test")
-	void businessServiceTest() {
-		// BusinessService bService = new BusinessService();
-		List<Business> businessList = bService.getAll();
-		System.out.println("Business count: " + businessList.size());
-		for(Business b : businessList)
-		{
-			System.out.println("  " + b.toString());
-		}
-	}
+    /**
+     * @description: test businesss service
+     * @param {type}
+     * @return {type}
+     */
+    @Test
+    @DisplayName("Service:Business Service test")
+    void businessServiceTest()
+    {
+        // BusinessService bService = new BusinessService();
+        List<Business> businessList = bService.getAll();
+        System.out.println("Business count: " + businessList.size());
+        for (Business b : businessList)
+        {
+            System.out.println("  " + b.toString());
+        }
+    }
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-26 12:22:49
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 13:53:32
+ * @LastEditTime: 2020-08-21 20:56:25
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BaseService.java
  */
 package swu.smxy.banana.service;
@@ -11,30 +11,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import swu.smxy.banana.dao.BaseMapper;
+
 @Service
-public abstract class BaseService<T> {
+public abstract class BaseService<T>
+{
 
-  // @Autowired
-  BaseMapper<T> mapper;
+    // @Autowired
+    BaseMapper<T> mapper;
 
-  public List<T> getAll() 
-  {
-    return mapper.getAll();
-  }
+    public List<T> getAll()
+    {
+        return mapper.getAll();
+    }
 
-  public T getById(String entityId) 
-  {
-    return mapper.getById(entityId);
-  }
+    public T getById(String entityId)
+    {
+        return mapper.getById(entityId);
+    }
 
-  public int deleteById(String entityId) 
-  {
-    return mapper.deleteById(entityId);
-  }
+    public int deleteById(String entityId)
+    {
+        return mapper.deleteById(entityId);
+    }
 
-  public int delete(T entity) 
-  {
-    return mapper.delete(entity);
-  }
+    public int delete(T entity)
+    {
+        return mapper.delete(entity);
+    }
 
 }
