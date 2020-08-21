@@ -7,11 +7,7 @@
 package swu.smxy.banana.entity;
 
 import java.io.Serializable;
-
 import org.springframework.stereotype.Component;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Component
 public class Business implements Serializable {
