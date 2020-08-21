@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:04:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 18:58:01
+ * @LastEditTime: 2020-08-21 23:05:25
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\Item.java
  */
 package swu.smxy.banana.entity;
@@ -17,7 +17,6 @@ public class Item implements Serializable
     private String itemName;
     private Integer itemCount;
     private String businessId;
-
     /**
      * @return String return the itemId
      */

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:15:10
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 22:57:41
+ * @LastEditTime: 2020-08-21 23:04:51
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\BusinessController.java
  */
 package swu.smxy.banana.controller;
@@ -28,10 +28,9 @@ import swu.smxy.banana.dao.*;
 
 // @RestController
 // @RequestMapping("/business")
+@SuppressWarnings("unchecked")
 public class BaseController<T extends BaseService>
 {
-
-    // @Resource
     @Autowired
     private T baseService;
 
