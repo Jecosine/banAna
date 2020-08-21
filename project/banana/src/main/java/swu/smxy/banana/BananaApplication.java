@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-19 14:05:51
+ * @LastEditTime: 2020-08-21 19:11:10
  * @FilePath: \banana\src\main\java\swu\smxy\banana\BananaApplication.java
  */
 package swu.smxy.banana;
@@ -20,13 +20,7 @@ public class BananaApplication {
 
 	public static void main(String[] args) {
 		// DBConnection.getFactory();
-		ApplicationContext applicationContext =
-                new AnnotationConfigApplicationContext(BeanConfiguration.class);
-
-		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
-		for (String beanName : beanDefinitionNames) {
-				System.out.println("beanName: " + beanName);
-		}
+		
 		SpringApplication.run(BananaApplication.class, args);
 
 	}
