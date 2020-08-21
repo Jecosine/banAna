@@ -1,10 +1,9 @@
 /*
- * @Date: 2020-08-22 00:59:48
+ * @Date: 2020-08-22 01:55:32
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 02:41:58
+ * @LastEditTime: 2020-08-22 02:34:28
  */
 package swu.smxy.banana.service;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -29,7 +28,7 @@ import swu.smxy.banana.entity.*;
 import swu.smxy.banana.util.*;
 
 @SpringBootTest
-@DisplayName("Business Service Test")
-public class BusinessServiceTest extends BaseServiceTest<Business, BusinessService>{
-
+@DisplayName("User Service Test")
+public class UserServiceTest extends BaseServiceTest<User, UserService> {
+    public static String cate = "User";
 }
