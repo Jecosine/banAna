@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 21:38:55
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 21:51:59
+ * @LastEditTime: 2020-08-22 23:02:50
  */
 package swu.smxy.banana.interceptor;
 
@@ -33,7 +33,7 @@ public class LoginInterceptor implements HandlerInterceptor
                 // TODO: jump back to referer
                 return true;
             }
-            response.sendRedirect(request.getContextPath() + "user/login");
+            response.sendRedirect(request.getContextPath() + "/user/login");
         } catch (IOException e)
         {
             e.printStackTrace();

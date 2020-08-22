@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 21:53:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 21:57:00
+ * @LastEditTime: 2020-08-22 23:26:19
  */
 package swu.smxy.banana.configuration;
 
@@ -29,9 +29,11 @@ public class LoginConfiguration implements WebMvcConfigurer
         // add exclude path
         interceptorRegistration.excludePathPatterns(
             "/user/login",
+            "/user/loginService",
+            "/",
             "/**/*.html",
             "/**/*.js",
             "/**/*.css"
-        )
+        );
     }
 }

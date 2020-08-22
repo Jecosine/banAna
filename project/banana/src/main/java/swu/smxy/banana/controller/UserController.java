@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 01:37:06
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 23:16:23
+ * @LastEditTime: 2020-08-22 23:28:18
  */
 package swu.smxy.banana.controller;
 
@@ -31,7 +31,7 @@ public class UserController extends BaseController<UserService>
 
     @RequestMapping(value = "/loginService", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseType<User> loginService(@RequestParam String userName, @RequestParam String password)
+    public User loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request, HttpServletResponse response)
     {
         return userService.loginService(userName, password);
     }
