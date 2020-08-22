@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 00:35:29
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 00:40:08
+ * @LastEditTime: 2020-08-22 11:50:04
  */
 package swu.smxy.banana.dao;
 
@@ -15,7 +15,10 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 import swu.smxy.banana.entity.User;
 
+@Component
 public interface UserMapper extends BaseMapper<User> {
+    @Select("select * from user limit #{count}")
+    public List<User> getSome(int count);
     /**
      * @description:
      * @param {type}
@@ -31,6 +34,14 @@ public interface UserMapper extends BaseMapper<User> {
      */
     @Select("select * from user where userId=#{userId}")
     public User getById(String userId);
+    /**
+     * @description: get by username and password(for login feature)
+     * @param id - user id
+     * @param password - user password
+     * @return: User with specified id and password
+     */
+    @Select("select * from user where userName=#{userName} and password=#{password}")
+    public User getByNameAndPassword(String userName, String password);
     /**
      * @description: get by name
      * @param name - user name
