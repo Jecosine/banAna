@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 01:37:06
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-23 00:30:44
+ * @LastEditTime: 2020-08-23 00:52:50
  */
 package swu.smxy.banana.controller;
 
@@ -33,8 +33,8 @@ public class UserController extends BaseController<UserService>
 
     @RequestMapping(value = "/loginService", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseType<User> loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request,
-            HttpServletResponse response) throws IOException
+    public ResponseType<User> loginService(@RequestParam String userName, @RequestParam String password,
+            HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         ResponseType<User> responseType = userService.loginService(userName, password);
         if (responseType.getStatus() == 0)
@@ -43,20 +43,23 @@ public class UserController extends BaseController<UserService>
         }
         return responseType;
     }
-    
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     // @Controller
-    public String login(Model model, HttpServletRequest request, HttpServletResponse response)
+    public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
     {
+        if (request.getSession().getAttribute("user_auth") != null)
+        {
+            response.sendRedirect("/");
+        }
         return "login.html";
     }
 
-    @RequestMapping(value="/logout", method=RequestMethod.GET)
-    public void requestMethodName(HttpServletRequest request,
-    HttpServletResponse response) throws IOException 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public void requestMethodName(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         request.getSession().removeAttribute("user_auth");
         response.sendRedirect("/user/login");
     }
-    
+
 }
