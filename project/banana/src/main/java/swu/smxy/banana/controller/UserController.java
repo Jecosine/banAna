@@ -1,9 +1,11 @@
 /*
  * @Date: 2020-08-22 01:37:06
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 23:28:18
+ * @LastEditTime: 2020-08-22 23:37:31
  */
 package swu.smxy.banana.controller;
+
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,23 +33,35 @@ public class UserController extends BaseController<UserService>
 
     @RequestMapping(value = "/loginService", method = RequestMethod.POST)
     @ResponseBody
-    public User loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request, HttpServletResponse response)
+    public void loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request,
+            HttpServletResponse response) throws IOException
     {
-        return userService.loginService(userName, password);
+        User user = userService.loginService(userName, password);
+        if (user == null)
+        {
+            response.sendRedirect("/user/login");
+            // return "";
+        }
+        else
+        {
+            request.getSession().setAttribute("user_auth", user);
+        }
+        // return "";
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     // @Controller
     public String login(Model model, HttpServletRequest request, HttpServletResponse response)
     {
-
-        User user = (User)request.getSession().getAttribute("user_auth");
-        if (user == null)
-        {
-            user = new User();
-            user.setUserName("jecosine");
-            request.getSession().setAttribute("user_auth", user);
-        }
         return "login.html";
     }
+
+    @RequestMapping(value="/logout", method=RequestMethod.GET)
+    public void requestMethodName(HttpServletRequest request,
+    HttpServletResponse response) throws IOException 
+    {
+        request.getSession().removeAttribute("user_auth");
+        response.sendRedirect("/user/login");
+    }
+    
 }
