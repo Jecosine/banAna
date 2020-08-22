@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 01:37:06
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 23:45:41
+ * @LastEditTime: 2020-08-23 00:30:44
  */
 package swu.smxy.banana.controller;
 
@@ -32,21 +32,16 @@ public class UserController extends BaseController<UserService>
     private UserService userService;
 
     @RequestMapping(value = "/loginService", method = RequestMethod.POST)
-    // @ResponseBody
-    public String loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request,
+    @ResponseBody
+    public ResponseType<User> loginService(@RequestParam String userName, @RequestParam String password, HttpServletRequest request,
             HttpServletResponse response) throws IOException
     {
         ResponseType<User> responseType = userService.loginService(userName, password);
-        if (responseType.getStatus() == -1)
-        {
-            response.sendRedirect("/user/login");
-            // return "";
-        }
-        else
+        if (responseType.getStatus() == 0)
         {
             request.getSession().setAttribute("user_auth", responseType.getData());
         }
-        return responseType.getMessage();
+        return responseType;
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
