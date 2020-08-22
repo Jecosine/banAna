@@ -1,7 +1,7 @@
 /*
  * @Author: Jecosine
  * @Date: 2020-07-25 16:30:23
- * @LastEditTime: 2020-08-21 22:35:10
+ * @LastEditTime: 2020-08-22 02:57:17
  * @LastEditors: Jecosine
  * @Description: In User Settings Edit
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BusinessMapper.java
@@ -23,6 +23,9 @@ import swu.smxy.banana.entity.Business;
 @Component
 public interface BusinessMapper extends BaseMapper<Business>
 {
+
+    @Select("select * from business limit #{count}")
+    public List<Business> getSome(int count);
     /**
      * @description:
      * @param {type}

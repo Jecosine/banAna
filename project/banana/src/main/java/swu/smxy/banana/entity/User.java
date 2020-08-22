@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 18:55:39
+ * @LastEditTime: 2020-08-22 01:54:27
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User implements Serializable
+public class User implements Serializable, BaseEntity
 {
     private String userId;
     private String userName;
@@ -73,5 +73,12 @@ public class User implements Serializable
     {
         this.gender = gender;
     }
-
+    public String getId()
+    {
+        return this.userId;
+    }
+    public String getName()
+    {
+        return this.userName;
+    }
 }

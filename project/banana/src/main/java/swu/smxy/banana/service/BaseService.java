@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-26 12:22:49
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 00:34:37
+ * @LastEditTime: 2020-08-22 02:40:01
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\BaseService.java
  */
 package swu.smxy.banana.service;
@@ -33,6 +33,15 @@ public class BaseService<T, E extends BaseMapper<T>>
         return this.sqlSessionFactory;
     }
 
+    /**
+     * @description: get specified amount entity instances
+     * @return {@code List<T>} - Return list of entity instance
+     */
+    public List<T> getSome(int count)
+    {
+        mapper = (E) sqlSessionFactory.openSession().getMapper(entityClass);
+        return mapper.getSome(count);
+    }
     /**
      * @description: get all entity instances
      * @return {@code List<T>} - Return list of entity instance
