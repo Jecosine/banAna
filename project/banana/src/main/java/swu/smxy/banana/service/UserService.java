@@ -1,27 +1,45 @@
 /*
  * @Date: 2020-07-25 17:00:29
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-07-25 17:05:07
+ * @LastEditTime: 2020-08-22 12:00:13
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\UserService.java
- */ 
+ */
 package swu.smxy.banana.service;
+
 import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
+
+import swu.smxy.banana.dao.UserMapper;
+import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.entity.User;
 
-public interface UserService {
-  
-  /**
-   * @description: get all user
-   * @param <empty>
-   * @return: list of User instances
-   */  
-  public List<User> getAllUsers();
+@Service
+public class UserService extends BaseService<User, UserMapper>
+{
+    private UserMapper mapper;
+    @Resource(name = "sqlSessionFactory")
+    private SqlSessionFactory sqlSessionFactory;
+    public ResponseType<User> loginService(String userName, String password)
+    {
+        mapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
+        User user = mapper.getByNameAndPassword(userName, password);
+        int status = 0;
+        String message = "Login Successfully";
+        if(user == null)
+        {
+            status = -1;
+            message = "Login failed, please check you username or password";
+            System.out.println("Login failed");
+        }
+        ResponseType<User> response = new ResponseType<User>();
+        response.setData(user);
+        response.setStatus(status);
+        response.setMessage(message);
+        return response;
 
-  /**
-   * @description: get user instance by user id
-   * @param userId String
-   * @return: User instance
-   */  
-  public User getUserById(String userId);
-
+    }
 }
