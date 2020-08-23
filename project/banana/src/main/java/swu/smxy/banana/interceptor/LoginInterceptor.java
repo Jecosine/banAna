@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 21:38:55
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 23:02:50
+ * @LastEditTime: 2020-08-23 09:16:48
  */
 package swu.smxy.banana.interceptor;
 
@@ -30,7 +30,7 @@ public class LoginInterceptor implements HandlerInterceptor
             User user = (User) request.getSession().getAttribute("user_auth");
             if (user != null)
             {
-                // TODO: jump back to referer
+                // // TODO: jump back to referer
                 return true;
             }
             response.sendRedirect(request.getContextPath() + "/user/login");
@@ -50,12 +50,12 @@ public class LoginInterceptor implements HandlerInterceptor
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView)
     {
-        System.out.println("  in postHandler");
+        // System.out.println("  in postHandler");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e)
     {
-        System.out.println("  in afterCompletion");
+        // System.out.println("  in afterCompletion");
     }
 }
