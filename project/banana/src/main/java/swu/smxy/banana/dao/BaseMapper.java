@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:56:25
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 23:37:06
+ * @LastEditTime: 2020-08-22 02:39:46
  * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BaseMapper.java
  */
 package swu.smxy.banana.dao;
@@ -19,6 +19,8 @@ import java.util.List;
 // @Mapper
 public interface BaseMapper<T>
 {
+
+    public List<T> getSome(int count);
 
     public List<T> getAll();
 

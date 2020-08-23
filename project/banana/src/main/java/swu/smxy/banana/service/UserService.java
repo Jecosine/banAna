@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:00:29
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 12:00:13
+ * @LastEditTime: 2020-08-22 23:42:16
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\UserService.java
  */
 package swu.smxy.banana.service;
@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import swu.smxy.banana.dao.UserMapper;
 import swu.smxy.banana.entity.ResponseType;
@@ -26,6 +27,7 @@ public class UserService extends BaseService<User, UserMapper>
     public ResponseType<User> loginService(String userName, String password)
     {
         mapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
+        password = DigestUtils.md5DigestAsHex(password.getBytes());
         User user = mapper.getByNameAndPassword(userName, password);
         int status = 0;
         String message = "Login Successfully";

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:06:19
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:29:13
+ * @LastEditTime: 2020-08-22 01:54:16
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\Business.java
  */
 package swu.smxy.banana.entity;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Business implements Serializable
+public class Business implements Serializable, BaseEntity
 {
     private String businessId;
     private String businessName;
@@ -72,5 +72,12 @@ public class Business implements Serializable
     {
         this.openDateTime = openDateTime;
     }
-
+    public String getId()
+    {
+        return this.businessId;
+    }
+    public String getName()
+    {
+        return this.businessName;
+    }
 }
