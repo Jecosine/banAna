@@ -9,6 +9,28 @@ var user = {
 
     }
 }
+
+// define scroll
+var banner = $("#banner-container")
+window.onmousewheel = (e) => {
+    // console.log(e);
+    e = e || window.event; 
+    
+    if (window.scrollY == 0)
+    {
+        // console.log(e);
+        if(e.wheelDelta < 0)
+        {
+            window.scrollTo({ 
+                top: window.innerHeight, 
+                left: 0,
+                behavior: "smooth" 
+            });
+        }    
+        
+    }
+}
+
 localStorage.setItem('user', JSON.stringify(user));
 
 var navComponent = Vue.component('navigator', {

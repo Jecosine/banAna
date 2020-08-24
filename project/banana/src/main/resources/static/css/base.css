@@ -1,6 +1,7 @@
 :root {
     --navi-height: 60px;
-    font-family: 'font-sans';
+    --theme-color: #FF8623;
+    
 }
 
 @font-face {
@@ -18,6 +19,7 @@
     padding: 0;
     border: none;
     text-decoration: none;
+    font-family: 'font-sans';
 }
 
 .inline-block {
@@ -72,7 +74,7 @@
 #content-container {
     background-color: aqua;
     /* width: 100%; */
-    height: 500px;
+    height: 1500px;
     z-index: 99;
 
 }
@@ -90,3 +92,18 @@
 }
 
 /* scroll bar settting */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset006pxrgba(0,0,0,0.3);
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius:2px;
+    background: rgba(255, 134, 36, 0.507);
+    -webkit-box-shadow: inset006pxrgba(0,0,0,0.5);
+}    
