@@ -77,3 +77,16 @@
 
 }
 
+#banner-container {
+    position: relative;
+    width: 100%;
+    
+    background-color: antiquewhite;
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+}
+.banner-item {
+    text-align: center;
+}
+
+/* scroll bar settting */
