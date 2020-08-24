@@ -41,7 +41,7 @@ var b = new Vue({
     data() {
         return {
             activeName: 'second',
-            showByIndex: 0,
+            showByIndex: null,
             cateData: undefined
         };
     },
@@ -52,6 +52,25 @@ var b = new Vue({
         handleHover(event)
         {
             console.log("???");
+        },
+        logout() {
+            // setTimeout(
+            //     () => {
+            //         console.log(this.showByIndex);
+            //     },
+            //     1000
+            // ) 
+            this.showByIndex = null
+            console.log("out");
+            // this.showByIndex = showByIndex;
+        }
+
+    },
+    computed: {
+        cateRightStyle: function() {
+            return {
+                "height": this.cateData.cateCount * 60 + 'px'
+            }
         }
     },
     created: function()
