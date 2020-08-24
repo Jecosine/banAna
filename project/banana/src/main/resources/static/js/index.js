@@ -31,3 +31,14 @@ var a = new Vue({
     },
     
 })
+
+var b = new Vue({
+    el: '#main-container',
+    data() {
+        return {
+        };
+    },
+    methods: {
+
+    },    
+})
