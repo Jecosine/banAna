@@ -35,6 +35,9 @@
     top: 0;
     /* background-color: black; */
 }
+#navigation-wrapper {
+    width: calc(100% - 40px);
+}
 
 .float-left {
     float: left;
