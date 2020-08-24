@@ -73,12 +73,18 @@
 #main-container {
     position: relative;
     /* top: var(--navi-height); */
-    top: 50px;
+    /* top: 50px; */
     width: 100%;
     min-height: 500px;
     z-index: 99;
 
 }
+#main-container > .el-row {
+    position: relative;
+    top: 50px;
+
+}
+
 #sub-container {
     height: 500px;
     z-index: 99;
@@ -148,7 +154,7 @@
     width: 100px;
 }
 .left-item {
-    
+
     width: 100%;
     height: 40px;
     text-align: center;
@@ -156,4 +162,7 @@
 }
 .left-item :hover {
     cursor: pointer;
+}
+#cate-left-container {
+    width: 100px;
 }

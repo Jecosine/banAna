@@ -6,8 +6,9 @@
             "data": [
                 {
                     "cateName": "subcate 1",
+                    "cateCount": 2,
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 1 - 1 - 1",
                             "cateUrl": "#"
@@ -21,7 +22,7 @@
                 {
                     "cateName": "subcate 2",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 2 - 1 - 1",
                             "cateUrl": "#"
@@ -31,8 +32,7 @@
                             "cateUrl": "#"
                         }
                     ]
-                },
-                
+                }
             ]
         },
         {
@@ -41,7 +41,7 @@
                 {
                     "cateName": "subcate 1",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 2 - 1 - 1",
                             "cateUrl": "#"
@@ -55,7 +55,7 @@
                 {
                     "cateName": "subcate 2",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 2 - 1 - 1",
                             "cateUrl": "#"
@@ -65,8 +65,7 @@
                             "cateUrl": "#"
                         }
                     ]
-                },
-                
+                }
             ]
         },
         {
@@ -75,7 +74,7 @@
                 {
                     "cateName": "subcate 1",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 3 - 1 - 1",
                             "cateUrl": "#"
@@ -89,7 +88,7 @@
                 {
                     "cateName": "subcate 2",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 3 - 1 - 1",
                             "cateUrl": "#"
@@ -99,8 +98,7 @@
                             "cateUrl": "#"
                         }
                     ]
-                },
-                
+                }
             ]
         },
         {
@@ -109,7 +107,7 @@
                 {
                     "cateName": "subcate 1",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 4 - 1 - 1",
                             "cateUrl": "#"
@@ -123,7 +121,7 @@
                 {
                     "cateName": "subcate 2",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 4 - 1 - 1",
                             "cateUrl": "#"
@@ -133,8 +131,7 @@
                             "cateUrl": "#"
                         }
                     ]
-                },
-                
+                }
             ]
         },
         {
@@ -143,7 +140,7 @@
                 {
                     "cateName": "subcate 1",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 5 - 1 - 1",
                             "cateUrl": "#"
@@ -157,7 +154,7 @@
                 {
                     "cateName": "subcate 2",
                     "cateUrl": "#",
-                    "subcates": [
+                    "data": [
                         {
                             "cateName": "category 5 - 1 - 1",
                             "cateUrl": "#"
@@ -167,8 +164,7 @@
                             "cateUrl": "#"
                         }
                     ]
-                },
-                
+                }
             ]
         }
     ]

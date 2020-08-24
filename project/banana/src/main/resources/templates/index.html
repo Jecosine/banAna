@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-24 21:14:09
+ * @LastEditTime: 2020-08-24 22:11:50
 -->
 <!DOCTYPE html>
 <html>
@@ -77,10 +77,18 @@
             <el-col :span="16" :offset="4" id="content-container">
                 <el-row :gutter="20">
                     <el-col :span="6" id="cate-left-container" class="inline-block">
-                        <div class="left-item" v-for="i in 10" @mouseover="showByIndex = i" @mouseout="showByIndex = null">No.{{ i }}</div>
+                        <div class="left-item" v-for="(item, i) in cateData.data" @mouseover="showByIndex = i" @mouseout="showByIndex = null">{{ item["cateName"] }}</div>
                     </el-col>
                     <el-col :span="6" id="cate-right-container" class="inline-block">
-                        <div class="right-item" v-for="i in 10" v-show="showByIndex === i">{{ i }}</div>
+                        <div class="right-item" v-for="(item, i) in cateData.data" v-show="showByIndex === i">
+                            <div class="right-subitem" v-for="(subitem, j) in item.data">
+                                <div class="subitem-title">{{ subitem["cateName"] }}</div>
+                                <div class="cate-item" v-for="(cate, k) in subitem['data']"><a :href="cate.cateUrl">{{ cate.cateName }}</a></div>
+                                <!-- <el-row :glutter="20" v-for="row in Math.ceil(subitem.data.length/6)">
+                                    <el-col :span="4" v-for="k in 6" v-key=""><a :href=".cateUrl">{{subitem.data[k + (row-1) * 6 - 1].cateUrl}}</a></el-col>
+                                </el-row> -->
+                            </div>
+                        </div>
                     </el-col>
                 </el-row>
                 

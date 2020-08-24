@@ -42,7 +42,7 @@ var b = new Vue({
         return {
             activeName: 'second',
             showByIndex: 0,
-            cateData: {}
+            cateData: undefined
         };
     },
     methods: {
@@ -53,7 +53,27 @@ var b = new Vue({
         {
             console.log("???");
         }
-    }    
+    },
+    created: function()
+    {
+        var that = this;
+        console.log("loading cate");
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "../static/json/cate.json",
+            success: function(res)
+            {
+                console.log(res);
+                that.cateData = res;
+            },
+            error: function(xhr, status, err)
+            {
+                console.log("failed:" + status);
+            }
+        })
+    }
 })
 window.onscroll = () => {
     // console.log(window.scrollY);
