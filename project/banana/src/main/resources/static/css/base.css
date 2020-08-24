@@ -1,5 +1,16 @@
 :root {
     --navi-height: 60px;
+    font-family: 'font-sans';
+}
+
+@font-face {
+    font-family: 'font-serif';
+    src: url('../fonts/NotoSerifSC-Regular.otf')
+}
+
+@font-face {
+    font-family: 'font-sans';
+    src: url('../fonts/NotoSansSC-Regular.otf')
 }
 
 * {
@@ -21,7 +32,18 @@
     position: absolute;
     width: 100%;
     height: var(--navi-height);
-
     top: 0;
     /* background-color: black; */
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+#navigation-right {
+
 }
