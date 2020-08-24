@@ -12,24 +12,6 @@ var user = {
 
 // define scroll
 var banner = $("#banner-container")
-window.onmousewheel = (e) => {
-    // console.log(e);
-    e = e || window.event; 
-    
-    if (window.scrollY == 0)
-    {
-        // console.log(e);
-        if(e.wheelDelta < 0)
-        {
-            window.scrollTo({ 
-                top: window.innerHeight, 
-                left: 0,
-                behavior: "smooth" 
-            });
-        }    
-        
-    }
-}
 
 localStorage.setItem('user', JSON.stringify(user));
 
@@ -63,4 +45,26 @@ var b = new Vue({
     methods: {
 
     },    
+})
+window.onscroll = () => {
+    // console.log(window.scrollY);
+
+    if(window.scrollY == 0)
+    {
+        $("#navigation-mask").stop().animate({opacity: 0}, 200);
+    }
+    else
+    {
+        $("#navigation-mask").stop().animate({opacity: 1}, 200);
+    }
+
+}
+
+
+$("#scroll-btn").click(() => {
+    window.scrollTo({ 
+        top: window.innerHeight, 
+        left: 0,
+        behavior: "smooth" 
+    });
 })
