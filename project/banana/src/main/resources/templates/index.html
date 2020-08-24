@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-24 20:49:57
+ * @LastEditTime: 2020-08-24 21:14:09
 -->
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,19 @@
         <div id="scroll-btn">Scroll Down<br><i class="el-icon-caret-bottom"></i></div>
 
         <el-row>
-            <el-col :span="16" :offset="4" id="content-container" class="general-shadow"></el-col>
+            <el-col :span="16" :offset="4" id="content-container">
+                <el-row :gutter="20">
+                    <el-col :span="6" id="cate-left-container" class="inline-block">
+                        <div class="left-item" v-for="i in 10" @mouseover="showByIndex = i" @mouseout="showByIndex = null">No.{{ i }}</div>
+                    </el-col>
+                    <el-col :span="6" id="cate-right-container" class="inline-block">
+                        <div class="right-item" v-for="i in 10" v-show="showByIndex === i">{{ i }}</div>
+                    </el-col>
+                </el-row>
+                
+                
+
+            </el-col>
         </el-row>
     </div>
     

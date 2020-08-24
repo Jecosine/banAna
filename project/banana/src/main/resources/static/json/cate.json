@@ -1,0 +1,175 @@
+{
+    "cateCount": 5,
+    "data": [
+        {
+            "cateName": "cate 1",
+            "data": [
+                {
+                    "cateName": "subcate 1",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 1 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 1 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                {
+                    "cateName": "subcate 2",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 2 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 2 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                
+            ]
+        },
+        {
+            "cateName": "cate 2",
+            "data": [
+                {
+                    "cateName": "subcate 1",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 2 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 2 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                {
+                    "cateName": "subcate 2",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 2 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 2 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                
+            ]
+        },
+        {
+            "cateName": "cate 3",
+            "data": [
+                {
+                    "cateName": "subcate 1",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 3 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 3 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                {
+                    "cateName": "subcate 2",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 3 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 3 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                
+            ]
+        },
+        {
+            "cateName": "cate 4",
+            "data": [
+                {
+                    "cateName": "subcate 1",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 4 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 4 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                {
+                    "cateName": "subcate 2",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 4 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 4 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                
+            ]
+        },
+        {
+            "cateName": "cate 5",
+            "data": [
+                {
+                    "cateName": "subcate 1",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 5 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 5 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                {
+                    "cateName": "subcate 2",
+                    "cateUrl": "#",
+                    "subcates": [
+                        {
+                            "cateName": "category 5 - 1 - 1",
+                            "cateUrl": "#"
+                        },
+                        {
+                            "cateName": "category 5 - 1 - 2",
+                            "cateUrl": "#"
+                        }
+                    ]
+                },
+                
+            ]
+        }
+    ]
+}

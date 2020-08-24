@@ -40,11 +40,20 @@ var b = new Vue({
     el: '#main-container',
     data() {
         return {
+            activeName: 'second',
+            showByIndex: 0,
+            cateData: {}
         };
     },
     methods: {
-
-    },    
+        handleClick(tab, event) {
+            console.log(tab, event);
+        },
+        handleHover(event)
+        {
+            console.log("???");
+        }
+    }    
 })
 window.onscroll = () => {
     // console.log(window.scrollY);
