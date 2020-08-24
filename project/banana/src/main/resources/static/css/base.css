@@ -86,12 +86,17 @@ a:hover {
     width: 100%;
     min-height: 500px;
     z-index: 99;
+    /* background: url("../img/memphis-colorful.png"); */
 
+    /* change to orange maybe better */
+    background: url("../img/doodles.png"); 
+
+    /* background: url("../img/skyscraper.png"); */
+    /* background: url("../img/leaves-pattern.png"); */
 }
 #main-container > .el-row {
     position: relative;
     top: 50px;
-
 }
 
 #sub-container {
@@ -101,18 +106,25 @@ a:hover {
 }
 
 #content-container {
-    /* background-color: aqua; */
+    position: relative;
     /* width: 100%; */
     height: 1500px;
     z-index: 99;
 
 }
+/* #content-container > .coverbox > .el-row > .el-col {
+    background-color: rgba(255, 255, 255, 0.822);
+    box-shadow: 0 0 3px 3px rgba(0,0,0,0.05);
 
+} */
+.left-item, .right-item {
+    box-shadow: -2px 0px 1px 0px #f3f3f3;
+    background-color: rgba(255, 255, 255, 0.877);
+}
 #banner-container {
     position: relative;
     width: 100%;
-    
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
     display: -webkit-flex;
     -webkit-flex-direction: column;
 }
@@ -179,12 +191,12 @@ a:hover {
 .hovered {
     cursor: pointer;
     color: var(--theme-color);
-    background-color: var(--selected-bar-color);
+    background-color: var(--selected-bar-color)!important;
 }
 #cate-right-container {
     /* background-color: aqua; */
 }
-.right-item {
+.subitem-title, .cate-item {
     margin-left: 20px;
 }
 .subitem-title {
@@ -192,14 +204,31 @@ a:hover {
     line-height: 50px;
 }
 .cate-item {
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 20px;
     line-height: 40px;
 }
 .coverbox {
+    position: absolute;
     width: 100%;
     height: 100%;
     /* background-color: rgba(247, 255, 170, 0.678); */
 }
 .padding-box {
     padding: 20px;
+}
+
+.fadein-style {
+    animation: fadein 1s;
+}
+.fadeout-style {
+    animation: fadeout 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+@keyframes fadeout {
+    from { opacity: 1;}
+    to { opacity: 0;}
 }
