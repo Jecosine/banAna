@@ -1,0 +1,27 @@
+:root {
+    --navi-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.general-shadow {
+    box-shadow: 0 0 6px 3px rgba(0,0,0,0.15);
+}
+
+#navigation-container {
+    position: absolute;
+    width: 100%;
+    height: var(--navi-height);
+
+    top: 0;
+    /* background-color: black; */
+}
