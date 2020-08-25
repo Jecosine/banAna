@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-25 12:06:15
+ * @LastEditTime: 2020-08-25 13:12:09
 -->
 <!DOCTYPE html>
 <html>
@@ -109,12 +109,15 @@
                         </el-carousel>
                     </el-col>
                     <el-col :span="5" >
-                        <div id="cate-right-container" :style="cateRightStyle">
-                            <div class="right-container-title"><i class="fa fa-fire" aria-hidden="true"></i>Heat Ranking</div>
+                        <el-card id="cate-right-container" :style="cateRightStyle">
+                            <div slot="header" class="clearfix">
+                                <span class="right-container-title"><i class="fa fa-fire" aria-hidden="true"></i>Heat Ranking</span>
+                                <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
+                            </div>
                             <div class="right-item" v-for="(item, i) in heatRank">
                                 <el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{item.itemName}}</a>
                             </div>
-                        </div>
+                        </el-card>
                     </el-col>            
                 </el-row>
                 </div>             

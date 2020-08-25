@@ -184,9 +184,9 @@ a:hover {
 
 }
 .right-item {
-    margin-left: 20px;
+    /* margin-left: 20px; */
     line-height: 40px;
-    height: 40px;
+    /* height: 40px; */
     font-size: 14px;
 }
 .right-item > .el-tag {
@@ -288,11 +288,11 @@ a:hover {
 }
 
 .right-container-title {
-    width: 100%;
-    text-align: left;
-    height: 50px;
-    line-height: 50px;
-    margin-left: 20px;
+    /* width: 100%; */
+    /* text-align: left; */
+    /* height: 50px; */
+    /* line-height: 50px; */
+    /* margin-left: 20px; */
     font-size: 14px;
     color: var(--selected-font-color);
     /* color: var(--normal-color); */
@@ -300,4 +300,13 @@ a:hover {
 .right-container-title > i {
     color: #FF8623;
     margin-right: 10px;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+.clearfix:after {
+    clear: both
 }
