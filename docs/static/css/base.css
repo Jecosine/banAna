@@ -1,3 +1,5 @@
+@import url(notosanssc.css);
+
 :root {
     --navi-height: 60px;
     --theme-color: #FF8623;
@@ -6,7 +8,7 @@
     --selected-bar-color: #fff3e9;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'font-serif';
     src: url('../fonts/NotoSerifSC-Regular.otf')
 }
@@ -14,14 +16,14 @@
 @font-face {
     font-family: 'font-sans';
     src: url('../fonts/NotoSansSC-Regular.otf')
-}
+} */
 
 * {
     margin: 0;
     padding: 0;
     border: none;
     text-decoration: none;
-    font-family: 'font-sans';
+    font-family: 'Noto Sans SC';
     transition: 0.2s;
     /* color: var(--normal-color) */
 }
