@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-25 14:49:47
+ * @LastEditTime: 2020-08-25 18:09:45
 -->
 <!DOCTYPE html>
 <html>
@@ -135,12 +135,20 @@
                                                     <i class="el-icon-picture-outline"></i>
                                                   </div>
                                             </el-image>
-                                            <div class="preview-card-header-title inline-block">{{cutStr(item.itemName, 20)}}</div>
+                                            <div class="float-right">
+                                                <div class="preview-card-header-title">{{cutStr(item.itemName, 48)}}</div>
+                                                <div class="preview-shop-info"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{item.shopName}}</div>
+                                            </div>
+                                            
                                             <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
                                         </div>
-                                        <span>content</span>
+                                        <el-row class="preview-statistic">
+                                            <el-col :span="8"><i class="fa fa-eye" aria-hidden="true"></i>{{item.statisticData.view}}</el-col>
+                                            <el-col :span="8"><i class="fa fa-star-o" aria-hidden="true"></i>{{item.statisticData.want}}</el-col>
+                                            <el-col :span="8"><i class="fa fa-handshake-o" aria-hidden="true"></i>{{item.statisticData.sale}}</el-col>
+                                        </el-row>
                                     </el-card>
-                                    <span slot="reference" style="width: 100%;"><el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{item.itemName}}</a></span>
+                                    <span slot="reference" style="width: 100%;"><el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{cutStr(item.itemName, 32)}}</a></span>
                                 </el-popover>
                             </div>
                         </el-card>

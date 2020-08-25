@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Noto Sans SC";
+  text-decoration: none;
+  -webkit-font-smoothing: subpixel-antialiased
+}
+a:active,
+a:visited,
+a:hover,
+a:link {
+  color: #006B99;
+}
+#all-container {
+}
+#navigation-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.068);
+  z-index: 9999;
+}
+/* #sider-container {
+  position: fixed;
+  left: 0;
+  top: 100px;
+  height: 100%;
+  width: 300px;
+  font-size: 20px;
+  z-index: 98;
+  background-color: rgba(0,0,0,0);
+} */
+#main-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+#main-container > div > div {
+  /* min-height: 1000px; */
+}
+#main-wrapper {
+  position: relative;
+  height: calc(100% - 60px);
+  margin-top: 60px;
+  /* background-color: rgb(240, 240, 240); */
+
+}
+#folder-container,
+#icon-title {
+  display: inline-block;
+  text-align: center;
+  margin-left: 10px;
+  color: #303133;
+  vertical-align: middle;
+  transition: all 0.3s;
+
+}
+#folder-container {
+  font-size: 1.5em;
+  margin-right: 10px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+}
+#folder-container:hover {
+  cursor: pointer;
+  background-color: #EBEEF5;
+}
+#icon-title {
+  color: rgba(0, 107, 153, 0.904);
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 60px;
+
+}
+.el-row,
+.el-col {
+  height: 100%;
+  /* text-align: center; */
+}
+#search-container {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+#navigation-container > .el-menu-vertical-demo:not(.el-menu--collapse) {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  /* padding-top: 20px; */
+  height: 100%;
+  /* width: 300px; */
+  border: none;
+  font-size: 20px;
+  z-index: 98;
+  /* background-color: rgba(0,0,0,0); */
+  width: 300px;
+  /* min-height: 400px; */
+}
+#navigation-container > .el-menu--collapse {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  /* padding-top: 20px; */
+
+  height: 100%;
+  font-size: 20px;
+  z-index: 98;
+  /* border: none; */
+  
+  /* background-color: rgba(0,0,0,0); */
+  width: 0;
+}
+.primary-color {
+  color: #006B99;
+}
+.sider-item {
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 100%;
+}
+.sider-item > i {
+  display: inline-block;
+  padding-right: 10px;
+  color: #303133;
+}
+.bold {
+  font-weight: bold;
+}
+#avatar-container {
+  position: relative;
+  float: right;
+  height: 60px;
+  /* line-height: 60px; */
+  text-align: right;
+  width: 60px;
+
+  margin-right: 20px;
+  transition: all 0.3s;
+}
+#avatar-container > .el-avatar {
+  position: relative;
+  top: 5px;
+  transition: all 0.3s;
+  z-index: 99;
+}
+#user-info-container {
+  position: absolute;
+  width: 200px;
+  top: 60px;
+  right: -40px;
+  border: none;
+  text-align: left;
+  box-shadow: 0 1px 1px 2px rgba(0,0,0,0.015);
+  z-index: 1;
+  transition: all 0.3s;
+
+}
+
+#avatar-container:hover > span {
+  border: double 3px rgba(0, 107, 153, 0.116);
+  top: 30px;
+  transform: scale(1.5);
+}
+#user-info-menu {
+  margin-top: 40px;
+}
+#user-info-menu i {
+  margin-right: 20px;
+}
+#sider-container > .is-active,
+#sider-container > .el-menu-item:hover {
+  outline: 0;
+  background-color: #e6f0f5;
+  /* border-radius: 0 10px 10px 0; */
+}
+/* #table-filter {
+  width: 100px;
+  height: 100px;
+} */
+.fy {
+  padding-top: 20px;
+  /* border-top: solid 1px rgba(0, 107, 153, 0.075); */
+  text-align: center;
+}
+#main-wrapper > .el-table {
+  overflow-x: hidden;
+  /* height: calc(100% - 100px); */
+  /* max-height: calc(100% - 100px); */
+}
+.icon-container {
+  margin: 0 0 20px 40px;
+}
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+.el-table .danger-row {
+  background: #f9ebeb;
+}
+.el-table .warning-tag {
+  background: oldlace;
+  border-color: rgb(252, 165, 3);
+  color: rgb(252, 165, 3);
+}
+
+.el-table .success-tag {
+  background: #f0f9eb;
+  border-color: #59ff00;
+  color: #59ff00;
+}
+.el-table .danger-tag {
+  background: #f9ebeb;
+  border-color: #ff0202;
+  color: #ff0202;
+}
+
+.header-button {
+  width: 100%;
+  height: 60px;
+}
+#header-button > .el-col {
+  margin-top: 10px;
+}
+.demo-table-expand > .el-col > div {
+  margin-bottom: 10px;
+}
+.demo-table-expand .el-input.is-disabled .el-input__inner::placeholder {
+  color: #303133;
+}
+.demo-table-expand .el-input.is-disabled:hover,
+.demo-table-expand .el-input.is-disabled .el-input__inner {
+  cursor: default;
+}
+#main-chart {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  height: 500px;
+}

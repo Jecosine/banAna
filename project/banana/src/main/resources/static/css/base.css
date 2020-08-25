@@ -338,13 +338,51 @@ a:hover {
 .preview-popover {
     width: 100%;
     margin-left: -20px;
+    user-select: none;
     /* padding: 0; */
 }
 .preview-card-header {
     /* width: auto; */
+    height: 85px;
     padding-bottom: 5px;
     border-bottom: solid 1px #e6e6e6;
+    font-size: 14px;
+    color: var(--normal-color);
+
+}
+.preview-card-header > .float-right {
+    position: relative;
+    width: calc(100% - 10px - 100px);
+    height: 100%;
 }
 .preview-card-header-title {
+    width: 100%;
+    height: 40px;
+    line-height: 20px;
+    /* margin-left: 5px; */
+    /* background-color: #fac59a; */
     vertical-align: top;
+}
+.preview-shop-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    vertical-align: bottom;
+}
+.preview-shop-info > i {
+    margin-right: 10px;
+}
+.preview-statistic {
+    width: 100%;
+    height: 40px;
+    color: var(--normal-color);
+}
+.preview-statistic > .el-col {
+    text-align: center;
+    line-height: 40px;
+}
+.fa {
+    margin-right: 10px;
 }

@@ -50,28 +50,50 @@ var b = new Vue({
             }, 
             heatRank: [
                 {
-                    "itemName": "排行榜测试试测试试1",
-                    "itemUrl": "#"
+                    "itemName": "排行榜测测试试测试试排行榜测测试试测试试排行榜测测试试测试试排行榜测测试试测试试",
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
                 },
                 {
                     "itemName": "item test 2",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 3",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 1",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 2",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 3",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 }
             ]
         };
