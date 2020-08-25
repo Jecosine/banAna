@@ -1,0 +1,39 @@
+<!--
+ * @Date: 2020-08-22 23:01:23
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-08-23 00:48:30
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <h1> Login </h1>
+    <div id="err"></div>
+    <form id="login-form" method="POST">
+        <input type="text" id="username" name="userName" placeholder="Input your username."/>
+        <input type="password" id="password" name="password" placeholder="Input your password."/>
+    </form>
+    <button id ="submitbutton">login</button>
+</body>
+<script>
+    $("#submitbutton").click(() => {
+        $.ajax({
+            url: "/user/loginService",
+            contentType: "application/x-www-form-urlencoded",
+            type: "post",
+            data: $("#login-form").serialize(),
+            success: (res) => {
+                console.log(res);
+                $("#err").text((res["status"] == -1) ? res["message"] : "");
+            },
+            error: () => {
+                console.log("Failed");
+            }
+        })
+    });
+</script>
+</html>
