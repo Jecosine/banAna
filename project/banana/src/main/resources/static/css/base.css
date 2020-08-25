@@ -236,10 +236,10 @@ a:hover {
     margin-left: -20px;
 }
 
-.fadein-style {
+.fade-enter-active {
     animation: fadein 0.5s;
 }
-.fadeout-style {
+.fade-leave-active {
     animation: fadeout 0.5s;
 }
 
