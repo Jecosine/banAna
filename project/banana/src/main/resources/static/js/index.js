@@ -40,6 +40,7 @@ var b = new Vue({
     el: '#main-container',
     data() {
         return {
+            rightContainerWidth: 0,
             activeName: 'second',
             showByIndex: null,
             cateData: undefined,
@@ -49,7 +50,7 @@ var b = new Vue({
             }, 
             heatRank: [
                 {
-                    "itemName": "item test 1",
+                    "itemName": "排行榜测试试测试试1",
                     "itemUrl": "#"
                 },
                 {
@@ -76,6 +77,36 @@ var b = new Vue({
         };
     },
     methods: {
+        getStrLength(str) {
+            var l = str.length;
+            var blen = 0;
+            for(i=0; i<l; i++) {
+                if ((str.charCodeAt(i) & 0xff00) != 0) {
+                    blen ++;
+                }
+                blen ++;
+            }
+            return blen
+        },
+        cutStr(str, len) {
+            // var cl = this.getStrLength(str);
+            var l = str.length;
+            var blen = 0;
+            var res = "";
+            var i = 0;
+            for(i=0; i<l; i++) {
+                if (blen > len - 3)
+                {
+                    break;
+                }
+                if ((str.charCodeAt(i) & 0xff00) != 0) {
+                    blen ++;
+                }
+                blen ++;
+                res = res.concat(str[i]);
+            }
+            return (i === l)?res:res.concat("...");
+        },
         handleClick(tab, event) {
             console.log(tab, event);
         },
@@ -97,11 +128,20 @@ var b = new Vue({
 
     },
     computed: {
+        // rightContainerWidth: function() {
+        //     console.log($("#cate-right-container").css("width").slice(0, -2));
+        //     return parseInt($("#cate-right-container").css("width").slice(0, -2));
+        // },
         cateRightStyle: function() {
             return {
                 "height": this.cateData.cateCount * 50 + 'px'
             }
         }
+    },
+    mounted: function()
+    {
+        console.log($("#cate-right-container").css("width").slice(0, -2));
+        this.rightContainerWidth = parseInt($("#cate-right-container").css("width").slice(0, -2)) - 20;
     },
     created: function()
     {
