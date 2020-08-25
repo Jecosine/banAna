@@ -42,7 +42,11 @@ var b = new Vue({
         return {
             activeName: 'second',
             showByIndex: null,
-            cateData: undefined
+            cateData: undefined,
+            searchInput: {
+                type: "1",
+                text: undefined
+            }
         };
     },
     methods: {
@@ -69,7 +73,7 @@ var b = new Vue({
     computed: {
         cateRightStyle: function() {
             return {
-                "height": this.cateData.cateCount * 60 + 'px'
+                "height": this.cateData.cateCount * 50 + 'px'
             }
         }
     },

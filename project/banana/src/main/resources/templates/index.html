@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-25 09:58:02
+ * @LastEditTime: 2020-08-25 10:59:49
 -->
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,17 @@
               </el-carousel>
         </div>
         <div id="scroll-btn">Scroll Down<br><i class="el-icon-caret-bottom"></i></div>
-        
+        <el-row>
+            <el-col id="search-container" :span="14" :offset="5">
+                <el-input placeholder="Search what you want" v-model="searchInput.text" class="input-with-select">
+                    <el-select v-model="searchInput.type" slot="prepend" placeholder="Please Select">
+                    <el-option label="Item" value="1"></el-option>
+                    <el-option label="Shop" value="2"></el-option>
+                    </el-select>
+                    <el-button slot="append" icon="el-icon-search"></el-button>
+                </el-input>
+            </el-col>
+        </el-row>
         <el-row>
             <el-col :span="14" :offset="5" id="content-container">
                 <div class="coverbox padding-box" :style="cateRightStyle" @mouseout.self="showByIndex = null">
@@ -97,7 +107,9 @@
                             </el-carousel-item>
                         </el-carousel>
                     </el-col>
-                    <el-col :span="5" id="cate-right-container" :style="cateRightStyle"></el-col>            
+                    <el-col :span="5" >
+                        <div id="cate-right-container" :style="cateRightStyle"></div>
+                    </el-col>            
                 </el-row>
                 </div>             
             </el-col>
