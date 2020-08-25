@@ -46,7 +46,33 @@ var b = new Vue({
             searchInput: {
                 type: "1",
                 text: undefined
-            }
+            }, 
+            heatRank: [
+                {
+                    "itemName": "item test 1",
+                    "itemUrl": "#"
+                },
+                {
+                    "itemName": "item test 2",
+                    "itemUrl": "#"
+                },
+                {
+                    "itemName": "item test 3",
+                    "itemUrl": "#"
+                },
+                {
+                    "itemName": "item test 1",
+                    "itemUrl": "#"
+                },
+                {
+                    "itemName": "item test 2",
+                    "itemUrl": "#"
+                },
+                {
+                    "itemName": "item test 3",
+                    "itemUrl": "#"
+                }
+            ]
         };
     },
     methods: {

@@ -179,9 +179,18 @@ a:hover {
 }
 #cate-right-container {
     background-color: white;
-    border-left: solid 1px #e6e6e6;
-    box-shadow: 2px 0px 1px 0px #f3f3f3;
+    /* border-left: solid 1px #e6e6e6; */
+    box-shadow: 0px 0px 1px 1px #f3f3f3;
 
+}
+.right-item {
+    margin-left: 20px;
+    line-height: 40px;
+    height: 40px;
+    font-size: 14px;
+}
+.right-item > .el-tag {
+    margin-right: 10px;
 }
 .left-item {
     /* width: 100%; */
@@ -276,4 +285,19 @@ a:hover {
 }
 .input-with-select {
     /* margin-left: 65px; */
+}
+
+.right-container-title {
+    width: 100%;
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 20px;
+    font-size: 14px;
+    color: var(--selected-font-color);
+    /* color: var(--normal-color); */
+}
+.right-container-title > i {
+    color: #FF8623;
+    margin-right: 10px;
 }

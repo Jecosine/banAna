@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-25 10:59:49
+ * @LastEditTime: 2020-08-25 12:06:15
 -->
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
     
 
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/base.css">
 </head>
@@ -73,7 +74,7 @@
         </div>
         <div id="scroll-btn">Scroll Down<br><i class="el-icon-caret-bottom"></i></div>
         <el-row>
-            <el-col id="search-container" :span="14" :offset="5">
+            <el-col id="search-container" :span="16" :offset="4">
                 <el-input placeholder="Search what you want" v-model="searchInput.text" class="input-with-select">
                     <el-select v-model="searchInput.type" slot="prepend" placeholder="Please Select">
                     <el-option label="Item" value="1"></el-option>
@@ -84,7 +85,7 @@
             </el-col>
         </el-row>
         <el-row>
-            <el-col :span="14" :offset="5" id="content-container">
+            <el-col :span="16" :offset="4" id="content-container">
                 <div class="coverbox padding-box" :style="cateRightStyle" @mouseout.self="showByIndex = null">
                 <el-row :gutter="20">                    
                     <el-col :span="5" id="cate-left-container" class="inline-block">
@@ -101,14 +102,19 @@
                                 </el-row> -->
                             </div>
                         </div>
-                        <el-carousel id="center-ads" trigger="click" :style="cateRightStyle" class="test-white">
-                            <el-carousel-item v-for="item in 4" :key="item" >
+                        <el-carousel id="center-ads" trigger="click" :style="cateRightStyle" height="500px">
+                            <el-carousel-item v-for="item in 4" :key="item" class="test-white" >
                               <h3>{{ item }}</h3>
                             </el-carousel-item>
                         </el-carousel>
                     </el-col>
                     <el-col :span="5" >
-                        <div id="cate-right-container" :style="cateRightStyle"></div>
+                        <div id="cate-right-container" :style="cateRightStyle">
+                            <div class="right-container-title"><i class="fa fa-fire" aria-hidden="true"></i>Heat Ranking</div>
+                            <div class="right-item" v-for="(item, i) in heatRank">
+                                <el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{item.itemName}}</a>
+                            </div>
+                        </div>
                     </el-col>            
                 </el-row>
                 </div>             
