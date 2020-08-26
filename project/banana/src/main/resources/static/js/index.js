@@ -40,7 +40,7 @@ var b = new Vue({
     el: '#main-container',
     data() {
         return {
-            
+            screenWidth: window.innerWidth,
             rightContainerWidth: 0,
             activeName: 'second',
             showByIndex: null,
@@ -171,10 +171,32 @@ var b = new Vue({
             return (window.innerWidth < 1200) ? 8 : 12;
         }
     },
+    watch: {
+        screenWidth(val) {
+            if (!this.timer)
+            {
+                this.screenWidth = val;
+                this.timer = true;
+                let that = this;
+                setTimeout(() => {
+                    console.log(that.screenWidth);
+                    that.timer = false;
+                }, 500);
+
+            }
+        }
+    },
     mounted: function()
     {
+        const that = this;
+        window.onresize = () => {
+            return (() => {
+                that.screenWidth = window.innerWidth;
+            })()
+        }
         console.log($("#cate-right-container").css("width").slice(0, -2));
         this.rightContainerWidth = parseInt($("#cate-right-container").css("width").slice(0, -2)) - 20;
+        
     },
     created: function()
     {
