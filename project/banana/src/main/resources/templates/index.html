@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-22 23:28:47
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-26 19:12:50
+ * @LastEditTime: 2020-08-26 19:26:29
 -->
 <!DOCTYPE html>
 <html>
@@ -194,7 +194,7 @@
                           </div>
                       </el-image>
                       <div class="float-right">
-                        <div class="preview-card-header-title">{{cutStr(item.itemName, 48)}}</div>
+                        <div class="preview-card-header-title">{{cutStr(item.itemName, 40)}}</div>
                         <div class="preview-shop-info"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{item.shopName}}</div>
                       </div>
                       
@@ -206,7 +206,7 @@
                       <el-col :span="8"><i class="fa fa-handshake-o" aria-hidden="true"></i>{{item.statisticData.sale}}</el-col>
                     </el-row>
                   </el-card>
-                  <span slot="reference" style="width: 100%;"><el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{cutStr(item.itemName, 32)}}</a></span>
+                  <span slot="reference" style="width: 100%;"><el-tag size="mini" :type="(i < 3)?'light':'info'">{{i + 1}}</el-tag><a :href="item.itemUrl">{{cutStr(item.itemName, 28)}}</a></span>
                 </el-popover>
               </div>
             </el-card>

@@ -9,8 +9,8 @@
 :focus {
     outline: none;
 }
-
-/* @font-face {
+/* 
+@font-face {
     font-family: 'font-serif';
     src: url('../fonts/NotoSerifSC-Regular.otf')
 }
@@ -29,6 +29,10 @@
     transition: 0.2s;
     /* color: var(--normal-color); */
 }
+::selection {
+    background-color: rgba(255, 182, 122, 0.5);
+}
+
 body {
     max-width: 100%;
     /* min-width: 1200px; */
@@ -348,7 +352,16 @@ a:hover {
 .input-with-select {
     /* margin-left: 65px; */
 }
-
+a {
+    color: var(--normal-color);
+}
+a:hover {
+    color: var(--theme-color);
+    text-decoration: underline;
+}
+.right-item {
+    font-size: 14px;
+}
 .right-container-title {
     /* width: 100%; */
     /* text-align: left; */
