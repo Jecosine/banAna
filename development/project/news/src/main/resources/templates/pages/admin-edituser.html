@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/theme/index.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/editor.css" />
+    <script src="/js/vue.js"></script>
+    <script src="/js/ele.js"></script>
+    <script src="/js/jquery.min.js"></script>
+  </head>
+  <body>
+    <el-container id="all-container">
+      <el-header id="navigation-container">
+        <el-row :gutter="0" >
+          <el-col :span="6">
+            <div id="folder-container" @click="collSider=!collSider"><i :class="{'primary-color':collSider, 'el-icon-s-fold': !collSider,'el-icon-s-unfold':collSider}"></i></div><a href="#" id="icon-title">Core Force NEWS</a>
+          </el-col>
+          <el-col :span="12">
+          </el-col>
+          <el-col :span="6">
+            <div id="avatar-container" @mouseenter.self="userInfoCol=false" @mouseleave.self="userInfoCol=true">
+              <el-avatar fit="fill" :size="50" src="/res/img/avatar.jpg"></el-avatar>
+              <div id="user-info-container">
+                <el-menu
+                  id="user-info-menu"
+                  mode="vertical"
+                  :collapse="false"
+                  v-show="!userInfoCol">
+                  <el-menu-item index="1"><i class="el-icon-user-solid  primary-color"></i>个人中心</el-menu-item>
+                  <el-menu-item index="2"><i class="el-icon-s-flag  primary-color"></i>操作历史</el-menu-item>
+                  <el-menu-item index="3"><i class="el-icon-finished bold primary-color"></i>统计</el-menu-item>
+                  <el-menu-item index="4"><i class="el-icon-s-tools  primary-color"></i>设定</el-menu-item>
+                </el-menu>
+              </div>
+            </div>
+            
+          </el-col>
+        </el-row>
+        <el-menu id="sider-container" 
+          :collapse="collSider" 
+          @open="handleOpen" 
+          @close="handleClose"
+          class="el-menu-vertical-demo">
+          <el-menu-item index="1" >
+            <i class="el-icon-date bold primary-color"></i><span slot="title" class="sider-item">工作日程</span>
+          </el-menu-item>
+          <el-menu-item index="2" >
+            <i class="el-icon-bell bold primary-color"></i><span slot="title" class="sider-item">消息通知</span>
+          </el-menu-item>
+          <el-menu-item index="3" >
+            <i class="el-icon-setting bold primary-color"></i><span slot="title" class="sider-item">设置</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-user bold primary-color"></i>
+            <span slot="title"  class="sider-item">
+              人员管理
+            </span>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <i class="el-icon-files bold primary-color"></i>
+            <span slot="title" class="sider-item">
+              归档管理
+            </span>
+          </el-menu-item>
+          <el-submenu index="6">
+            <template slot="title">
+              <i class="el-icon-takeaway-box bold primary-color"></i>
+              <span slot="title" class="sider-item">
+                文章管理
+              </span>             
+            </template>
+            <el-menu-item index="6-1" ><span class="sider-item"><i class="el-icon-cpu bold primary-color"></i>科技</span></el-menu-item>
+            <el-menu-item index="6-2" ><span class="sider-item"><i class="el-icon-office-building bold primary-color"></i>财经</span></el-menu-item>
+            <el-menu-item index="6-3" ><span class="sider-item"><i class="el-icon-school bold primary-color"></i>教育</span></el-menu-item>
+            <el-menu-item index="6-4" ><span class="sider-item"><i class="el-icon-football bold primary-color"></i>体育</span></el-menu-item>
+          </el-submenu>
+          <el-submenu index="7" >
+            <template slot="title">
+              <i class="el-icon-finished bold primary-color"></i>
+              <span slot="title" class="sider-item">统计</span>
+            </template>
+            <el-menu-item index="7-1" ><span class="sider-item"><i class="el-icon-document-checked bold primary-color"></i>工作统计</span></el-menu-item>
+            <el-menu-item index="7-2" ><span class="sider-item"><i class="el-icon-reading bold primary-color"></i>内容统计</span></el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-header>
+      <el-main id="main-container">
+        <el-row :gutter="0">
+          <el-col :span="6"></el-col>
+          <el-col :span="16" id="main-wrapper">
+            <el-container id="editor-container">
+              <el-form :model="form" label-width="80px" label-position="left" style="width: 100%;">
+                
+                <el-row style="height: auto;">
+                  <el-col :span="16">
+                    <el-form-item label="用户头像">
+                      <el-upload
+                        class="avatar-uploader"
+                        action="#"
+                        list-type="picture-card"
+                        :auto-upload="false"
+                      >
+                        <div slot="file" slot-scope="{file}">
+                          <img
+                            class="el-upload-list__item-thumbnail"
+                            :src="file.url" alt=""
+                          >
+                          <span class="el-upload-list__item-actions">
+                            <span
+                              class="el-upload-list__item-preview"
+                              @click="handlePictureCardPreview(file)"
+                            >
+                              <i class="el-icon-zoom-in"></i>
+                            </span>
+                            <span
+                              v-if="!disabled"
+                              class="el-upload-list__item-delete"
+                              @click="handleDownload(file)"
+                            >
+                              <i class="el-icon-download"></i>
+                            </span>
+                            <span
+                              v-if="!disabled"
+                              class="el-upload-list__item-delete"
+                              @click="handleRemove(file)"
+                            >
+                              <i class="el-icon-delete"></i>
+                            </span>
+                          </span>
+                        </div>
+                        
+                      </el-upload>
+                      <el-dialog :visible.sync="dialogVisible" id="preview-title">
+                        <img width="100%" :src="dialogImageUrl" alt="">
+                      </el-dialog>
+                    </el-form-item>
+                    <el-form-item label="用户名" ><el-input v-model="form.email"></el-input></el-form-item>
+                    <el-form-item label="密码" ><el-input v-model="form.password" show-password type="password"></el-input></el-form-item>
+                    <el-form-item label="真实姓名" inline ><el-input v-model="form.realname"></el-input></el-form-item>
+                    <el-form-item label="分区权限">
+                      <el-checkbox v-for="part in parts" :label="part.value" :key="part.role">{{part.label}}</el-checkbox>
+                    </el-form-item>
+                    <el-form-item label="角色职位">
+                      <el-radio-group v-model="selectedRole">
+                        <el-radio v-for="(role,index) in roles" :label="index">{{role}}</el-radio>
+                      </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="权限到期">
+                      <el-date-picker type="date" placeholder="选择日期" v-model="form.expired" style="width: 100%;"></el-date-picker>
+                    </el-form-item>
+                    <!-- </el-form-item> -->
+                  </el-col>
+                  <el-col :span="8">
+                  </el-col>
+                </el-row>
+                <div id="bottom-button-container">
+                  <el-button type="primary" icon="el-icon-s-promotion">提交</el-button>
+                  <el-button  icon="el-icon-error">放弃更改</el-button>
+                </div>
+              </el-form>
+            </el-container>
+          </el-col>
+          <el-col :span="2"></el-col>
+        </el-row>
+        
+      </el-main>
+    </el-container>
+    <script src="/js/edituser.js">      
+    </script>
+  </body>
+</html>

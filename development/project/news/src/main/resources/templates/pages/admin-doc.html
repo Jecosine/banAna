@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/theme/index.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/vue.js"></script>
+    <script src="/js/ele.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <el-container id="all-container">
+      <el-header id="navigation-container">
+        <el-row :gutter="0" >
+          <el-col :span="6">
+            <div id="folder-container" @click="collSider=!collSider"><i :class="{'primary-color':collSider, 'el-icon-s-fold': !collSider,'el-icon-s-unfold':collSider}"></i></div><a href="#" id="icon-title">Core Force NEWS</a>
+          </el-col>
+          <el-col :span="12">
+            <div id="search-container">
+              <el-input placeholder="搜索相关新闻"
+                v-model="searchInput"
+                prefix-icon="el-icon-search"
+                clearable>
+              </el-input>
+            </div>
+          </el-col>
+          <el-col :span="6">
+            <div id="avatar-container" @mouseenter.self="userInfoCol=false" @mouseleave.self="userInfoCol=true">
+              <el-avatar fit="fill" :size="50" src="/res/img/avatar.jpg"></el-avatar>
+              <div id="user-info-container">
+                <el-menu
+                  id="user-info-menu"
+                  mode="vertical"
+                  :collapse="false"
+                  v-show="!userInfoCol">
+                  <el-menu-item index="1"><i class="el-icon-user-solid  primary-color"></i>个人中心</el-menu-item>
+                  <el-menu-item index="2"><i class="el-icon-s-flag  primary-color"></i>操作历史</el-menu-item>
+                  <el-menu-item index="3"><i class="el-icon-finished bold primary-color"></i>统计</el-menu-item>
+                  <el-menu-item index="4"><i class="el-icon-s-tools  primary-color"></i>设定</el-menu-item>
+
+                </el-menu>
+              </div>
+            </div>
+            
+          </el-col>
+        </el-row>
+        <el-menu id="sider-container" 
+          :collapse="collSider" 
+          @open="handleOpen" 
+          @close="handleClose"
+          default-active="5"
+          class="el-menu-vertical-demo">
+          <div class="icon-container">
+            <el-button type="primary" icon="el-icon-edit" round>编辑文章</el-button>
+          </div>
+          <el-menu-item index="1" >
+            <span slot="title" class="sider-item"><i class="el-icon-date bold primary-color"></i>工作日程</span>
+          </el-menu-item>
+          <el-menu-item index="2" >
+            <span slot="title" class="sider-item"><i class="el-icon-bell bold primary-color"></i>消息通知</span>
+          </el-menu-item>
+
+          <el-menu-item index="3" >
+            <span slot="title" class="sider-item"><i class="el-icon-setting bold primary-color"></i>设置</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <span slot="title"  class="sider-item">
+              <i class="el-icon-user bold primary-color"></i>人员管理
+            </span>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <span slot="title"  class="sider-item">
+              <i class="el-icon-files bold primary-color"></i>归档管理
+            </span>
+          </el-menu-item>
+          <el-submenu index="6">
+            <span slot="title"  class="sider-item">
+              <i class="el-icon-takeaway-box bold primary-color"></i>文章管理
+            </span>
+            <el-menu-item index="6-1" ><span class="sider-item"><i class="el-icon-cpu bold primary-color"></i>科技</span></el-menu-item>
+            <el-menu-item index="6-2" ><span class="sider-item"><i class="el-icon-office-building bold primary-color"></i>财经</span></el-menu-item>
+            <el-menu-item index="6-3" ><span class="sider-item"><i class="el-icon-school bold primary-color"></i>教育</span></el-menu-item>
+            <el-menu-item index="6-4" ><span class="sider-item"><i class="el-icon-football bold primary-color"></i>体育</span></el-menu-item>
+          </el-submenu>
+          <el-submenu index="7" >
+            <span slot="title" class="sider-item"><i class="el-icon-finished bold primary-color"></i>统计</span>
+            <el-menu-item index="7-1" ><span class="sider-item"><i class="el-icon-document-checked bold primary-color"></i>工作统计</span></el-menu-item>
+            <el-menu-item index="7-2" ><span class="sider-item"><i class="el-icon-reading bold primary-color"></i>内容统计</span></el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-header>
+      <el-main id="main-container">
+        <el-row :gutter="0">
+          <el-col :span="6"></el-col>
+          <el-col :span="18" id="main-wrapper">
+            <el-row class="header-button">
+              <el-col :span="6">
+                <el-button type="danger" icon="el-icon-delete" size="mini">批量删除</el-button>
+                <!-- <el-button type="success" icon="el-icon-document-checked" size="mini">批量完成</el-button> -->
+              </el-col>
+              <el-col :span="18">
+                <el-input
+                class="data-tb"
+                id="table-filter"
+                v-model="search"
+                size="mini"
+                prefix-icon="el-icon-search"
+                placeholder="筛选用户"></el-input>
+              </el-col>
+              </el-row>
+            <template>              
+              <el-table
+                :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                style="width: 100%"              
+                v-loading="loading"
+                ref="multipleTable"
+                :default-sort="{prop:'date', order:'descending'}"
+                @selection-change="handleSelectionChange"
+                >
+                <el-table-column
+                  type="selection"
+                  width="55">
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  prop="date"
+                  label="账户名"
+                  width="200">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  label="姓名"
+                  width="200">
+                </el-table-column>
+                <el-table-column
+                  prop="province"
+                  label="角色"
+                  width="200">
+                </el-table-column>
+                <el-table-column
+                  prop="city"
+                  label="权限过期时间"
+                  width="150">
+                </el-table-column>
+                <el-table-column
+                  label="操作"
+                  width="400">
+                  <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" plain size="small" icon="el-icon-view">查看</el-button>
+                    <el-button icon="el-icon-edit" type="primary" size="small">编辑</el-button>
+                    <el-button icon="el-icon-delete" type="danger" size="small">删除</el-button>
+                    <!-- <el-button icon="el-icon-data-analysis" type="success" size="small">统计</el-button> -->
+                    <!-- <el-button icon="el-icon-document-checked" type="success" size="small">完成</el-button> -->
+
+
+                  </template>
+                </el-table-column>
+              </el-table>
+              <el-pagination class="fy"
+                  hide-on-single-page
+                  layout="total, prev, pager, next, jumper"
+                  @current-change="currentChange"
+                  :total="total"
+                  :page-size="pagesize"
+                  background
+                >
+              </el-pagination>
+            </template>
+          </el-col>
+        </el-row>
+        
+      </el-main>
+    </el-container>
+    <script>
+      var tb = new Vue({
+        el: '#all-container',
+        data: function() {
+          return { 
+            visible: false,
+            searchInput: "",
+            collSider: false,
+            activeTag: "",
+            userInfoCol: true,
+            uicConst: true,
+            tableData: [],
+            total: 10,
+            currentPage: 1,
+            loading: false,
+            pagesize: 15,
+            search: ''
+          }
+        },
+        methods: {
+          handleSelectionChange(val) {
+            this.multipleSelection = val;
+            console.log(val)
+          },
+          handleClick(row) {
+            console.log(row);
+          },
+          handleOpen: (key)=>{
+            console.log(key);
+          },
+          handleClose: (key, keyPath)=>{
+            console.log(key, keyPath);
+          },
+          fetchData: () => {
+            var that = this;
+            var tempdata;
+            tempdata = $.ajax({
+              url: "/res/json/data.json",
+              method: "GET",
+              async: false
+            }).then((res)=>{
+              that.loading = false;
+              console.log(res);
+              setTimeout(()=>{
+                tb.tableData = res.tableData == null ? [] : res.tableData;
+                tb.loading = false;
+                tb.total = tb.tableData.length;
+                
+                console.log(tb.tableData.length);
+              }, 1000);
+            });
+            
+
+            
+            // setTimeout(()=>{
+            //   that.loading = false;
+            //   console.log(that.loading);
+            // }, 1000);
+            
+          },
+          currentChange: (page) => {
+            tb.currentPage = page;
+            console.log("call currentchange:",page)
+          }
+        },
+        mounted() {
+          this.loading = true;
+          this.fetchData();
+          // this.loading = false;
+        },
+        created() {
+          
+        },
+      });
+      // tb.fetchData();
+      // document.onload = () => {tb.loading = true; }
+    </script>
+  </body>
+</html>

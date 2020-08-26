@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/theme/index.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/editor.css" />
+    <script src="/js/vue.js"></script>
+    <script src="/js/ele.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/echarts.min.js"></script>
+    <script src="/js/westeros.js"></script>
+
+  </head>
+  <body>
+    <el-container id="all-container">
+      <el-header id="navigation-container">
+        <el-row :gutter="0" >
+          <el-col :span="6">
+            <div id="folder-container" @click="collSider=!collSider"><i :class="{'primary-color':collSider, 'el-icon-s-fold': !collSider,'el-icon-s-unfold':collSider}"></i></div><a href="#" id="icon-title">Core Force NEWS</a>
+          </el-col>
+          <el-col :span="12">
+          </el-col>
+          <el-col :span="6">
+          </el-col>
+        </el-row>
+        <el-menu id="sider-container" 
+          :collapse="collSider" 
+          @open="handleOpen" 
+          @close="handleClose"
+          class="el-menu-vertical-demo">
+          <el-menu-item index="1" >
+            <i class="el-icon-date bold primary-color"></i><span slot="title" class="sider-item"><a href="/admin/todo">工作日程</a></span>
+          </el-menu-item>
+          <el-menu-item index="2" >
+            <i class="el-icon-bell bold primary-color"></i><span slot="title" class="sider-item"><a href="/admin/notify">消息通知</a></span>
+          </el-menu-item>
+          <el-menu-item index="3" >
+            <i class="el-icon-setting bold primary-color"></i><span slot="title" class="sider-item"><a href="/admin/setting">设置</a></span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-user bold primary-color"></i>
+            <span slot="title"  class="sider-item">
+              <a href="/admin/user">
+                人员管理
+              </a>
+            </span>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <i class="el-icon-files bold primary-color"></i>
+            <span slot="title" class="sider-item">
+              <a href="/admin/docs">
+              归档管理
+            </a>
+            </span>
+          </el-menu-item>
+          <el-submenu index="6">
+            <template slot="title">
+              <i class="el-icon-takeaway-box bold primary-color"></i>
+              <span slot="title" class="sider-item">
+                <a href="/admin/docs">
+                文章管理
+              </a>
+              </span>             
+            </template>
+            <el-menu-item index="6-1" ><span class="sider-item"><a href=""><i class="el-icon-cpu bold primary-color"></i>科技</span></a></el-menu-item>
+            <el-menu-item index="6-2" ><span class="sider-item"><a href=""><i class="el-icon-office-building bold primary-color"></i>财经</span></a></el-menu-item>
+            <el-menu-item index="6-3" ><span class="sider-item"><a href=""><i class="el-icon-school bold primary-color"></i>教育</span></a></el-menu-item>
+            <el-menu-item index="6-4" ><span class="sider-item"><a href=""><i class="el-icon-football bold primary-color"></i>体育</span></a></el-menu-item>
+          </el-submenu>
+          <el-submenu index="7" >
+            <template slot="title">
+              <i class="el-icon-finished bold primary-color"></i>
+              <span slot="title" class="sider-item"><a href="/admin/docs">统计</a></span>
+            </template>
+            <el-menu-item index="7-1" ><span class="sider-item"><a href=""><i class="el-icon-document-checked bold primary-color"></i>工作统计</span></a></el-menu-item>
+            <el-menu-item index="7-2" ><span class="sider-item"><a href=""><i class="el-icon-reading bold primary-color"></i>内容统计</span></a></el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-header>
+      <el-main id="main-container">
+        <el-row :gutter="0">
+          <el-col :span="6"></el-col>
+          <el-col :span="14" id="main-wrapper">
+            <div id="main-chart"></div>
+            <el-form 
+              style="margin: 50px;"
+              label-position="left"
+              ref="form"
+              label-width="80px"
+              class="demo-table-expand">
+              <el-form-item label="标题">
+                <span>{{form.title}}</span>
+              </el-form-item>
+              <el-form-item label="作者">
+                <span>{{form.username}}</span>
+              </el-form-item>
+              <el-form-item label="分区">
+                  <el-tag size="medium">{{ ["体育","财经","科技","娱乐"][parseInt(form.part_id)-1] }}</el-tag>
+              </el-form-item>
+              <template>
+                <el-col :span="6"><el-form-item 
+                label="总阅读量">
+                  {{ totalRead }}
+                </el-form-item></el-col>
+                <!-- <el-col :span="4">&nbsp;</el-col> -->
+                <el-col :span="6"><el-form-item label="总点赞量" >
+                  12344
+                </el-form-item></el-col>
+              </template>
+            </el-form>
+          </el-col>
+          <el-col :span="2"></el-col>
+        </el-row>
+        
+      </el-main>
+    </el-container>
+    <script src="/js/viewdata.js">
+
+    </script>
+  </body>
+</html>

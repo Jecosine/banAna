@@ -1,0 +1,100 @@
+#navigation-container > .el-menu-vertical-demo:not(.el-menu--collapse) {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  /* padding-top: 20px; */
+  height: 100%;
+  /* width: 300px; */
+  /* border: none; */
+  font-size: 20px;
+  /* z-index: 98; */
+  /* background-color: rgba(0,0,0,0); */
+  width: 300px;
+  /* min-height: 400px; */
+}
+#navigation-container > .el-menu--collapse {
+  position: fixed;
+  left: 0;
+  /* padding-top: 20px; */
+  top: 80px;
+  height: 100%;
+  font-size: 20px;
+  /* z-index: 98; */
+  /* border: none; */
+  
+  /* background-color: rgba(0,0,0,0); */
+  width: 80px;
+}
+#navigation-container > .el-menu--collapse {
+  border-radius: 0;
+}
+.el-menu-item  i,
+.el-submenu i {
+  display: inline-block;
+  padding-right: 10px;
+  color: #303133;
+}
+
+#sider-container > .el-menu-item i,
+#sider-container > .el-submenu i {
+  margin-left: 20px;
+}
+#editor {
+  height: 700px;
+  overflow-y: auto;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 178px;
+  height: 178px;
+  line-height: 178px;
+  text-align: center;
+}
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
+#preview-title {
+  z-index: 999;
+}
+.ql-picker-label {
+  outline: none;
+  border: none;
+  text-align: center;
+  
+  vertical-align: middle;
+}
+/* .ql-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  line-height: 40px;
+} */
+#info-container {
+  margin-bottom: 20px;
+}
+#main-wrapper {
+  position: relative;
+  overflow: auto;
+  /* overflow-y: scroll; */
+}
+#bottom-button-container {
+  /* position: relative; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

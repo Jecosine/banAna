@@ -23,19 +23,89 @@ var a = new Vue({
     el: '#navigation-container',
     data() {
         return {
+            onTop: true,
+            isCollapsed: false,
+            screenWidth: window.innerWidth,
             userData: user,
             activeIndex: '1',
             activeIndex2: '1'
         };
     },
+    computed: {
+    },
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
+        },
+        handleOnTop(a)
+        {
+            // console.log("to top!", a);
+            this.onTop = true;
+        },
+        handleLeaveTop()
+        {
+            this.onTop = false;
+            console.log("leave top!");
         }
     },
+    watch: {
+        screenWidth(val) {
+            if (!this.timer)
+            {
+                this.screenWidth = val;
+                this.timer = true;
+                let that = this;
+                if(this.screenWidth > 1200)
+                    this.isCollapsed = false;
+                setTimeout(() => {
+                    // console.log(that.screenWidth);
+                    that.timer = false;
+                }, 500);
+
+            }
+        }
+    },
+    mounted: function()
+    {
+        const that = this;
+        window.addEventListener("totop", that.handleOnTop);
+        window.addEventListener("leavetop", that.handleLeaveTop);
+        window.onresize = () => {
+            return (() => {
+                that.screenWidth = window.innerWidth;
+            })();
+        }
+        
+    }
     
 })
 
+window.onscroll = () => {
+    // console.log(window.scrollY);
+
+    if(window.scrollY == 0)
+    {
+        // console.log("into event");
+        var event = document.createEvent('HTMLEvents');
+        event.initEvent("totop", false, true);
+        window.dispatchEvent(event);
+        // that.$emit("to-top", '1');
+
+        // $("#navigation-mask").stop().animate({opacity: 0}, 200);
+    }
+    else
+    {
+        if(a.onTop)
+        {
+            var event = document.createEvent('HTMLEvents');
+            event.initEvent("leavetop", false, true);
+            window.dispatchEvent(event);
+        }
+        // this.$emit("scrollleavetop");
+        // $("#navigation-mask").stop().animate({opacity: 1}, 200);
+    }
+
+}
 var b = new Vue({
     el: '#main-container',
     data() {
@@ -50,30 +120,55 @@ var b = new Vue({
             }, 
             heatRank: [
                 {
-                    "itemName": "排行榜测试试测试试1",
-                    "itemUrl": "#"
+                    "itemName": "排行榜测测试试测试试排行榜测测试试测试试排行榜测测试试测试试排行榜测测试试测试试",
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
                 },
                 {
                     "itemName": "item test 2",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 3",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 1",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 2",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 },
                 {
                     "itemName": "item test 3",
-                    "itemUrl": "#"
+                    "shopName": "shop1",
+                    "itemUrl": "#",
+                    "statisticData" : {"view": 12314,"want": 4312,"sale": 2145}
+                    
+                    
                 }
-            ]
+            ],
+            recommend: {
+                // "itemCount": 
+            }
         };
     },
     methods: {
@@ -121,8 +216,8 @@ var b = new Vue({
             //     },
             //     1000
             // ) 
-            this.showByIndex = null
-            // console.log("out");
+            this.showByIndex = null;
+            console.log("out");
             // this.showByIndex = showByIndex;
         }
 
@@ -136,12 +231,43 @@ var b = new Vue({
             return {
                 "height": this.cateData.cateCount * 50 + 'px'
             }
+        },
+        cateCenterStyle: function() {
+            console.log($("#center-ads").css("width"));
+            return {
+                "height": "100%",
+                "width": $("#center-ads").css("width")
+            }
+        },
+        cardWidth: function() {
+            console.log((window.innerWidth < 1200) ? 6 : 4);
+            return (window.innerWidth < 1200) ? 6 : 4;
+        },
+        cardColCount: function() {
+            return (window.innerWidth < 1200) ? 8 : 12;
+        }
+    },
+    watch: {
+        screenWidth(val) {
+            if (!this.timer)
+            {
+                this.screenWidth = val;
+                this.timer = true;
+                let that = this;
+                setTimeout(() => {
+                    console.log(that.screenWidth);
+                    that.timer = false;
+                }, 500);
+
+            }
         }
     },
     mounted: function()
     {
+        
         console.log($("#cate-right-container").css("width").slice(0, -2));
         this.rightContainerWidth = parseInt($("#cate-right-container").css("width").slice(0, -2)) - 20;
+        
     },
     created: function()
     {
@@ -164,19 +290,19 @@ var b = new Vue({
         })
     }
 })
-window.onscroll = () => {
-    // console.log(window.scrollY);
+// window.onscroll = () => {
+//     // console.log(window.scrollY);
 
-    if(window.scrollY == 0)
-    {
-        $("#navigation-mask").stop().animate({opacity: 0}, 200);
-    }
-    else
-    {
-        $("#navigation-mask").stop().animate({opacity: 1}, 200);
-    }
+//     if(window.scrollY == 0)
+//     {
+//         // $("#navigation-mask").stop().animate({opacity: 0}, 200);
+//     }
+//     else
+//     {
+//         // $("#navigation-mask").stop().animate({opacity: 1}, 200);
+//     }
 
-}
+// }
 
 
 $("#scroll-btn").click(() => {
