@@ -1,10 +1,9 @@
 /*
  * @Author: Jecosine
  * @Date: 2020-07-25 16:30:23
- * @LastEditTime: 2020-08-22 02:57:17
+ * @LastEditTime: 2020-08-26 23:14:08
  * @LastEditors: Jecosine
  * @Description: In User Settings Edit
- * @FilePath: \banana\src\main\java\swu\smxy\banana\dao\BusinessMapper.java
  */
 package swu.smxy.banana.dao;
 
@@ -41,6 +40,7 @@ public interface BusinessMapper extends BaseMapper<Business>
      */
     @Select("select * from business where businessId=#{businessId}")
     public Business getById(String businessId);
+
     /**
      * @description: get by name
      * @param name - business name
@@ -50,7 +50,7 @@ public interface BusinessMapper extends BaseMapper<Business>
     public Business getByName(String businessName);
     // @Update("update business set ")
     // public int update(Business business);
-
+    
     @Delete("delete from business where businessId=#{businessId}")
     public int deleteById(String businessId);
 
