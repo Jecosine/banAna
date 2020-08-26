@@ -212,14 +212,33 @@ a:hover {
 
 #cate-left-container .el-card__body {
     padding: 0;
+    /* width: 200px; */
     /* border-right: solid 1px #e6e6e6; */
     /* width: 200px; */
 }
-#cate-center-container {
+#center-ads, #cate-left-container {
     position: relative;
+    border: none;
+    /* pointer-events: visible; */
+    
+}
+#cate-left-container {
+    border-top-right-radius: 0 ;
+    border-bottom-right-radius: 0 ;
+    overflow: unset;
+}
+/* center ads */
+#center-ads {
+    border-bottom-left-radius: 0px;
+    width: 100%;
+}
+ 
+#center-ads .el-card {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 #cate-right-container {
-    background-color: white;
+    /* background-color: rgb(110, 110, 110); */
     /* border-left: solid 1px #e6e6e6; */
     /* box-shadow: 0px 0px 1px 1px #f3f3f3; */
 
@@ -240,6 +259,7 @@ a:hover {
     text-align: center;
     /* color: var(--select-color); */
     color: var(--normal-color);
+    pointer-events: all;
 }
 .left-item:hover {
     cursor: pointer;
@@ -252,9 +272,6 @@ a:hover {
     background-color: var(--selected-bar-color)!important;
 }
 
-#cate-right-container {
-    /* background-color: aqua; */
-}
 .subitem-title, .cate-item {
     margin-left: 20px;
 }
@@ -306,10 +323,6 @@ a:hover {
     z-index: 999;
 }
 
-/* center ads */
-#center-ads {
-
-}
 
 .test-white {
     /* position: absolute; */
@@ -319,10 +332,13 @@ a:hover {
 }
 .center-item {
     position: absolute;
-    width: 100%;
+    margin-left: 100%;
+    top: 0;
+    /* width: 100%; */
     /* padding: 5px; */
     z-index: 999;
     background-color: rgb(255, 255, 255);
+    /* pointer-events: none; */
 }
 
 .input-with-select .el-select {

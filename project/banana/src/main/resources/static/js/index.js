@@ -216,8 +216,8 @@ var b = new Vue({
             //     },
             //     1000
             // ) 
-            this.showByIndex = null
-            // console.log("out");
+            this.showByIndex = null;
+            console.log("out");
             // this.showByIndex = showByIndex;
         }
 
