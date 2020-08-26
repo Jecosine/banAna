@@ -5,6 +5,9 @@
     --selected-font-color: #303133;
     --selected-bar-color: #fff3e9;
 }
+:focus {
+    outline: none;
+}
 
 @font-face {
     font-family: 'font-serif';
@@ -23,11 +26,14 @@
     text-decoration: none;
     font-family: 'font-sans';
     transition: 0.2s;
-    /* color: var(--normal-color) */
+    /* color: var(--normal-color); */
 }
 body {
     min-width: 1200px;
     /* overflow: scroll; */
+}
+a {
+    /* color: var(--normal-color); */
 }
 a:hover {
     color: var(--theme-color);
@@ -39,10 +45,14 @@ a:hover {
 .general-shadow {
     box-shadow: 0 0 6px 3px rgba(0,0,0,0.15);
 }
-
+#collapser {
+    position: absolute;
+    line-height: var(--navi-height);
+    left: 40px;
+}
 #navigation-container {
     position: fixed;
-    width: 100vw;
+    width: 100%;
     /* min-width: 1200px; */
     /* left: 0;
     right: 0; */
@@ -54,19 +64,29 @@ a:hover {
     /* background-color: white; */
 }
 .el-menu {
+    user-select: none;
     background-color: transparent;
     border-bottom: solid 1px transparent!important;
 }
+.el-menu a {
+    color: var(--selected-font-color);
+}
 .navigation-wrapper {
-    height: 60px;
+    height: 40px;
     width: calc(100% - 80px);
     margin-left: 40px;
+}
+#logo {
+    position: relative;
+    height: var(--navi-height);
+    line-height: var(--navi-height);
+    margin-right:40px;
 }
 #navigation-mask {
     position: fixed;
     /* top: -60px; */
     width: 100%;
-    height: 60px;
+    height: 60rem;
     background-color: white;
     z-index: -998;
     opacity: 0;
@@ -77,6 +97,15 @@ a:hover {
 
 .float-right {
     float: right!important;
+}
+
+.mobile-menu {
+    width: 200px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: var(--navi-height);
+    /* padding-left: 20px; */
 }
 
 #navigation-right {
