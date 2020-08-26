@@ -40,6 +40,7 @@ var b = new Vue({
     el: '#main-container',
     data() {
         return {
+            
             rightContainerWidth: 0,
             activeName: 'second',
             showByIndex: null,
@@ -95,7 +96,10 @@ var b = new Vue({
                     
                     
                 }
-            ]
+            ],
+            recommend: {
+                // "itemCount": 
+            }
         };
     },
     methods: {
@@ -158,6 +162,13 @@ var b = new Vue({
             return {
                 "height": this.cateData.cateCount * 50 + 'px'
             }
+        },
+        cardWidth: function() {
+            console.log((window.innerWidth < 1200) ? 6 : 4);
+            return (window.innerWidth < 1200) ? 6 : 4;
+        },
+        cardColCount: function() {
+            return (window.innerWidth < 1200) ? 8 : 12;
         }
     },
     mounted: function()
