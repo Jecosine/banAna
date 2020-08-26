@@ -35,3 +35,20 @@
     width: calc(100% - 20px);
     margin-left: 10px;
 }
+.login-btn {
+    width: 40%;
+}
+#col-aligner {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    width: 100%;
+}
+#link-container {
+    width: 100%;
+    font-size: 12px;
+    text-align: right;
+}
+#link-container > a {
+    margin-left: 10px;
+}
