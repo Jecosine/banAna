@@ -1,24 +1,7 @@
 // import { Vue } from './vue'
 
-// login simulation
-var user = {
-    'userName': 'jecosine',
-    'expired': new Date(),
-    'avatarUrl': '../static/img/avatar.jpg',
-    'shopCart': {
-
-    }
-}
-
-// define scroll
-var banner = $("#banner-container")
-
 localStorage.setItem('user', JSON.stringify(user));
 
-var navComponent = Vue.component('navigator', {
-    props: ['shopChartData', 'userData'],
-    template: '<div>'
-});
 var a = new Vue({
     el: '#navigation-container',
     data() {
@@ -80,32 +63,7 @@ var a = new Vue({
     
 })
 
-window.onscroll = () => {
-    // console.log(window.scrollY);
 
-    if(window.scrollY == 0)
-    {
-        // console.log("into event");
-        var event = document.createEvent('HTMLEvents');
-        event.initEvent("totop", false, true);
-        window.dispatchEvent(event);
-        // that.$emit("to-top", '1');
-
-        // $("#navigation-mask").stop().animate({opacity: 0}, 200);
-    }
-    else
-    {
-        if(a.onTop)
-        {
-            var event = document.createEvent('HTMLEvents');
-            event.initEvent("leavetop", false, true);
-            window.dispatchEvent(event);
-        }
-        // this.$emit("scrollleavetop");
-        // $("#navigation-mask").stop().animate({opacity: 1}, 200);
-    }
-
-}
 var b = new Vue({
     el: '#main-container',
     data() {

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 01:04:14
+ * @LastEditTime: 2020-08-27 02:10:30
 -->
 <!DOCTYPE html>
 <html>
@@ -32,11 +32,18 @@
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
 
-    <!-- <link rel="stylesheet" href="../static/css/base.css"> -->
+    <link rel="stylesheet" href="../static/css/base.css">
     <link rel="stylesheet" href="../static/css/item.css">
 </head>
 <body>
     <!-- navigation bar -->
-    
+    <div id="app">
+        <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    </div>
+    <div id="main-container">
+    </div>
+    <script src="../static/js/base.js"></script>
+    <script src="../static/js/components.js"></script>
+    <script src="../static/js/item.js"></script>
 </body>
 </html>
