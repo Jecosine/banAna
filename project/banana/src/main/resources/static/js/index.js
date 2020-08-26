@@ -232,6 +232,13 @@ var b = new Vue({
                 "height": this.cateData.cateCount * 50 + 'px'
             }
         },
+        cateCenterStyle: function() {
+            console.log($("#center-ads").css("width"));
+            return {
+                "height": "100%",
+                "width": $("#center-ads").css("width")
+            }
+        },
         cardWidth: function() {
             console.log((window.innerWidth < 1200) ? 6 : 4);
             return (window.innerWidth < 1200) ? 6 : 4;
