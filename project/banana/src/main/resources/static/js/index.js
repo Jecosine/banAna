@@ -24,7 +24,7 @@ var a = new Vue({
     data() {
         return {
             onTop: true,
-            isCollapsed: true,
+            isCollapsed: false,
             screenWidth: window.innerWidth,
             userData: user,
             activeIndex: '1',

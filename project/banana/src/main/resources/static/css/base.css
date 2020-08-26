@@ -29,7 +29,8 @@
     /* color: var(--normal-color); */
 }
 body {
-    min-width: 1200px;
+    max-width: 100%;
+    /* min-width: 1200px; */
     /* overflow: scroll; */
 }
 a {
@@ -143,12 +144,15 @@ a:hover {
     min-height: 500px;
     z-index: 99;
 }
+
 /* #content-container > .coverbox > .el-row > .el-col {
     background-color: rgba(255, 255, 255, 0.822);
     box-shadow: 0 0 3px 3px rgba(0,0,0,0.05);
 
 } */
 .left-item, .center-item {
+    font-size: 14px;
+
     /* box-shadow: -2px 0px 1px 0px #f3f3f3; */
     background-color: rgba(255, 255, 255, 0.877);
 }
@@ -187,7 +191,7 @@ a:hover {
 }
 
 /* scroll bar settting */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
 }
 ::-webkit-scrollbar-thumb {
@@ -201,7 +205,7 @@ a:hover {
     border-radius:2px;
     background: rgba(255, 134, 36, 0.507);
     -webkit-box-shadow: inset006pxrgba(0,0,0,0.5);
-}    
+}     */
 
 
 /* cate */
@@ -267,6 +271,9 @@ a:hover {
     width: 100%;
     height: 100%;
     /* background-color: rgba(247, 255, 170, 0.678); */
+}
+.coverbox > .el-row > .el-col {
+    margin-bottom: 20px;
 }
 .padding-box {
     padding: 20px;
@@ -429,12 +436,14 @@ a:hover {
     /* height: 400px; */
 }
 .section-card {
-    height: 650px;
+    width: 100%;
+    height: 640px;
     overflow: hidden;
     margin-bottom: 20px;
 }
 .shop-item {
-    width: 170px;
+    /* width: 170px; */
+    min-width: 150px;
     margin: 0 auto;
     margin-bottom: 20px;
     /* height: 240px; */
