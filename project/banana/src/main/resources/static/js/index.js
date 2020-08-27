@@ -74,7 +74,7 @@ var b = new Vue({
             cateData: undefined,
             searchInput: {
                 type: "1",
-                text: undefined
+                text: ''
             }, 
             heatRank: [
                 {

@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 02:08:10
+ * @LastEditTime: 2020-08-27 02:24:16
  */
 var a = new Vue({
     el: "#app",
@@ -10,6 +10,10 @@ var a = new Vue({
     },
     data() {
         return {
+            searchInput: {
+                type: "1",
+                text: ''
+            }, 
             onTop: true,
             screenWidth: window.innerWidth,
             userData: {

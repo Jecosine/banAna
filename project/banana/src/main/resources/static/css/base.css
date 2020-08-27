@@ -121,7 +121,7 @@ a:hover {
     /* top: var(--navi-height); */
     /* top: 50px; */
     width: 100%;
-    min-height: 500px;
+    min-height: 100vh;
     z-index: 99;
     /* background: url("../img/memphis-colorful.png"); */
 
@@ -133,7 +133,7 @@ a:hover {
 }
 #main-container > .el-row {
     position: relative;
-    margin-top: 50px;
+    padding-top: 50px;
 }
 
 #sub-container {
