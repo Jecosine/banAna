@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 13:19:03
+ * @LastEditTime: 2020-08-27 13:49:37
  */
 var a = new Vue({
     el: "#app",
@@ -16,9 +16,6 @@ var a = new Vue({
             itemData: {
                 "itemName": "Test item",
                 "itemPreview": [
-                    '../static/img/1.jpg',
-                    '../static/img/1.jpg',
-                    '../static/img/1.jpg',
                     '../static/img/1.jpg',
                     '../static/img/1.jpg',
                     '../static/img/1.jpg',

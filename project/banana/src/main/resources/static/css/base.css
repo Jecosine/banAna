@@ -28,6 +28,8 @@
     text-decoration: none;
     font-family: "font-sans";
     transition: 0.2s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     /* color: var(--normal-color); */
 }
 ::selection {

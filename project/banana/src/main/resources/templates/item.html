@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 13:33:24
+ * @LastEditTime: 2020-08-27 13:48:58
 -->
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,7 @@
                                         </div>
                                     </el-image>     
                                     </div>
-                                    <div class="row-flex-box" style="height: 69px; margin-top: 10px">
+                                    <div class="row-flex-box" style="height: 64px; margin-top: 10px">
                                         <div class="thumb-widget inline-block"><el-button @click="previewOffset=Math.min(previewOffset + 69, 0)" size="small" icon="el-icon-arrow-left" circle></el-button></div>
                                         <div class="coverbox mask">
                                         <div id="detail-image-thumb-group" :style="{'left': previewOffset + 'px'}">
@@ -81,12 +81,12 @@
                                                 fit="contain" class="inline-block">
                                             </el-image></div>
                                         </div> </div>
-                                        <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
+                                        <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth - 10)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
                                     </div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="detail-text-container">
-                                        <div class="detail-test-title">{{}}</div>
+                                        <div class="detail-test-title">{{itemData.itemName}}</div>
                                     </div>
                                 </el-col>                                
                             </el-row>

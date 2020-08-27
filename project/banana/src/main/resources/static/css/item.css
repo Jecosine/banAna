@@ -3,7 +3,8 @@
     --theme-color: #ff8623;
     --theme-half-color: rgba(255, 134, 35, 0.5);
     --normal-color: #909399;
-    --selected-font-color: #303133;
+    --main-font-color: #303133;
+    --selected-font-color: #606266;
     --selected-bar-color: #fff3e9;
 }
 
@@ -44,8 +45,8 @@
 .detail-image-thumb {
     width: 50px;
     border: solid 2px transparent;
-    margin-right: 5px;
-    padding: 5px;
+    margin-right: 2px;
+    padding: 2px;
 }
 .outline-border {
     border: solid 1px var(--theme-half-color);
@@ -60,7 +61,7 @@
     position: absolute;
     /* overflow: hidden; */
     /* margin-left: 50px; */
-    height: 69px;
+    height: 64px;
     /* margin-top: 10px; */
     /* padding-left: 40px; */
     /* padding-right: 40px; */
@@ -101,4 +102,9 @@
 .mask {
     width: calc(100% - 100px);
     overflow: hidden;
+}
+.detail-test-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--selected-font-color)；
 }
