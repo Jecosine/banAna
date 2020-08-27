@@ -57,11 +57,26 @@
     font-size: 25px;
 }
 .detail-image-thumb-group {
-    width: 100%;
-    height: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+    width: calc(100% - 80px);
+    height: 69px;
     margin-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 .detail-image-container > .el-image > .el-image-viewer__wrapper {
     top: var(--navi-height);
     height: calc(100vh - var(--navi-height));
+}
+.thumb-widget {
+    position: absolute;
+    text-align: center;
+    /* position: relative; */
+    /* left: -30px; */
+    /* line-height: 80px; */
+    /* vertical-align: middle; */
 }

@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 11:58:07
+ * @LastEditTime: 2020-08-27 12:18:43
 -->
 <!DOCTYPE html>
 <html>
@@ -73,10 +73,12 @@
                                     </el-image>     
                                     </div>
                                     <div class="detail-image-thumb-group">
+                                        <el-button class="thumb-widget" style="left: 0;" size="small" icon="el-icon-arrow-left" circle></el-button>
                                         <div @click="showIndex=i" :class="{'detail-image-thumb':true, 'inline-block':true, 'outline-border-2': showIndex===i}" v-for="(item, i) in itemData.itemPreview">
-                                        <el-image  style="width: 100%;height: 100%;background-color: gray;" :src="item"
+                                        <el-image style="width: 100%;height: 100%;background-color: gray;" :src="item"
                                             fit="contain" class="inline-block">
                                         </el-image></div>
+                                        <el-button class="thumb-widget" style="right: 0;" size="small" icon="el-icon-arrow-right" circle></el-button>
                                     </div>                               
                                 </el-col>
                                 <el-col :xs="14" :sm="16" :md="16" :lg="16"></el-col>                                
