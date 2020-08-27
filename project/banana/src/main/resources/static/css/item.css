@@ -1,6 +1,7 @@
 :root {
     --navi-height: 60px;
     --theme-color: #ff8623;
+    --theme-half-color: rgba(255, 134, 35, 0.5);
     --normal-color: #909399;
     --selected-font-color: #303133;
     --selected-bar-color: #fff3e9;
@@ -21,7 +22,7 @@
 .detail-card {
     width: 100%;
     min-height: 100vh;
-    background-color: antiquewhite;
+    background-color: rgba(255, 255, 255, 0.568);
 
 }
 .detail-header {
@@ -33,8 +34,34 @@
 }
 .detail-header-preview {
     width: 300px;
-    height: 
+    border: solid 2px transparent;
+
+    /* height:  */
+}
+.detail-image-thumb:hover {
+    cursor: pointer;
+}
+.detail-image-thumb {
+    width: 50px;
+    border: solid 2px transparent;
+    margin-right: 10px;
+    padding: 5px;
+}
+.outline-border {
+    border: solid 1px var(--theme-half-color);
+}
+.outline-border-2 {
+    border: solid 2px var(--theme-half-color);
 }
 .image-slot {
     font-size: 25px;
+}
+.detail-image-thumb-group {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+}
+.detail-image-container > .el-image > .el-image-viewer__wrapper {
+    top: var(--navi-height);
+    height: calc(100vh - var(--navi-height));
 }
