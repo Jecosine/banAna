@@ -44,7 +44,7 @@
 .detail-image-thumb {
     width: 50px;
     border: solid 2px transparent;
-    margin-right: 10px;
+    margin-right: 5px;
     padding: 5px;
 }
 .outline-border {
@@ -56,27 +56,49 @@
 .image-slot {
     font-size: 25px;
 }
-.detail-image-thumb-group {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    overflow: hidden;
-    width: calc(100% - 80px);
+#detail-image-thumb-group {
+    position: absolute;
+    /* overflow: hidden; */
+    /* margin-left: 50px; */
     height: 69px;
-    margin-top: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
+    /* margin-top: 10px; */
+    /* padding-left: 40px; */
+    /* padding-right: 40px; */
 }
 .detail-image-container > .el-image > .el-image-viewer__wrapper {
     top: var(--navi-height);
     height: calc(100vh - var(--navi-height));
 }
 .thumb-widget {
+    /* width: 40px; */
     position: absolute;
-    text-align: center;
+    /* text-align: center; */
     /* position: relative; */
     /* left: -30px; */
     /* line-height: 80px; */
     /* vertical-align: middle; */
+    /* margin: 10px; */
+    margin: 10px;
+}
+.row-flex-box {
+    position: relative;
+    width: 100%;
+    display: inline-flex;
+    /* height:  */
+    flex-direction: row;
+    align-items: center;
+}
+.dol-flex-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coverbox {
+    margin-left: 50px;
+}
+
+.mask {
+    width: calc(100% - 100px);
+    overflow: hidden;
 }

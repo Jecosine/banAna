@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 11:35:18
+ * @LastEditTime: 2020-08-27 13:19:03
  */
 var a = new Vue({
     el: "#app",
@@ -10,15 +10,23 @@ var a = new Vue({
     },
     data() {
         return {
+            thumbWidth: 0,
+            previewOffset: 0,
             showIndex: 0,
             itemData: {
                 "itemName": "Test item",
                 "itemPreview": [
                     '../static/img/1.jpg',
+                    '../static/img/1.jpg',
+                    '../static/img/1.jpg',
+                    '../static/img/1.jpg',
+                    '../static/img/1.jpg',
+                    '../static/img/1.jpg',
+                    '../static/img/1.jpg',
                     '../static/img/2.jpg'
                 ],
                 "itemPrice": 1550.00,
-                "itemIndex": 2,
+                "itemIndex": 1,
                 "itemRemain": 100
             },
             searchInput: {
@@ -51,6 +59,9 @@ var a = new Vue({
             this.onTop = false;
         }
     },
+    computed: {
+
+    },
     watch: {
         screenWidth(val) {
             if (!this.timer)
@@ -71,6 +82,8 @@ var a = new Vue({
     mounted: function()
     {
         const that = this;
+        this.thumbWidth = this.itemData.itemPreview.length * 69 - parseInt($("#detail-image-thumb-group").css("width").slice(0, -2))
+        console.log(this.thumbWidth);
         window.addEventListener("totop", that.handleOnTop);
         window.addEventListener("leavetop", that.handleLeaveTop);
         window.onresize = () => {
