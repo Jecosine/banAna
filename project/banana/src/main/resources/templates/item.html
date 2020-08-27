@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 13:29:07
+ * @LastEditTime: 2020-08-27 13:33:24
 -->
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,11 @@
                                         <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
                                     </div>
                                 </el-col>
-                                <el-col :span="12"></el-col>                                
+                                <el-col :span="12">
+                                    <div class="detail-text-container">
+                                        <div class="detail-test-title">{{}}</div>
+                                    </div>
+                                </el-col>                                
                             </el-row>
                         </div>
                     </el-card>
