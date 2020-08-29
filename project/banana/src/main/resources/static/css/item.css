@@ -136,13 +136,13 @@
 }
 .detail-text-price-container {
     width: 100%;
-    height: 60px;
-    line-height: 60px;
+    height: 120px;
+    line-height: 120px;
     user-select: none;
     background-color: #efefef;
 }
 .text-row {
-    height: 60px;
+    height: 100%;
 }
 .text-row > span {
     line-height: 100%;
@@ -171,3 +171,27 @@
     color: var(--normal-color);
     vertical-align: bottom;
 }
+
+.detail-text-review-container,
+.detail-text-express,
+.detail-text-quantity,
+.detail-text-type {
+    min-height: 60px;
+}
+.detail-text-review-container {
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px);
+    height: 60px;
+    border-top: dashed 1px #dadada;
+    border-bottom: dashed 1px #dadada;
+    color: var(--normal-color);
+    text-align: center;
+    /* box-sizing: border-box; */
+}
+/* .detail-text-review-container  {
+    display: flex;
+    flex-direction: row;
+
+} */

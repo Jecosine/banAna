@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 13:58:20
+ * @LastEditTime: 2020-08-29 21:42:44
 -->
 <!DOCTYPE html>
 <html>
@@ -92,6 +92,16 @@
                                             {{itemData.itemAddress}} <i class="el-icon-right"></i> <el-cascader
                                                 v-model="addressValue"
                                                 :options="regionData"></el-cascader>
+                                        </div>
+                                        <div class="detail-text-review-container text-row ">
+                                            <el-row :gutter="20" class="row-flex-box text-row">
+                                                <el-col :span="8"><i class="fa fa-handshake-o"
+                                                        aria-hidden="true"></i>Sale: {{itemData.statisticData.sale}}</el-col>
+                                                <el-col :span="8"><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i>Want: {{itemData.statisticData.want}}</el-col>
+                                                <el-col :span="8"><i class="fa fa-commenting-o"
+                                                        aria-hidden="true"></i>Comment: {{itemData.statisticData.comment}}</el-col>
+                                            </el-row>
                                         </div>
                                         <div class="detail-text-type text-row">
                                             <span class="inline-block">Types</span> 
