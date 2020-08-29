@@ -103,8 +103,14 @@
     width: calc(100% - 100px);
     overflow: hidden;
 }
-.detail-test-title {
+.detail-text-title {
     font-size: 18px;
+    line-height: 24px;
+    height: 48px;
     font-weight: bold;
     color: var(--selected-font-color)；
+}
+.detail-text-express {
+    font-size: 14px;
+    color: var(--normal-color);
 }

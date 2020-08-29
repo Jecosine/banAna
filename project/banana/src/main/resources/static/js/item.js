@@ -1,8 +1,9 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-27 13:49:37
+ * @LastEditTime: 2020-08-29 09:22:02
  */
+
 var a = new Vue({
     el: "#app",
     components: {
@@ -14,7 +15,8 @@ var a = new Vue({
             previewOffset: 0,
             showIndex: 0,
             itemData: {
-                "itemName": "Test item",
+                "itemName": "测试物品 型号A",
+                "itemAddress": "Guangdong",
                 "itemPreview": [
                     '../static/img/1.jpg',
                     '../static/img/1.jpg',
@@ -36,6 +38,7 @@ var a = new Vue({
                 'userName': 'jecosine',
                 'expired': new Date(),
                 'avatarUrl': '../static/img/avatar.jpg',
+                'address': "Chongqing",
                 'shopCart': {
 
                 }

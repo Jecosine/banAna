@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-28 22:58:30
+ * @LastEditTime: 2020-08-29 09:00:46
 -->
 <!DOCTYPE html>
 <html>
@@ -83,9 +83,10 @@
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="detail-text-container">
-                                        <div class="detail-test-title">{{itemData.itemName}}</div>
+                                        <div class="detail-text-title">{{itemData.itemName}}</div>
+                                        <div class="detail-text-express">{{itemData.itemAddress}} <i class="el-icon-right"></i> {{userData.address}} </div>
                                     </div>
-                                </el-col>                                
+                                </el-col>
                             </el-row>
                         </div>
                     </el-card>
