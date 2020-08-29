@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 23:20:19
+ * @LastEditTime: 2020-08-30 00:01:25
 -->
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,26 @@
                 <el-col :xs="{span:22, offset:1}" :lg="{span:18, offset:3}" :sm="{span:20, offset:2}"
                     id="content-container">
                     <el-card class="detail-card">
+                        <div class="card-title  row-flex-box">
+                            <el-breadcrumb separator-class="el-icon-arrow-right">
+                                <el-breadcrumb-item :to="{ path: '/' }">Electronics</el-breadcrumb-item>
+                                <el-breadcrumb-item>Mobile Phone</el-breadcrumb-item>
+                                <el-breadcrumb-item>Huawei</el-breadcrumb-item>
+                            </el-breadcrumb>
+                            <div class="shop-info float-right">                                
+                                <el-rate
+                                    v-model="shopRate"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}"
+                                    class="inline-block">
+                                </el-rate>
+                                <a class="inline-block" href="#">Miceal Digital Mall</a>
+                                <div class="inline-block" style="line-height: 50px;position: relative;top:-2px"><el-button type="primary" icon="el-icon-plus" size="mini">Follow</el-button>
+                                <el-button icon="el-icon-chat-dot-round" size="mini" circle></el-button></div>
+                            </div>
+                        </div>
                         <div>
                             <el-row :gutter="30" class="detail-header">
                                 <el-col :span="10">
