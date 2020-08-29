@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 12:51:37
+ * @LastEditTime: 2020-08-29 13:22:55
 -->
 <!DOCTYPE html>
 <html>
@@ -53,14 +53,14 @@
                     id="content-container">
                     <el-card class="detail-card">
                         <div>
-                            <el-row :gutter="15" class="detail-header">
+                            <el-row :gutter="30" class="detail-header">
                                 <el-col :span="10">
                                     <div class="detail-image-container  outline-border-2">
                                     <el-image 
                                         style="width: 100%;height: 100%;background-color: gray;" 
                                         :src="itemData.itemPreview[showIndex]"
                                         :preview-src-list="itemData.itemPreview"
-                                        fit="cover">
+                                        fit="contain">
                                         <div slot="placeholder" class="image-slot">
                                             <i class="el-icon-loading"></i> Loading
                                         </div>
@@ -85,7 +85,7 @@
                                     <div class="detail-text-container">
                                         <div class="detail-text-title">{{itemData.itemName}}</div>
                                         <div class="detail-text-price-container"><span>Price</span>
-                                            <div class="inline-block detail-text-price">{{itemData.itemPrice}}</div>
+                                            <div class="inline-block detail-text-price">{{itemData.itemPrice.toFixed(2)}}</div>
                                         </div>
                                         <div class="detail-text-express">
                                             <span class="inline-block">Address</span>

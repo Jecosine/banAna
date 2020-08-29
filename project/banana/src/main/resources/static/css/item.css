@@ -23,8 +23,13 @@
 .detail-card {
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(255, 255, 255, 0.568);
+    background-color: rgba(255, 255, 255, 0.8);
 
+}
+.detail-card > div {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-top: 20px;
 }
 .detail-header {
     width: 100%;
@@ -122,6 +127,12 @@
     height: 60px;
     color: var(--normal-color);
     /* margin-left: 20px; */
+}
+.detail-text-express > i {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
 .detail-text-price-container {
     width: 100%;
