@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 11:59:39
+ * @LastEditTime: 2020-08-29 12:51:37
 -->
 <!DOCTYPE html>
 <html>
@@ -81,11 +81,15 @@
                                         <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth - 10)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
                                     </div>
                                 </el-col>
-                                <el-col :span="12">
+                                <el-col :span="14">
                                     <div class="detail-text-container">
                                         <div class="detail-text-title">{{itemData.itemName}}</div>
-                                        <div class="detail-text-express">{{itemData.itemAddress}} <i class="el-icon-right"></i> 
-                                            <el-cascader
+                                        <div class="detail-text-price-container"><span>Price</span>
+                                            <div class="inline-block detail-text-price">{{itemData.itemPrice}}</div>
+                                        </div>
+                                        <div class="detail-text-express">
+                                            <span class="inline-block">Address</span>
+                                            {{itemData.itemAddress}} <i class="el-icon-right"></i> <el-cascader
                                                 v-model="addressValue"
                                                 :options="regionData"></el-cascader>
                                         </div>
