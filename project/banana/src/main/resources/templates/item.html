@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 09:00:46
+ * @LastEditTime: 2020-08-29 11:59:39
 -->
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,11 @@
                                 <el-col :span="12">
                                     <div class="detail-text-container">
                                         <div class="detail-text-title">{{itemData.itemName}}</div>
-                                        <div class="detail-text-express">{{itemData.itemAddress}} <i class="el-icon-right"></i> {{userData.address}} </div>
+                                        <div class="detail-text-express">{{itemData.itemAddress}} <i class="el-icon-right"></i> 
+                                            <el-cascader
+                                                v-model="addressValue"
+                                                :options="regionData"></el-cascader>
+                                        </div>
                                     </div>
                                 </el-col>
                             </el-row>
@@ -95,6 +99,7 @@
         </div>
     </div>
     
+    <script src="../static/js/addresspicker.js"></script>
     <script src="../static/js/base.js"></script>
     <script src="../static/js/components.js"></script>
     <script src="../static/js/item.js"></script>

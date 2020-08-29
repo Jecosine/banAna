@@ -1,9 +1,9 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 09:22:02
+ * @LastEditTime: 2020-08-29 12:04:49
  */
-
+// var rdata = JSON.parse(regionData);
 var a = new Vue({
     el: "#app",
     components: {
@@ -11,6 +11,8 @@ var a = new Vue({
     },
     data() {
         return {
+            regionData:regionData,
+            addressValue: '',
             thumbWidth: 0,
             previewOffset: 0,
             showIndex: 0,
