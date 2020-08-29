@@ -141,8 +141,7 @@
     user-select: none;
     background-color: #efefef;
 }
-.detail-text-price-container > span,
-.detail-text-express > span {
+.text-row > span {
     line-height: 100%;
     display: inline-block;
     width: 80px;
@@ -159,4 +158,7 @@
     font-size: 24px;
     font-weight: bolder;
     color: var(--theme-color);
+}
+.detail-text-type .el-radio:not(:last-child) {
+    margin-right: 10px;
 }

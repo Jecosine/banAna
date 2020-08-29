@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 13:22:55
+ * @LastEditTime: 2020-08-29 13:43:03
 -->
 <!DOCTYPE html>
 <html>
@@ -84,14 +84,23 @@
                                 <el-col :span="14">
                                     <div class="detail-text-container">
                                         <div class="detail-text-title">{{itemData.itemName}}</div>
-                                        <div class="detail-text-price-container"><span>Price</span>
+                                        <div class="detail-text-price-container text-row"><span>Price</span>
                                             <div class="inline-block detail-text-price">{{itemData.itemPrice.toFixed(2)}}</div>
                                         </div>
-                                        <div class="detail-text-express">
+                                        <div class="detail-text-express text-row">
                                             <span class="inline-block">Address</span>
                                             {{itemData.itemAddress}} <i class="el-icon-right"></i> <el-cascader
                                                 v-model="addressValue"
                                                 :options="regionData"></el-cascader>
+                                        </div>
+                                        <div class="detail-text-type text-row">
+                                            <span class="inline-block">Types</span> 
+                                            <el-radio-group v-model="typeOption">
+                                                <el-radio border label="Type1"></el-radio>
+                                                <el-radio border label="Type2" disabled></el-radio>
+                                                <el-radio border label="Type3"></el-radio>
+                                                <el-radio border label="Type4"></el-radio>
+                                            </el-radio-group>
                                         </div>
                                     </div>
                                 </el-col>
