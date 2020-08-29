@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 13:43:03
+ * @LastEditTime: 2020-08-29 13:58:20
 -->
 <!DOCTYPE html>
 <html>
@@ -101,6 +101,13 @@
                                                 <el-radio border label="Type3"></el-radio>
                                                 <el-radio border label="Type4"></el-radio>
                                             </el-radio-group>
+                                        </div>
+                                        <div class="detail-text-quantity text-row">
+                                            <span class="inline-block">Quantity</span>
+                                            <template>
+                                                <el-input-number :min="1" :max="itemData.itemRemain" v-model="qty" :step="1" step-strictly></el-input-number>
+                                            </template>
+                                            <div class="inline-block">({{itemData.itemRemain}} in stock)</div>
                                         </div>
                                     </div>
                                 </el-col>

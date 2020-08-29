@@ -141,6 +141,9 @@
     user-select: none;
     background-color: #efefef;
 }
+.text-row {
+    height: 60px;
+}
 .text-row > span {
     line-height: 100%;
     display: inline-block;
@@ -161,4 +164,10 @@
 }
 .detail-text-type .el-radio:not(:last-child) {
     margin-right: 10px;
+}
+.detail-text-quantity > div.inline-block {
+    margin-left: 10px;
+    font-size: 12px;
+    color: var(--normal-color);
+    vertical-align: bottom;
 }
