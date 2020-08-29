@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-08-27 00:47:58
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 21:42:44
+ * @LastEditTime: 2020-08-29 23:20:19
 -->
 <!DOCTYPE html>
 <html>
@@ -81,7 +81,7 @@
                                         <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth - 10)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
                                     </div>
                                 </el-col>
-                                <el-col :span="14">
+                                <el-col :span="14" style="height: 100%;">
                                     <div class="detail-text-container">
                                         <div class="detail-text-title">{{itemData.itemName}}</div>
                                         <div class="detail-text-price-container text-row"><span>Price</span>
@@ -118,6 +118,10 @@
                                                 <el-input-number :min="1" :max="itemData.itemRemain" v-model="qty" :step="1" step-strictly></el-input-number>
                                             </template>
                                             <div class="inline-block">({{itemData.itemRemain}} in stock)</div>
+                                        </div>
+                                        <div class="detail-button-container">
+                                            <el-button type="primary"><i class="el-icon-shopping-cart-1"></i> Add to Cart</el-button>
+                                            <el-button type="plain"><i class="el-icon-box"></i>Buy Now</el-button>
                                         </div>
                                     </div>
                                 </el-col>

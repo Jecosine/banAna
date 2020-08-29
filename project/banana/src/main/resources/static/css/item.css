@@ -33,7 +33,7 @@
 }
 .detail-header {
     width: 100%;
-    height: 500px;
+    min-height: 600px;
 }
 .detail-header > .el-col {
     height: 100%;
@@ -94,7 +94,7 @@
     flex-direction: row;
     align-items: center;
 }
-.dol-flex-box {
+.col-flex-box {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
@@ -109,7 +109,8 @@
     overflow: hidden;
 }
 .detail-text-container {
-    width: 100%
+    width: 100%;
+    min-height: 634px;
 }
 .detail-text-title {
     font-size: 18px;
@@ -158,9 +159,10 @@
     content: "￥ "
 }
 .detail-text-price {
-    font-size: 24px;
-    font-weight: bolder;
+    font-size: 2em;
+    /* font-weight: bolder; */
     color: var(--theme-color);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .detail-text-type .el-radio:not(:last-child) {
     margin-right: 10px;
@@ -195,3 +197,12 @@
     flex-direction: row;
 
 } */
+.detail-button-container {
+    position: absolute;
+    bottom: 0;
+}
+.detail-button-container i {
+    margin-right: 5px;
+    font-size: 18px;
+    /* font-weight: bold; */
+}
