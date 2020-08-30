@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/theme/index.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+
+    <script src="/js/vue.js"></script>
+    <script src="/js/ele.js"></script>
+    <script src="/js/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <el-container id="all-container">
+      <el-header id="navigation-container">
+        <el-row :gutter="0" >
+          <el-col :span="6">
+            <div id="folder-container" @click="collSider=!collSider"><i :class="{'primary-color':collSider, 'el-icon-s-fold': !collSider,'el-icon-s-unfold':collSider}"></i></div><a href="#" id="icon-title">Core Force NEWS</a>
+          </el-col>
+          <el-col :span="12">
+          </el-col>
+          <el-col :span="6"  v-show="userConfig" >
+            <div id="avatar-container" @mouseenter.self="userInfoCol=false" @mouseleave.self="userInfoCol=true" >
+              <el-avatar fit="fill" :size="50" src="/res/img/avatar.jpg"></el-avatar>
+              <div id="user-info-container">
+                <el-menu
+                  id="user-info-menu"
+                  mode="vertical"
+                  :collapse="false"
+                  v-show="!userInfoCol">
+                  <el-menu-item index="1"><i class="el-icon-user-solid  primary-color"></i>个人中心</el-menu-item>
+                  <el-menu-item index="2"><i class="el-icon-s-flag  primary-color"></i>操作历史</el-menu-item>
+                  <el-menu-item index="3"><i class="el-icon-finished bold primary-color"></i>统计</el-menu-item>
+                  <el-menu-item index="4"><i class="el-icon-s-tools  primary-color"></i>设定</el-menu-item>
+
+                </el-menu>
+              </div>
+            </div>
+            
+          </el-col>
+        </el-row>
+      </el-header>
+      <el-dialog
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose">
+        <template slot="title"><i class="el-icon-error" style="color:red"></i> 警告</template>
+        <span>用户名或密码错误</span>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="handleClose">确 定</el-button>
+        </span>
+      </el-dialog>
+      <el-container id="main-container" style="background-color:rgba(0, 107, 153, 0.062)">
+        <el-col :span="9"></el-col>
+        <el-col :span="6" >
+            <div id="form-container">
+              <div id="form-title">Core Force后台系统</div>
+              <el-form :model="ruleForm" status-icon  ref="ruleForm" class="demo-ruleForm" >
+                <el-form-item  prop="age">
+                  <el-input v-model.number="ruleForm.email" autocomplete>
+                    <template slot="prepend">账 号</template>
+                  </el-input>
+                </el-form-item>
+                <el-form-item prop="pass">
+                  <el-input type="password" v-model="ruleForm.password" autocomplete="off">
+                    <template slot="prepend" :width="200" show-password>密 码</template>
+                  </el-input>
+                </el-form-item>
+
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm()">登录</el-button>
+                  <el-button @click="resetForm('ruleForm')" style="float: right;">重置</el-button>
+                </el-form-item>
+              </el-form>
+            </div>
+        </el-col>
+        <el-col :span="9"></el-col>
+      </el-container>
+    </el-container>
+    <script src="/js/login.js"></script>
+  </body>
+</html>
