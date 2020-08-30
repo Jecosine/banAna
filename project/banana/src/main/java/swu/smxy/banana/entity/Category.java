@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-31 01:47:11
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-31 01:53:56
+ * @LastEditTime: 2020-08-31 02:44:17
  */
 package swu.smxy.banana.entity;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Category implements Serializable {
     private String cateId;
     private String cateName;
-    private String parentName;
+    private String parentId;
     private int count;
     private List<Category> data;
     /**
@@ -46,20 +46,6 @@ public class Category implements Serializable {
     }
 
     /**
-     * @return String return the parentName
-     */
-    public String getParentName() {
-        return parentName;
-    }
-
-    /**
-     * @param parentName the parentName to set
-     */
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    /**
      * @return int return the count
      */
     public int getCount() {
@@ -86,6 +72,21 @@ public class Category implements Serializable {
      */
     public void setData(List<Category> data) {
         this.data = data;
+    }
+
+
+    /**
+     * @return String return the parentId
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * @param parentId the parentId to set
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
 }
