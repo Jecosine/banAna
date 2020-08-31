@@ -61,5 +61,14 @@ public class UserController extends BaseController<UserService>
         request.getSession().removeAttribute("user_auth");
         response.sendRedirect("/user/login");
     }
+    
+    @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseType<User> userInfoService(@RequestParam String id,
+    		HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+    	ResponseType<User> responseType = userService.userInfoService(id);
+    	return responseType;
+    }
 
 }

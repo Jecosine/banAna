@@ -44,4 +44,23 @@ public class UserService extends BaseService<User, UserMapper>
         return response;
 
     }
+    
+    public ResponseType<User> userInfoService(String id)
+    {
+    	mapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
+    	User user = mapper.getById(id);
+    	int status = 0;
+    	String message = "Search Successfully";
+    	if(user == null)
+    	{
+    		status = -1;
+    		message = "User not exsists, please check your id";
+    		System.out.println("Search failed");
+    	}
+    	ResponseType<User> response = new ResponseType<User>();
+    	response.setData(user);
+    	response.setStatus(status);
+    	response.setMessage(message);
+    	return response;
+    }
 }
