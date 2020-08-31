@@ -1,12 +1,13 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 01:54:27
+ * @LastEditTime: 2020-08-31 19:08:55
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,8 @@ public class User implements Serializable, BaseEntity
     private String userId;
     private String userName;
     private String gender;
-
+    private String qq;
+    private List<Address> address;
     @Override
     public String toString()
     {
@@ -81,4 +83,33 @@ public class User implements Serializable, BaseEntity
     {
         return this.userName;
     }
+
+    /**
+     * @return String return the qq
+     */
+    public String getQq() {
+        return qq;
+    }
+
+    /**
+     * @param qq the qq to set
+     */
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    /**
+     * @return List<Address> return the address
+     */
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
 }
