@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-31 19:08:55
+ * @LastEditTime: 2020-08-31 19:10:10
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
@@ -19,6 +19,7 @@ public class User implements Serializable, BaseEntity
     private String gender;
     private String qq;
     private List<Address> address;
+    private String phone;
     @Override
     public String toString()
     {
@@ -110,6 +111,21 @@ public class User implements Serializable, BaseEntity
      */
     public void setAddress(List<Address> address) {
         this.address = address;
+    }
+
+
+    /**
+     * @return String return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }

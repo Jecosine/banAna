@@ -1,7 +1,7 @@
 '''
 Date: 2020-07-25 13:20:38
 LastEditors: Jecosine
-LastEditTime: 2020-08-31 01:38:32
+LastEditTime: 2020-08-31 01:46:31
 '''
 import faker
 from generator.dbconnect import *
@@ -74,7 +74,7 @@ l = []
 def get_types(a, l):
     for i in a:
         # l.append({'id':i["id"], 'title':i["title"], 'parent':i['parent']})
-        l.append((i["id"], i["title"],i['parent'], 0))
+        l.append((i["id"], i["title"],0 if i['parent']=="" else i["parent"], 0))
         if i.get("children"):
             get_types(i["children"], l)
 
