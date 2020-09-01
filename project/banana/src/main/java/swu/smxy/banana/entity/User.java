@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-31 19:10:10
+ * @LastEditTime: 2020-09-01 18:33:23
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
@@ -131,6 +131,35 @@ public class User implements Serializable, BaseEntity
      */
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String getId()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    /**
+     * @return String return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

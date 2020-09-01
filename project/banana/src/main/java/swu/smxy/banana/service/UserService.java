@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 17:00:29
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-30 17:35:29
+ * @LastEditTime: 2020-09-01 20:26:23
  * @FilePath: \banana\src\main\java\swu\smxy\banana\service\UserService.java
  */
 package swu.smxy.banana.service;
@@ -73,13 +73,16 @@ public class UserService extends BaseService<User, UserMapper>
     	status = mapper.update(user);
     	System.out.println("status: " + status + "\n" + user);
     	// 这里最好加一个和原来得user比较看是否更改了 其实这个前端做很麻烦，后台更好困了 2分钟内
-    	if(status != 0)
+    	if(status <= 0)
     	{
     		status = -1;
     		message = "Invalid modify";
     		System.out.println("Update failed");
-    		session.commit();
-    	}
+    		
+        } else {
+            status = 0;
+        }
+        session.commit();
     	session.close();
     	ResponseType<User> response = new ResponseType<User>();
     	response.setData(user);
