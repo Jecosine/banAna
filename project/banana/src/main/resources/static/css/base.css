@@ -3,7 +3,8 @@
     --navi-height: 60px;
     --theme-color: #ff8623;
     --normal-color: #909399;
-    --selected-font-color: #303133;
+    --main-font-color: #303133;
+    --selected-font-color: #606266;
     --selected-bar-color: #fff3e9;
 }
 :focus {
@@ -27,6 +28,8 @@
     text-decoration: none;
     font-family: "font-sans";
     transition: 0.2s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     /* color: var(--normal-color); */
 }
 ::selection {
@@ -121,7 +124,7 @@ a:hover {
     /* top: var(--navi-height); */
     /* top: 50px; */
     width: 100%;
-    min-height: 500px;
+    min-height: 100vh;
     z-index: 99;
     /* background: url("../img/memphis-colorful.png"); */
 
@@ -133,7 +136,7 @@ a:hover {
 }
 #main-container > .el-row {
     position: relative;
-    margin-top: 50px;
+    padding-top: 50px;
 }
 
 #sub-container {
@@ -195,19 +198,20 @@ a:hover {
 
 /* scroll bar settting */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-    width: 10px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset006pxrgba(0,0,0,0.3);
-    border-radius:10px;
+    -webkit-box-shadow: rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.13);
+    border-radius:4px;
 }
 ::-webkit-scrollbar-thumb {
-    border-radius:2px;
-    background: rgba(255, 134, 36, 0.507);
-    -webkit-box-shadow: inset006pxrgba(0,0,0,0.5);
+    border-radius:4px;
+    background: rgba(255, 134, 36, 0.407);
+    /* -webkit-box-shadow: inset006pxrgba(0,0,0,0.2); */
 }    
 
 /* cate */
@@ -259,7 +263,7 @@ a:hover {
     line-height: 50px;
     text-align: center;
     /* color: var(--select-color); */
-    color: var(--normal-color);
+    color: var(--selected-font-color);
     pointer-events: all;
 }
 .left-item:hover {
@@ -358,7 +362,7 @@ a:hover {
     /* margin-left: 65px; */
 }
 a {
-    color: var(--normal-color);
+    color: var(--selected-font-color);
 }
 a:hover {
     color: var(--theme-color);
@@ -438,6 +442,7 @@ a:hover {
     width: 100%;
     height: 40px;
     line-height: 20px;
+    color: var(--selected-font-color);
     /* margin-left: 5px; */
     /* background-color: #fac59a; */
     vertical-align: top;
@@ -534,4 +539,8 @@ a:hover {
 }
 .item-title a {
     color: var(--selected-font-color) !important;
+}
+.section-card  i {
+    color: var(--normal-color);
+    margin-right: 10px;
 }

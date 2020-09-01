@@ -1,12 +1,13 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 01:54:27
+ * @LastEditTime: 2020-09-01 18:33:23
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ public class User implements Serializable, BaseEntity
     private String qq;
     private String email;
     private String phone;
-
+    private List<Address> address;
     @Override
     public String toString()
     {
@@ -88,47 +89,77 @@ public class User implements Serializable, BaseEntity
     {
     	this.password = password;
     }
-    
-    public String getQq()
-    {
-    	return qq;
-    }
-    
-    public void setQq(String qq) 
-    {
-    	this.qq = qq;
-    }
-    
-    public String getEmail()
-    {
-    	return email;
-    }
-    
-    public void setEmail(String email) 
-    {
-    	this.email = email;
-    }
-    
-    public String getPhone()
-    {
-    	return phone;
-    }
-    
-    public void setPhone(String phone)
-    {
-    	this.phone = phone;
+
+    /**
+     * @return String return the qq
+     */
+    public String getQq() {
+        return qq;
     }
 
-	@Override
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @param qq the qq to set
+     */
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    /**
+     * @return List<Address> return the address
+     */
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
+
+    /**
+     * @return String return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @Override
+    public String getId()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getName()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+
+    /**
+     * @return String return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
 }
