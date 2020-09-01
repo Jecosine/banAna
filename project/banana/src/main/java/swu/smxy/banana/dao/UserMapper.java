@@ -57,4 +57,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Delete("delete from user where userId=#{userId}")
     public int delete(User user);
+    
+    @Update("update user set userName=#{userName},gender=#{gender},qq=#{qq},email=#{email},phone=#{phone} where userId=#{userId}")
+    public int update(User user);
 }

@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -57,6 +58,30 @@ public class UserService extends BaseService<User, UserMapper>
     		message = "User not exsists, please check your id";
     		System.out.println("Search failed");
     	}
+    	ResponseType<User> response = new ResponseType<User>();
+    	response.setData(user);
+    	response.setStatus(status);
+    	response.setMessage(message);
+    	return response;
+    }
+    
+    public ResponseType<User> updateUserInfoService(User user)
+    {
+    	SqlSession session = sqlSessionFactory.openSession();
+    	mapper = session.getMapper(UserMapper.class);
+    	int status = 0;
+    	String message = "Update Successfully";
+    	status = mapper.update(user);
+    	System.out.println("status: " + status + "\n" + user);
+    	// 这里最好加一个和原来得user比较看是否更改了 其实这个前端做很麻烦，后台更好困了 2分钟内
+    	if(status != 0)
+    	{
+    		status = -1;
+    		message = "Invalid modify";
+    		System.out.println("Update failed");
+    		session.commit();
+    	}
+    	session.close();
     	ResponseType<User> response = new ResponseType<User>();
     	response.setData(user);
     	response.setStatus(status);

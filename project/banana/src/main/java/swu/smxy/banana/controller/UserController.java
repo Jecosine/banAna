@@ -24,7 +24,7 @@ import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.entity.User;
 import swu.smxy.banana.service.UserService;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 public class UserController extends BaseController<UserService>
 {
@@ -68,6 +68,14 @@ public class UserController extends BaseController<UserService>
     		HttpServletRequest request, HttpServletResponse response) throws IOException
     {
     	ResponseType<User> responseType = userService.userInfoService(id);
+    	return responseType;
+    }
+    
+    @RequestMapping(value = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseType<User> updateUserInfoService(@RequestBody User user) throws IOException
+    {
+    	ResponseType<User> responseType = userService.updateUserInfoService(user);
     	return responseType;
     }
 
