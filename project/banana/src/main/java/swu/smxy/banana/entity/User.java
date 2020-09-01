@@ -17,9 +17,11 @@ public class User implements Serializable, BaseEntity
     private String userId;
     private String userName;
     private String gender;
+    private String password;
     private String qq;
-    private List<Address> address;
+    private String email;
     private String phone;
+    private List<Address> address;
     @Override
     public String toString()
     {
@@ -76,13 +78,16 @@ public class User implements Serializable, BaseEntity
     {
         this.gender = gender;
     }
-    public String getId()
+   
+    
+    public String getPassword()
     {
-        return this.userId;
+    	return password;
     }
-    public String getName()
+    
+    public void setPassword(String password)
     {
-        return this.userName;
+    	this.password = password;
     }
 
     /**

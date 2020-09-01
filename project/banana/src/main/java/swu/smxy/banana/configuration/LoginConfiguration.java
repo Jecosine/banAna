@@ -28,7 +28,7 @@ public class LoginConfiguration implements WebMvcConfigurer
 
         // add exclude path
         interceptorRegistration.excludePathPatterns(
-            "/**",
+        	"/**",
             "/user/login",
             "/user/loginService",
             "/",
