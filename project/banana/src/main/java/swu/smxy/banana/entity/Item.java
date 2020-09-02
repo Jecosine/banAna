@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:04:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 23:05:25
+ * @LastEditTime: 2020-09-02 16:40:38
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\Item.java
  */
 package swu.smxy.banana.entity;
@@ -17,6 +17,15 @@ public class Item implements Serializable
     private String itemName;
     private Integer itemCount;
     private String businessId;
+    private Integer remain;
+    private String tsid;
+    private String tid;
+    private String location;
+    private Float price;
+    private Integer sale;
+    private String cateId;
+
+
     /**
      * @return String return the itemId
      */
@@ -83,6 +92,105 @@ public class Item implements Serializable
     public void setBusinessId(String businessId)
     {
         this.businessId = businessId;
+    }
+
+
+    /**
+     * @return Integer return the remain
+     */
+    public Integer getRemain() {
+        return remain;
+    }
+
+    /**
+     * @param remain the remain to set
+     */
+    public void setRemain(Integer remain) {
+        this.remain = remain;
+    }
+
+    /**
+     * @return String return the tsid
+     */
+    public String getTsid() {
+        return tsid;
+    }
+
+    /**
+     * @param tsid the tsid to set
+     */
+    public void setTsid(String tsid) {
+        this.tsid = tsid;
+    }
+
+    /**
+     * @return String return the tid
+     */
+    public String getTid() {
+        return tid;
+    }
+
+    /**
+     * @param tid the tid to set
+     */
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    /**
+     * @return String return the location
+     */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
+     * @return Float return the price
+     */
+    public Float getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    /**
+     * @return Integer return the sale
+     */
+    public Integer getSale() {
+        return sale;
+    }
+
+    /**
+     * @param sale the sale to set
+     */
+    public void setSale(Integer sale) {
+        this.sale = sale;
+    }
+
+    /**
+     * @return String return the cateId
+     */
+    public String getCateId() {
+        return cateId;
+    }
+
+    /**
+     * @param cateId the cateId to set
+     */
+    public void setCateId(String cateId) {
+        this.cateId = cateId;
     }
 
 }
