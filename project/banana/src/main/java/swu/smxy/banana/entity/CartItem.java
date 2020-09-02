@@ -1,10 +1,13 @@
 /*
  * @Date: 2020-09-02 16:40:56
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 16:42:58
+ * @LastEditTime: 2020-09-02 17:00:19
  */
 package swu.smxy.banana.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CartItem {
     private String cartId;
     private String itemId;
