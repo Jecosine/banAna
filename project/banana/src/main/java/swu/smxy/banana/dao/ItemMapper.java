@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-02 23:08:24
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 23:10:17
+ * @LastEditTime: 2020-09-02 23:12:47
  */
 package swu.smxy.banana.dao;
 
@@ -9,9 +9,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Component;
 
 import swu.smxy.banana.entity.Item;
 
+@Component
 public interface ItemMapper extends BaseMapper<Item>
 {
     @Select("select * from item limit #{count}")

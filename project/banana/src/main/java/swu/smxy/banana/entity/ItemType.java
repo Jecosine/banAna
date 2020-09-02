@@ -1,13 +1,17 @@
 /*
  * @Date: 2020-09-02 22:35:18
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 22:40:17
+ * @LastEditTime: 2020-09-02 23:06:03
  */
 package swu.smxy.banana.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ItemDetail
+import org.springframework.stereotype.Component;
+
+@Component
+public class ItemType implements Serializable
 {
     private String name;
     private List<String> list;
