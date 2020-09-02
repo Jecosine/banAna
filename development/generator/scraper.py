@@ -1,10 +1,13 @@
 '''
 Date: 2020-09-01 08:25:56
 LastEditors: Jecosine
-LastEditTime: 2020-09-01 11:51:00
+LastEditTime: 2020-09-02 02:39:43
 '''
 import requests, json
 from bs4 import BeautifulSoup as bs
+from dbconnect import *
+from entities import *
+import uuid
 from entities import *
 import time, random
 import os
@@ -60,28 +63,124 @@ def get_content(curpath, url, s):
     if r == 0:
         print("  -- ERROR: Please Check file !! --")
 
+def to_number(s):
+    if not s:
+        return 0
+    s = s[:-3]
+    if s[-1] == '+':
+        s = s[:-1]
+    if s[-1] == '万':
+        s = s[:-1]
+        s = int(float(s) * 10000 + random.randint(10, 500))
+    else:
+        s = int(s)
+        
+    return s
+
+db = DBConnection()
+cates = []
+def get_json(path, name, cid):
+    global db, cates
+    with open(path + name + ".html", 'rb') as f:
+        content = f.read().decode("utf-8")
+    bsobj = bs(content, 'html.parser')
+    try:
+        sc = bsobj.find("head")
+        sc = sc.findAll("script")[-1]
+        sc = sc.get_text()
+    except Exception as e:
+        print("--ERROR: "+ str(e) + "--")
+        return
+    flag = -1
+    flag1 = 0
+    start = 0
+    end = 0
+    l = len(sc)
+    # print("string length: " + l, end="")
+    for i in range(l):
+        if sc[i] == '"':
+            flag1 += 1
+            continue
+        if flag1 & 1:
+            continue
+        else:
+            if sc[i] == '[':
+                if flag == -1:
+                    flag = 1
+                    start = i
+                else:
+                    flag += 1
+            elif sc[i] == ']':
+                flag -= 1
+                if flag == 0:
+                    end = i + 1
+                    break
+    sc = sc[start:end]
+    if len(sc) <= 1000:
+        with open("err.txt", 'ab') as f:
+            f.write("{} {} - page {} empty\n".format(cid, cates[cid], name).encode("utf-8"))
+        return ()
+    # return sc
+    print("string length: " + str(len(sc)), end="")
+    sc = json.loads(sc)
+    if len(sc) < 40:
+        with open("err.txt", 'ab') as f:
+            f.write("{} {}\n".format(cid, cates[cid]).encode("utf-8"))
+        return ()
+    print(", count: " + str(len(sc)) + "...", end="")
+    items = []
+    for i in sc:
+        db.cursor.execute("select businessId from business where tsid=%s", (i["user_id"], ))
+        bid = db.cursor.fetchall()
+        if(bid == []):
+            bid = uuid.uuid4().hex[:10]
+            db.cursor.execute("insert into business values(%s,%s,%s,%s)", (bid, i["user_id"], i["nick"], '{}-{}-{} 00:49:06'.format(random.randint(2010, 2020), random.randint(1, 12), random.randint(1, 28))))
+            db.save_database()
+        else:
+            bid = bid[0][0]
+        items.append((uuid.uuid4().hex[:10], i["raw_title"], '["%s"]'%i["pic_url"], bid, 1, i["user_id"], i["nid"], i["item_loc"], float(i["view_price"]), to_number(i.get("view_sales")), cid))
+    return tuple(items)
+    # with open(path + name + '.json', 'wb') as f:
+    #     f.write(sc.encode("utf-8"))
+    
+
 def mainprocess():
+    global db,cates
     cnt = 0
+    db = DBConnection()
     l = get_cate()
-    requests.adapters.DEFAULT_RETRIES = 15
+    cates = {i[0]:i[1] for i in l}
+    sql = "insert into item values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    # requests.adapters.DEFAULT_RETRIES = 15
     print("starting ...")
     length = len(l)
-    for i in range(604, length):
+    for i in range(576, length):
         id, name = l[i]
+        cnt += 1
         # if cnt > 200:
             # break
-        print("processing: %s - %s..." % (str(cnt), name))
-        cnt += 1
-        s = requests.Session()
-        s.keep_alive = False
+        print("processing: %s - %s..." % (str(i), name))
+        # s = requests.Session()
+        # s.keep_alive = False
         for p in range(4):
+            c = 0
             print("  page %s..." % str(p), end="")
-            if not os.path.exists("data/%s" % id):
-                os.mkdir("data/%s" % id)
-            get_content("data/%s/%s.html"%(id, str(p)), get_url(name, p), s)
-            print("done")
-            time.sleep(random.random() * 2)
-        s.close()
+            # if not os.path.exists("data/%s" % id):
+            #     os.mkdir("data/%s" % id)
+            # get_content("data/%s/%s.html"%(id, str(p)), get_url(name, p), s)
+            items = get_json("data/%s/" % id, str(p), id)
+            # print(items)
+            # db.cursor.executemany(sql, items)
+            for x in range(len(items)):
+                try:
+                    db.cursor.execute(sql, items[x])
+                except Exception as e:
+                    pass
+                c += 1
+            db.save_database()
+            print("{} written, done".format(c))
+            # time.sleep(random.random() * 2)
+        # s.close()
 
 if __name__ == "__main__":
     mainprocess()
