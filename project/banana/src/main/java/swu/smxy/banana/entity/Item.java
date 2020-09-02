@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 16:04:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 22:28:55
+ * @LastEditTime: 2020-09-02 23:03:15
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\Item.java
  */
 package swu.smxy.banana.entity;
@@ -26,7 +26,7 @@ public class Item implements Serializable
     private String cateId;
     private String typeCode;
     private String parentId;
-
+    private ItemType itemType;
     /**
      * @return String return the itemId
      */
@@ -221,6 +221,21 @@ public class Item implements Serializable
      */
     public void setParentId(String parentId) {
         this.parentId = parentId;
+    }
+
+
+    /**
+     * @return ItemType return the itemType
+     */
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    /**
+     * @param itemType the itemType to set
+     */
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 
 }
