@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-02 23:07:34
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-03 23:30:38
+ * @LastEditTime: 2020-09-03 23:31:20
  */
 package swu.smxy.banana.service;
 
@@ -37,7 +37,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
         else 
         {
             response.setMessage("Get Sub Item Successfully");
-            item = mapper.getByIdAndType(itemId, typeCode)
+            item = mapper.getByIdAndType(itemId, typeCode);
         }
         if (item == null)
         {
@@ -45,6 +45,5 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             response.setStatus(-1);
         }
         return response;
-
     }
 }
