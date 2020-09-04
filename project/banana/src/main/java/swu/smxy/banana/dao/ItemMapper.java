@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-02 23:08:24
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-03 23:17:28
+ * @LastEditTime: 2020-09-04 17:42:12
  */
 package swu.smxy.banana.dao;
 
@@ -52,4 +52,7 @@ public interface ItemMapper extends BaseMapper<Item>
 
     @Select("select * from item where parentId=#{itemId} and typeCode=#{typeCode")
     public Item getByIdAndType(String itemId, String typeCode);
+
+    @Select("select * from subitem where parentId=#{itemId}")
+    public List<Item> deleteByItem(Item item);
 }
