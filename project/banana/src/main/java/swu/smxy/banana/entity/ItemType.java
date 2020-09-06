@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-02 22:35:18
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 23:06:03
+ * @LastEditTime: 2020-09-05 22:46:03
  */
 package swu.smxy.banana.entity;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class ItemType implements Serializable
 {
     private String name;
-    private List<String> list;
+    private List<ItemType> data;
 
     /**
      * @return String return the name
@@ -30,18 +30,19 @@ public class ItemType implements Serializable
         this.name = name;
     }
 
+
     /**
-     * @return List<String> return the list
+     * @return List<ItemType> return the data
      */
-    public List<String> getList() {
-        return list;
+    public List<ItemType> getData() {
+        return data;
     }
 
     /**
-     * @param list the list to set
+     * @param data the data to set
      */
-    public void setList(List<String> list) {
-        this.list = list;
+    public void setData(List<ItemType> data) {
+        this.data = data;
     }
 
 }
