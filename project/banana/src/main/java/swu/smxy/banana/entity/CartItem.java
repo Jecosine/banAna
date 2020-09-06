@@ -5,6 +5,9 @@
  */
 package swu.smxy.banana.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CartItem {
     private String cartId;
     private String itemId;
