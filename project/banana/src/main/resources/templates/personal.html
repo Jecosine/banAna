@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Item preview</title>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait" />
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/vue.js"></script>
+    <script type="text/javascript" src="../static/js/element.js"></script>
+    <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/personal.css">
+</head>
+<body>
+  <div id="app">
+    <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    <el-row :gutter="20">
+      <el-col :span="3" :offset="5">
+        <div id="side-menu-container">
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            @select="handleSelect">
+            <el-menu-item index="1">
+              <i class="el-icon-user"></i>
+              <span slot="title">User Information</span>
+              
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-tickets"></i>
+                <span>All Orders</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-service"></i>
+                <span>My Services</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-bell"></i>
+                <span>Notifications</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-shopping-cart-1"></i>
+              <span>Shop Cart</span>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <i class="el-icon-bank-card"></i>
+              <span slot="title">Wallet</span>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <i class="el-icon-setting"></i>
+              <span slot="title">Settings</span>
+            </el-menu-item>
+          </el-menu>
+        
+        </div>
+      </el-col>
+      <el-col :span="11" style="height: 100%;">
+        <transition name="fade">
+        <div id="content-container">
+          <div class="cover-box" id="info" v-show="activeIndex==='1'">
+            <el-form ref="form" :model="form" label-width="120px" label-position="left">
+              <el-form-item label="Avatar">
+                <el-upload
+                  class="avatar-uploader"
+                  :show-file-list="false"
+                  :auto-upload="false"
+                  :file-list="fileList"
+
+                  :on-success="handleAvatarSuccess"
+                  :on-change="beforeAvatarUpload">
+                  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
+              <el-form-item label="Nick Name">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
+              <el-form-item
+                v-for="(contact, index) in form.address"
+                :label="'Contact ' + index"
+                :key="contact.key"
+                :prop="contact.address"
+                :rules="{
+                  required: true, message: '域名不能为空', trigger: 'blur'
+                }"
+              >
+                <el-input v-model="contact.name">
+                  <template slot="prepend"><i class="el-icon-user"></i>  Name</template> 
+                </el-input>
+                <el-input v-model="contact.phone">
+                  <template slot="prepend"><i class="el-icon-mobile"></i>  Phone</template>
+                </el-input>
+                <el-input v-model="contact.address">
+                  <template slot="prepend"><i class="el-icon-location-outline"></i>  Address</template>
+                </el-input>
+                <el-button @click.prevent="removeContact(contact)" type="danger">Delete</el-button>
+              </el-form-item>
+              <el-form-item>
+                
+                <el-button @click="addDomain">Add Contact</el-button>
+              </el-form-item>
+              <el-form-item label="活动区域">
+                <el-select v-model="form.region" placeholder="请选择活动区域">
+                  <el-option label="区域一" value="shanghai"></el-option>
+                  <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="活动时间">
+                <el-row>
+                <el-col :span="11">
+                  <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                </el-col>
+                <el-col class="line" :span="2"> - </el-col>
+                <el-col :span="11">
+                  <el-time-picker placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
+                </el-col>
+              </el-row>
+              </el-form-item>
+              <el-form-item label="即时配送">
+                <el-switch v-model="form.delivery"></el-switch>
+              </el-form-item>
+              <el-form-item label="活动性质">
+                <el-checkbox-group v-model="form.type">
+                  <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
+                  <el-checkbox label="地推活动" name="type"></el-checkbox>
+                  <el-checkbox label="线下主题活动" name="type"></el-checkbox>
+                  <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
+                </el-checkbox-group>
+              </el-form-item>
+              <el-form-item label="特殊资源">
+                <el-radio-group v-model="form.resource">
+                  <el-radio label="线上品牌商赞助"></el-radio>
+                  <el-radio label="线下场地免费"></el-radio>
+                </el-radio-group>
+              </el-form-item>
+              <el-form-item label="活动形式">
+                <el-input type="textarea" v-model="form.desc"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button>取消</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+          <div class="cover-box" id="cart" v-show="activeIndex==='5'">
+            
+          </div>
+        </div>
+        </transition>
+      </el-col>
+    </el-row>
+
+  </div>
+  <script src="../static/js/addresspicker.js"></script>
+  <script src="../static/js/base.js"></script>
+  <script src="../static/js/components.js"></script>
+  <script src="../static/js/personal.js"></script>
+</body>
+</html>

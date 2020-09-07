@@ -72,7 +72,7 @@ public class UserService extends BaseService<User, UserMapper>
         SqlSession session = sqlSessionFactory.openSession();
         mapper = session.getMapper(UserMapper.class);
         int status = 0;
-        String message = "Update Successfully";
+        String message = "Update Successfully!";
         // TODO 这里最好加一个和原来得user比较看是否更改了 其实这个前端做很麻烦，后台更好困了 2分钟内        
         try {
             mapper.update(user);

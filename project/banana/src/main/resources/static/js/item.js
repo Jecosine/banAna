@@ -97,6 +97,5 @@ var a = new Vue({
                 that.screenWidth = window.innerWidth;
             })();
         }
-        
     }
 })

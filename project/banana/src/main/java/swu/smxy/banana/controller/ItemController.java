@@ -50,9 +50,7 @@ public class ItemController extends BaseController<ItemService>
     public ResponseType<String> deleteByItem(@RequestBody Item item)
     {
         ResponseType<String> response = new ResponseType<String>();
-        response.setStatus(0);
-        response.setMessage("Delete successfully");
-        response = itemService.deleteByItem(item);
+        // response = itemService.deleteByItem(item);
         return response;
     }
 }
