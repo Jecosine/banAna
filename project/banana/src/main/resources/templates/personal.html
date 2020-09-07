@@ -24,11 +24,50 @@
     <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="../static/css/base.css">
-    <link rel="stylesheet" href="../static/css/item.css">
+    <link rel="stylesheet" href="../static/css/personal.css">
 </head>
 <body>
   <div id="app">
-    
+    <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    <el-row>
+      <el-col :span="3">
+        <div id="side-menu-container">
+      
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose">
+            <el-menu-item index="1">
+              <i class="el-icon-user"></i>
+              <span slot="title">User Information</span>
+              
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-tickets"></i>
+                <span>All Order</span>
+            </el-menu-item>
+            <el-menu-item index="3">
+              <i class="el-icon-service"></i>
+                <span>My Services</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+              <i class="el-icon-bell"></i>
+                <span>Notifications</span>
+            </el-menu-item>
+            <el-menu-item index="5">
+              <i class="el-icon-shopping-cart-1"></i>
+              <span>Shop Cart</span>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <i class="el-icon-setting"></i>
+              <span slot="title">Settings</span>
+            </el-menu-item>
+          </el-menu>
+        
+    </div>
+  </el-col>
+</el-row>
   </div>
   <script src="../static/js/addresspicker.js"></script>
   <script src="../static/js/base.js"></script>

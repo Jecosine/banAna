@@ -1,0 +1,24 @@
+#app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* max-height: 100vh; */
+}
+#navigation-container {
+  z-index: 999;
+  background-color: white!important;
+}
+#side-menu-container {
+  /* position: fixed; */
+  width: 100%;
+  height: 100vh;
+}
+.el-menu-vertical-demo {
+  margin-top: 60px;
+  height: calc(100vh - 60px);
+  z-index: 99;
+}
+
+.el-menu-vertical-demo  i {
+  margin-left: 20px;
+}
