@@ -25,7 +25,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     public ResponseType<Item> getByIdAndType(String itemId, String typeCode)
     {
         ResponseType<Item> response = new ResponseType<Item>();
-        SqlSession session = sqlSessionFactory.openSession()
+        SqlSession session = sqlSessionFactory.openSession();
         mapper = session.getMapper(ItemMapper.class);
         response.setStatus(0);
         Item item;
