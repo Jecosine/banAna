@@ -19,13 +19,19 @@ var a = new Vue({
       activeIndex: '1',
       activeIndex2: '1',
       form: {
-        name: '',
+        name: 'Banana',
         region: '',
         date1: '',
         date2: '',
         delivery: false,
         type: [],
         resource: '',
+        address: [{
+          key: Date.now(),
+          name: 'Jecosine',
+          phone: '12345678910',
+          address: 'Guangdong'
+        }],
         desc: ''
       },
       imageUrl: '',
@@ -33,6 +39,23 @@ var a = new Vue({
     }
   },
   methods: {
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    removeContact(item) {
+      var index = this.form.address.indexOf(item)
+      if (index !== -1) {
+        this.form.address.splice(index, 1)
+      }
+    },
+    addDomain() {
+      this.form.address.push({
+        phone: '',
+        address: '',
+        key: Date.now()
+      });
+    },
+  
     onSubmit: function()
     {
 

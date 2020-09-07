@@ -43,7 +43,7 @@
             </el-menu-item>
             <el-menu-item index="2">
               <i class="el-icon-tickets"></i>
-                <span>All Order</span>
+                <span>All Orders</span>
             </el-menu-item>
             <el-menu-item index="3">
               <i class="el-icon-service"></i>
@@ -56,6 +56,10 @@
             <el-menu-item index="5">
               <i class="el-icon-shopping-cart-1"></i>
               <span>Shop Cart</span>
+            </el-menu-item>
+            <el-menu-item index="6">
+              <i class="el-icon-bank-card"></i>
+              <span slot="title">Wallet</span>
             </el-menu-item>
             <el-menu-item index="6">
               <i class="el-icon-setting"></i>
@@ -85,6 +89,30 @@
               </el-form-item>
               <el-form-item label="Nick Name">
                 <el-input v-model="form.name"></el-input>
+              </el-form-item>
+              <el-form-item
+                v-for="(contact, index) in form.address"
+                :label="'Contact ' + index"
+                :key="contact.key"
+                :prop="contact.address"
+                :rules="{
+                  required: true, message: '域名不能为空', trigger: 'blur'
+                }"
+              >
+                <el-input v-model="contact.name">
+                  <template slot="prepend"><i class="el-icon-user"></i>  Name</template> 
+                </el-input>
+                <el-input v-model="contact.phone">
+                  <template slot="prepend"><i class="el-icon-mobile"></i>  Phone</template>
+                </el-input>
+                <el-input v-model="contact.address">
+                  <template slot="prepend"><i class="el-icon-location-outline"></i>  Address</template>
+                </el-input>
+                <el-button @click.prevent="removeContact(contact)" type="danger">Delete</el-button>
+              </el-form-item>
+              <el-form-item>
+                
+                <el-button @click="addDomain">Add Contact</el-button>
               </el-form-item>
               <el-form-item label="活动区域">
                 <el-select v-model="form.region" placeholder="请选择活动区域">

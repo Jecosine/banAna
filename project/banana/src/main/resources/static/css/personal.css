@@ -70,3 +70,11 @@
   height: 178px;
   display: block;
 }
+
+.el-form-item .el-input-group__prepend {
+  width: 100px;
+}
+
+.el-input-group--prepend {
+  margin-bottom: 10px;
+}
