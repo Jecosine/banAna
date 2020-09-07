@@ -59,9 +59,9 @@ public class BeanConfiguration
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
                 // factory.setPort(8081);
-                factory.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400"));            
-                factory.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500"));            
-                factory.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
+                factory.addErrorPages(new ErrorPage(HttpStatus.BAD_REQUEST, "/400.html"));            
+                factory.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html"));            
+                factory.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404.html"));
             }
         };
     }
