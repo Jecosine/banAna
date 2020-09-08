@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-29 23:41:53
+ * @LastEditTime: 2020-09-08 08:12:40
  */
 // var rdata = JSON.parse(regionData);
 var a = new Vue({
@@ -14,7 +14,7 @@ var a = new Vue({
             shopRate: 4.5,
             qty: 0,
             typeOption: '',
-            regionData:regionData,
+            regionData: regionData,
             addressValue: '',
             thumbWidth: 0,
             previewOffset: 0,

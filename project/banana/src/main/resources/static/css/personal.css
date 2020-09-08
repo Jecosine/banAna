@@ -7,7 +7,7 @@
 #app > .el-row {
   /* margin: 0 auto; */
   /* width: 10%; */
-  height: 100vh;
+  height: calc(100vh - 70px);
 }
 #navigation-container {
   z-index: 999;
@@ -30,8 +30,8 @@
 #content-container {
   width: calc(100% - 100px);
   padding: 50px;
-  margin-top: 60px;
-  height: calc(100% - 60px);
+  padding-top: 60px;
+  height: calc(100% - 110px);
 }
 
 .cover-box {
@@ -39,7 +39,11 @@
   height: 100%;
 }
 #info {
-  width: calc(100% - 100px);
+    margin-top: 50px;
+    padding-right: 50px;
+    width: calc(100% - 50px);
+    overflow-y: scroll;
+
   /* max-width: 700px; */
   
   /* background-color: aliceblue; */
@@ -75,6 +79,8 @@
   width: 100px;
 }
 
-.el-input-group--prepend {
+.el-input-group--prepend,
+.el-cascader {
   margin-bottom: 10px;
 }
+
