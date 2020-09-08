@@ -16,6 +16,7 @@ var a = new Vue({
 
           }
       },
+      regionData: regionData,
       activeIndex: '1',
       activeIndex2: '1',
       form: {
