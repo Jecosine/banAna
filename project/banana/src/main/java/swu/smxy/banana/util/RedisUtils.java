@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-08 11:48:42
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-08 15:27:48
+ * @LastEditTime: 2020-09-08 15:36:05
  */
 package swu.smxy.banana.util;
 
@@ -22,6 +22,10 @@ import java.util.concurrent.TimeUnit;
 public class RedisUtils {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+    public void publish(String channel, Object obj)
+    {
+        redisTemplate.convertAndSend(channel, obj);
+    }
     /**
      * 指定缓存失效时间
      * @param key 键
