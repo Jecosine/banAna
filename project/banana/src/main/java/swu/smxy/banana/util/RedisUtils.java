@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-09-08 11:48:42
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-08 15:36:05
+ * @LastEditTime: 2020-09-08 19:54:32
  */
 package swu.smxy.banana.util;
 
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+//https://www.jianshu.com/p/3cb4dcd456d3
 @Component
 public class RedisUtils {
     @Autowired
