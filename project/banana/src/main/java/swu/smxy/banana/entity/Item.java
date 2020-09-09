@@ -1,12 +1,13 @@
 /*
  * @Date: 2020-07-25 16:04:43
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-02 16:40:38
+ * @LastEditTime: 2020-09-05 22:45:25
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\Item.java
  */
 package swu.smxy.banana.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -24,8 +25,9 @@ public class Item implements Serializable
     private Float price;
     private Integer sale;
     private String cateId;
-
-
+    private String typeCode;
+    private String parentId;
+    private List<ItemType> itemTypesList;
     /**
      * @return String return the itemId
      */
@@ -191,6 +193,49 @@ public class Item implements Serializable
      */
     public void setCateId(String cateId) {
         this.cateId = cateId;
+    }
+
+
+    /**
+     * @return String return the typeCode
+     */
+    public String getTypeCode() {
+        return typeCode;
+    }
+
+    /**
+     * @param typeCode the typeCode to set
+     */
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
+    }
+
+    /**
+     * @return String return the parentId
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * @param parentId the parentId to set
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    /**
+     * @return List<ItemType> return the itemTypesList
+     */
+    public List<ItemType> getItemTypesList() {
+        return itemTypesList;
+    }
+
+    /**
+     * @param itemTypesList the itemTypesList to set
+     */
+    public void setItemTypesList(List<ItemType> itemTypesList) {
+        this.itemTypesList = itemTypesList;
     }
 
 }

@@ -1,0 +1,63 @@
+<!--
+ * @Date: 2020-09-03 18:26:54
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-09-03 18:29:18
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <title>Item Management</title>
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/vue.js"></script>
+    <script type="text/javascript" src="../static/js/element.js"></script>
+</head>
+<body>
+    <div id="app">
+        <el-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="100px" class="demo-dynamic">
+          <el-form-item
+            prop="email"
+            label="邮箱"
+            :rules="[
+              { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+              { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+            ]"
+          >
+            <el-input v-model="dynamicValidateForm.email"></el-input>
+          </el-form-item>
+          <el-form-item
+            v-for="(domain, index) in dynamicValidateForm.domains"
+            :label="'域名' + index"
+            :key="domain.key"
+            :prop="'domains.' + index + '.value'"
+            :rules="{
+              required: true, message: '域名不能为空', trigger: 'blur'
+            }"
+          >
+            <el-input v-model="domain.value"></el-input><el-button @click.prevent="removeDomain(domain)">删除</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('dynamicValidateForm')">提交</el-button>
+            <el-button @click="addDomain">新增域名</el-button>
+            <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+        </div>
+
+    <script></script>
+
+</body>
+</html>
