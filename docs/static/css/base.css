@@ -194,7 +194,7 @@ a:hover {
 }
 
 /* scroll bar settting */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
 }
 ::-webkit-scrollbar-thumb {
@@ -208,7 +208,7 @@ a:hover {
     border-radius:2px;
     background: rgba(255, 134, 36, 0.507);
     -webkit-box-shadow: inset006pxrgba(0,0,0,0.5);
-}     */
+}    
 
 /* cate */
 

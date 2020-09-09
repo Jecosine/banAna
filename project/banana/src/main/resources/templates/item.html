@@ -1,0 +1,160 @@
+<!--
+ * @Date: 2020-08-27 00:47:58
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-09-03 18:28:52
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Item preview</title>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait" />
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/vue.js"></script>
+    <script type="text/javascript" src="../static/js/element.js"></script>
+    <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/item.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <div id="app">
+        <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+        <div id="main-container">
+            <el-row>
+                <el-col id="search-container" :xs="{span:22, offset:1}" :lg="{span:18, offset:3}" :sm="{span:20, offset:2}">
+                    <el-input placeholder="Search what you want" v-model="searchInput.text" class="input-with-select">
+                        <el-select v-model="searchInput.type" slot="prepend" placeholder="Please Select">
+                            <el-option label="Item" value="1"></el-option>
+                            <el-option label="Shop" value="2"></el-option>
+                        </el-select>
+                        <el-button slot="append" icon="el-icon-search"></el-button>
+                    </el-input>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :xs="{span:22, offset:1}" :lg="{span:18, offset:3}" :sm="{span:20, offset:2}"
+                    id="content-container">
+                    <el-card class="detail-card">
+                        <div class="card-title  row-flex-box">
+                            <el-breadcrumb separator-class="el-icon-arrow-right">
+                                <el-breadcrumb-item :to="{ path: '/' }">Electronics</el-breadcrumb-item>
+                                <el-breadcrumb-item>Mobile Phone</el-breadcrumb-item>
+                                <el-breadcrumb-item>Huawei</el-breadcrumb-item>
+                            </el-breadcrumb>
+                            <div class="shop-info float-right">                                
+                                <el-rate
+                                    v-model="shopRate"
+                                    disabled
+                                    show-score
+                                    text-color="#ff9900"
+                                    score-template="{value}"
+                                    class="inline-block">
+                                </el-rate>
+                                <a class="inline-block" href="#">Miceal Digital Mall</a>
+                                <div class="inline-block" style="line-height: 50px;position: relative;top:-2px"><el-button type="primary" icon="el-icon-plus" size="mini">Follow</el-button>
+                                <el-button icon="el-icon-chat-dot-round" size="mini" circle></el-button></div>
+                            </div>
+                        </div>
+                        <div>
+                            <el-row :gutter="30" class="detail-header">
+                                <el-col :span="10">
+                                    <div class="detail-image-container  outline-border-2">
+                                    <el-image 
+                                        style="width: 100%;height: 100%;background-color: gray;" 
+                                        :src="itemData.itemPreview[showIndex]"
+                                        :preview-src-list="itemData.itemPreview"
+                                        fit="contain">
+                                        <div slot="placeholder" class="image-slot">
+                                            <i class="el-icon-loading"></i> Loading
+                                        </div>
+                                        <div slot="error" class="image-slot">
+                                            <i class="el-icon-picture-outline"></i>
+                                        </div>
+                                    </el-image>     
+                                    </div>
+                                    <div class="row-flex-box" style="height: 64px; margin-top: 10px">
+                                        <div class="thumb-widget inline-block"><el-button @click="previewOffset=Math.min(previewOffset + 69, 0)" size="small" icon="el-icon-arrow-left" circle></el-button></div>
+                                        <div class="coverbox mask">
+                                        <div id="detail-image-thumb-group" :style="{'left': previewOffset + 'px'}">
+                                            <div @click="showIndex=i" :class="{'detail-image-thumb':true, 'inline-block':true, 'outline-border-2': showIndex===i}" v-for="(item, i) in itemData.itemPreview">
+                                            <el-image style="width: 100%;height: 100%;background-color: gray;" :src="item"
+                                                fit="contain" class="inline-block">
+                                            </el-image></div>
+                                        </div> </div>
+                                        <div class="thumb-widget inline-block" style="right: 0"><el-button @click="previewOffset=Math.max(previewOffset - 69, -thumbWidth - 10)" size="small" icon="el-icon-arrow-right" circle></el-button></div>
+                                    </div>
+                                </el-col>
+                                <el-col :span="14" style="height: 100%;">
+                                    <div class="detail-text-container">
+                                        <div class="detail-text-title">{{itemData.itemName}}</div>
+                                        <div class="detail-text-price-container text-row"><span>Price</span>
+                                            <div class="inline-block detail-text-price">{{itemData.itemPrice.toFixed(2)}}</div>
+                                        </div>
+                                        <div class="detail-text-express text-row">
+                                            <span class="inline-block">Address</span>
+                                            {{itemData.itemAddress}} <i class="el-icon-right"></i> <el-cascader
+                                                v-model="addressValue"
+                                                :options="regionData"></el-cascader>
+                                        </div>
+                                        <div class="detail-text-review-container text-row ">
+                                            <el-row :gutter="20" class="row-flex-box text-row">
+                                                <el-col :span="8"><i class="fa fa-handshake-o"
+                                                        aria-hidden="true"></i>Sale: {{itemData.statisticData.sale}}</el-col>
+                                                <el-col :span="8"><i class="fa fa-star-o"
+                                                        aria-hidden="true"></i>Want: {{itemData.statisticData.want}}</el-col>
+                                                <el-col :span="8"><i class="fa fa-commenting-o"
+                                                        aria-hidden="true"></i>Comment: {{itemData.statisticData.comment}}</el-col>
+                                            </el-row>
+                                        </div>
+                                        <div class="detail-text-type text-row">
+                                            <span class="inline-block">Types</span> 
+                                            <el-radio-group v-model="typeOption">
+                                                <el-radio border label="Type1"></el-radio>
+                                                <el-radio border label="Type2" disabled></el-radio>
+                                                <el-radio border label="Type3"></el-radio>
+                                                <el-radio border label="Type4"></el-radio>
+                                            </el-radio-group>
+                                        </div>
+                                        <div class="detail-text-quantity text-row">
+                                            <span class="inline-block">Quantity</span>
+                                            <template>
+                                                <el-input-number :min="1" :max="itemData.itemRemain" v-model="qty" :step="1" step-strictly></el-input-number>
+                                            </template>
+                                            <div class="inline-block">({{itemData.itemRemain}} in stock)</div>
+                                        </div>
+                                        <div class="detail-button-container">
+                                            <el-button type="primary"><i class="el-icon-shopping-cart-1"></i> Add to Cart</el-button>
+                                            <el-button type="plain"><i class="el-icon-box"></i>Buy Now</el-button>
+                                        </div>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </div>
+    </div>
+    
+    <script src="../static/js/addresspicker.js"></script>
+    <script src="../static/js/base.js"></script>
+    <script src="../static/js/components.js"></script>
+    <script src="../static/js/item.js"></script>
+</body>
+</html>

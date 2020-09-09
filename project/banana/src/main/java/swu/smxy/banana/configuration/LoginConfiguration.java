@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-22 21:53:03
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 23:26:19
+ * @LastEditTime: 2020-08-30 17:49:10
  */
 package swu.smxy.banana.configuration;
 
@@ -24,10 +24,11 @@ public class LoginConfiguration implements WebMvcConfigurer
     {
         InterceptorRegistration interceptorRegistration = interceptorRegistry.addInterceptor(new LoginInterceptor());
         // add intercept path
-        interceptorRegistration.addPathPatterns("/**"); // add all path
+        // interceptorRegistration.addPathPatterns("/**"); // add all path
 
         // add exclude path
         interceptorRegistration.excludePathPatterns(
+        	"/**",
             "/user/login",
             "/user/loginService",
             "/",

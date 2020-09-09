@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 13:50:28
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-21 20:56:09
+ * @LastEditTime: 2020-08-31 02:33:40
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\MainController.java
  */
 package swu.smxy.banana.controller;
@@ -27,5 +27,15 @@ public class MainController
     public String banana(Model model)
     {
         return "test.html";
+    }
+    @RequestMapping("/404")
+    public String errorPage404()
+    {
+        return "404.html";
+    }
+    @RequestMapping("/my500")
+    public String errorPage500()
+    {
+        return "500";
     }
 }

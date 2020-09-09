@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 03:07:21
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-22 01:06:47
+ * @LastEditTime: 2020-08-26 23:59:49
  */
 package swu.smxy.banana;
 
@@ -54,11 +54,11 @@ class BananaApplicationTests
         System.out.println("in test");
     }
 
-    // /**
-    //  * @description: uuid generator test
-    //  * @param {type} 
-    //  * @return {null} 
-    //  */    
+    /**
+     * @description: uuid generator test
+     * @param {type} 
+     * @return {null} 
+     */    
     @Test
     @DisplayName("Util:Test uuid")
     void uuidTest()
@@ -68,11 +68,11 @@ class BananaApplicationTests
             assertEquals(i, UuidGenerator.getUuid(i).length());
         }
     }
-    // /**
-    //  * @description: java bean test
-    //  * @param {type}
-    //  * @return {type}
-    //  */
+    /**
+     * @description: java bean test
+     * @param {type}
+     * @return {type}
+     */
     @Test
     @DisplayName("Show all beans")
     void listAllBean()

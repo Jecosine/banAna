@@ -1,7 +1,7 @@
 '''
 Date: 2020-07-25 13:20:38
 LastEditors: Jecosine
-LastEditTime: 2020-08-22 11:44:18
+LastEditTime: 2020-08-31 01:46:31
 '''
 import faker
 from generator.dbconnect import *
@@ -9,6 +9,7 @@ from generator.entities import *
 import uuid
 import random
 import hashlib
+import json
 # connect database
 
 db = DBConnection()
@@ -60,3 +61,21 @@ def refresh_password(res):
         res[i] = list(res[i])
         res[i][3] = hashlib.md5(fk.password().encode(encoding='UTF-8')).hexdigest()
     return res
+
+
+# cate
+def get_cate():
+    with open("cateData.json", 'rb') as f:
+        a = f.read().decode('utf-8')
+    a = json.loads(a)
+    return a
+
+l = []
+def get_types(a, l):
+    for i in a:
+        # l.append({'id':i["id"], 'title':i["title"], 'parent':i['parent']})
+        l.append((i["id"], i["title"],0 if i['parent']=="" else i["parent"], 0))
+        if i.get("children"):
+            get_types(i["children"], l)
+
+

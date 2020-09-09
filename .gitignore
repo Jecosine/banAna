@@ -24,3 +24,6 @@
 hs_err_pid*
 
 *.code-workspace
+
+development/generator/data/
+development/generator/data.7z
