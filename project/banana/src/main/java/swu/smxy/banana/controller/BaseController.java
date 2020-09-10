@@ -50,5 +50,10 @@ public class BaseController<T extends BaseService<?, ? extends BaseMapper<?> > >
     public <U extends Object> U getById(@RequestParam String id) {
         return (U)baseService.getById(id);
     }
+    @RequestMapping("/rbm/send")
+    public void sendMessage()
+    {
+        
+    }
 
 }
