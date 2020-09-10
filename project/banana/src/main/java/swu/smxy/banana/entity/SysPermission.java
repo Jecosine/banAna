@@ -32,4 +32,36 @@ public class SysPermission implements Serializable {
     @ManyToMany
     @JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="permissionId")},inverseJoinColumns={@JoinColumn(name="roleId")})
     private List<SysRole> roles;
+    
+    public void setId(int id) {
+    	this.id = id;
+    }
+    
+    public int getId() {
+    	return id;
+    }
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
+    public String getName() {
+    	return name;
+    }
+    
+    
+    public void setUrl(String url) {
+    	this.url = url;
+    }
+    
+    public String getUrl() {
+    	return url;
+    }
+    
+    public void setPermission(String permission) {
+    	this.permission = permission;
+    }
+    
+    public String getPermission() {
+    	return permission;
+    }
 }

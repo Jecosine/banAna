@@ -30,7 +30,34 @@ public class SysRole {
     /**
      * 一个角色对应多个用户
      */
-     private List<User> users;	
-	    
+    private List<User> users;	
+	
+    public void setRole(String role) {
+    	this.role = role;
+    }
+    public String getRole() {
+    	return role;
+    }
+    
+    public Boolean getAvailable() {
+    	return available;
+    }
+    
+    public void setPermissions(List<SysPermission> permissions) {
+    	this.permissions = permissions;
+    }
+    
+    public List<SysPermission> getPermissions() {
+    	return permissions;
+    }
+    
+    public void setUsers(List<User> users) {
+    	this.users = users;
+    }
+    
+    public List<User> getUsers() {
+    	return users;
+    }
+    
 	    
 }
