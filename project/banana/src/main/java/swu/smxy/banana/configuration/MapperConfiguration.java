@@ -21,4 +21,5 @@ public class MapperConfiguration
     {
         return DBConnection.getFactory();
     }
+    
 }
