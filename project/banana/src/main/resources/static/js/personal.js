@@ -153,7 +153,17 @@ var a = new Vue({
             return true;
         },
     },
-    computed: {},
+    computed: {
+        totalPrice: function()
+        {
+            let tt = 0.0;
+            for(let i in this.multipleSelection)
+            {
+                tt += i.price * i.amount;
+            }
+            return tt;
+        }
+    },
     watch: {
         screenWidth(val) {
             if (!this.timer) {
