@@ -127,6 +127,53 @@
 
           <!-- <div class="cover-box" id="cart" v-show="activeIndex==='5'"><h1>asdadasd</h1></div> -->
         </transition>
+        <transition name="fade">
+            <div class="cover-box" id="cart" v-show="activeIndex==='5'">
+                <template>
+                    <el-table
+                      id="cart-table"
+                      ref="multipleTable"
+                      :data="tableData"
+                      tooltip-effect="dark"
+                      style="width: 100%"
+                      @selection-change="handleSelectionChange">
+                      <el-table-column
+                        type="selection"
+                        width="55">
+                      </el-table-column>
+                      <el-table-column
+                        label="Thumbs"
+                        width="120">
+                        <template slot-scope="scope">
+                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.imgUrl"
+                                fit="cover" class="inline-block">
+                                <div slot="placeholder" class="image-slot">
+                                    <i class="el-icon-loading"></i> Loading
+                                </div>
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        prop="name"
+                        label="Name"
+                        width="400" show-overflow-tooltip>
+                      </el-table-column>
+                      <el-table-column
+                        prop="amount"
+                        label="Amount"
+                        >
+                      </el-table-column>
+                    </el-table>
+                    <div style="margin-top: 20px">
+                      <el-button @click="toggleSelection([tableData[1], tableData[2]])">切换第二、第三行的选中状态</el-button>
+                      <el-button @click="toggleSelection()">取消选择</el-button>
+                    </div>
+                  </template>
+            </div>
+        </transition>
         </div>
         
       </el-col>
