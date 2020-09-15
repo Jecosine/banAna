@@ -30,7 +30,7 @@
   <div id="app">
     <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
     <el-row :gutter="20">
-      <el-col :span="4" :offset="4">
+      <el-col :span="4" :offset="3">
         <div id="side-menu-container">
           <el-menu
             default-active="1"
@@ -68,7 +68,7 @@
         
         </div>
       </el-col>
-      <el-col :span="12" style="height: 100%;">
+      <el-col :span="14" style="height: 100%;">
         
         <div id="content-container">
         <transition name="fade">
@@ -159,12 +159,27 @@
                       <el-table-column
                         prop="name"
                         label="Name"
-                        width="400" show-overflow-tooltip>
+                         show-overflow-tooltip>
                       </el-table-column>
                       <el-table-column
                         prop="amount"
                         label="Amount"
-                        >
+                        width="140">
+                        <template slot-scope="scope">
+                            <el-input-number 
+                            size="mini" 
+                            :min="1"
+                            :step="1"
+                            v-model="scope.row.amount"></el-input-number>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        prop="price"
+                        label="Price"
+                        width="120">
+                        <template slot-scope="scope">
+                            <span class="item-price">$ {{scope.row.price * scope.row.amount}}</span>
+                        </template>
                       </el-table-column>
                     </el-table>
                     <div style="margin-top: 20px">

@@ -88,3 +88,7 @@
 #cart-table .el-table__row {
     height: 100px;
 }
+
+#cart-table .el-input-number {
+    width: 100px;
+}
