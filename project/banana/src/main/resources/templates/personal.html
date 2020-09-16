@@ -30,7 +30,7 @@
   <div id="app">
     <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
     <el-row :gutter="20">
-      <el-col :span="4" :offset="4">
+      <el-col :span="4" :offset="3">
         <div id="side-menu-container">
           <el-menu
             default-active="1"
@@ -38,7 +38,7 @@
             @select="handleSelect">
             <el-menu-item index="1">
               <i class="el-icon-user"></i>
-              <span slot="title">User Information</span>
+              <span slot="title">User Profile</span>
             </el-menu-item>
             <el-menu-item index="2">
               <i class="el-icon-tickets"></i>
@@ -68,7 +68,7 @@
         
         </div>
       </el-col>
-      <el-col :span="12" style="height: 100%;">
+      <el-col :span="14" style="height: 100%;">
         
         <div id="content-container">
         <transition name="fade">
@@ -119,13 +119,78 @@
               </el-form-item>
 
               <el-form-item>
-                <el-button type="primary" @click="onSubmit">立即创建</el-button>
+                <el-button type="primary" @click="onSubmit">Update Profile</el-button>
                 <el-button>Cancel</el-button>
               </el-form-item>
             </el-form>
           </div>
 
           <!-- <div class="cover-box" id="cart" v-show="activeIndex==='5'"><h1>asdadasd</h1></div> -->
+        </transition>
+        <transition name="fade">
+            <div class="cover-box" id="cart" v-show="activeIndex==='5'">
+                <template>
+                    <el-table
+                      id="cart-table"
+                      ref="multipleTable"
+                      :data="tableData"
+                      height="calc(100% - 100px)"
+                      tooltip-effect="dark"
+                      style="width: 100%"
+                      @selection-change="handleSelectionChange">
+                      <el-table-column
+                        type="selection"
+                        width="55">
+                      </el-table-column>
+                      <el-table-column
+                        label="Thumbnail"
+                        width="120">
+                        <template slot-scope="scope">
+                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.imgUrl"
+                                fit="cover" class="inline-block">
+                                <div slot="placeholder" class="image-slot">
+                                    <i class="el-icon-loading"></i> Loading
+                                </div>
+                                <div slot="error" class="image-slot">
+                                    <i class="el-icon-picture-outline"></i>
+                                </div>
+                            </el-image>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        prop="name"
+                        label="Name"
+                         show-overflow-tooltip>
+                      </el-table-column>
+                      <el-table-column
+                        prop="amount"
+                        label="Amount"
+                        width="140">
+                        <template slot-scope="scope">
+                            <el-input-number 
+                            size="mini" 
+                            :min="1"
+                            :step="1"
+                            v-model="scope.row.amount"></el-input-number>
+                        </template>
+                      </el-table-column>
+                      <el-table-column
+                        prop="price"
+                        label="Price"
+                        width="120">
+                        <template slot-scope="scope">
+                            <span class="item-price">$ {{scope.row.price * scope.row.amount}}</span>
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                    <div style="margin-top: 20px" class="row-flex-box">
+                        <div class="inline-block">Selected Price: <span class="item-price">$ {{totalPrice}}</span></div>
+                        <div class="float-right">
+                            <el-button type="primary">Submit Order</el-button>
+                        </div>
+                    </div>
+                </template>
+            </div>
         </transition>
         </div>
         

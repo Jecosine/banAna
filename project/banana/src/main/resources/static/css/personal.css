@@ -49,7 +49,11 @@
   /* background-color: aliceblue; */
 }
 #cart {
-  background-color: beige;
+    margin-top: 50px;
+    /* background-color: beige; */
+    /* overflow-y: scroll; */
+    position: relative;
+
 }
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
@@ -84,3 +88,16 @@
   margin-bottom: 10px;
 }
 
+#cart-table .el-table__row {
+    height: 100px;
+}
+
+#cart-table .el-input-number {
+    width: 100px;
+}
+#cart-footer {
+    position: absolute;
+    height: 40px;
+    background-color: white;;
+    bottom: 0;
+}
