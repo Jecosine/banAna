@@ -30,7 +30,7 @@
   <div id="app">
     <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
     
-    <el-row :gutter="20">
+    <el-row>
       <el-col :span="18" :offset="3">
         <div id="order-container" class="cover-box">
           <div class="section-title">Item List</div>
@@ -61,7 +61,15 @@
               <el-table-column
                 prop="name"
                 label="Name"
-                 show-overflow-tooltip>
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="type"
+                label="Shop"
+                width="180">
+                <template slot-scope="scope">
+                    <a href="scope.row.shop.url"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.shop.name}}</a>
+                </template>
               </el-table-column>
               <el-table-column
                 prop="type"
@@ -93,7 +101,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-row :gutter="20">
+    <el-row>
       <el-col :span="18" :offset="3">
         
         <div id="order-info-container" class="cover-box">
@@ -110,7 +118,8 @@
           </el-radio>
         </div>
         <div style="margin-top: 20px" class="row-flex-box">
-          <div class="inline-block order-summary" >Selected Price: <span class="item-price">$ {{totalPrice}}</span></div>
+          <el-divider></el-divider>
+          <div class="inline-block order-summary" >Selected Price:&nbsp;&nbsp;<span class="item-price">$ {{totalPrice}}</span></div>
           <div class="float-right">
               <el-button type="primary">Submit Order</el-button>
           </div>

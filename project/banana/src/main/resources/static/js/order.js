@@ -34,6 +34,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -42,6 +46,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 2,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -50,6 +58,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -58,6 +70,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -66,6 +82,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -74,6 +94,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
         {
@@ -82,6 +106,10 @@ var a = new Vue({
           imgUrl: "#",
           amount: 1,
           price: 100.0,
+          shop: {
+              name: "banana",
+              url: "#"
+          },
           type: "Blue;128G",
         },
       ],

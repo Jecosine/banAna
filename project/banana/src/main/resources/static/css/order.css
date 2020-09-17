@@ -41,7 +41,8 @@
   /* font-weight: bold; */
 }
 .item-price {
-  margin-left: 20px;
+  text-align: left;
+  /* margin-left: 10px; */
   font-size: 22px;
   font-weight: bold;
 }
