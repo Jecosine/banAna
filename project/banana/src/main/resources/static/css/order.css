@@ -1,0 +1,47 @@
+:root {
+  --navi-height: 60px;
+  --theme-color: #ff8623;
+  --normal-color: #909399;
+  --main-font-color: #303133;
+  --selected-font-color: #606266;
+  --selected-bar-color: #fff3e9;
+}
+#order-container {
+  height: calc(100vh - 600px);
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+.section-title {
+  font-size: 20px;
+  color: var(--selected-font-color);
+}
+.address-selection {
+  width: 300px;
+  height: 160px!important;
+  margin-bottom: 30px;
+}
+.address-title {
+  height: 30px;
+  line-height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.address-phone,
+.address-content {
+  line-height: 30px;
+  height: 30px;
+}
+.address-phone > i,
+.address-content > i {
+  margin-right: 10px;
+}
+.order-summary {
+  font-size:20px;
+  color: var(--selected-font-color);
+  /* font-weight: bold; */
+}
+.item-price {
+  margin-left: 20px;
+  font-size: 22px;
+  font-weight: bold;
+}
