@@ -191,6 +191,92 @@
                 </template>
             </div>
         </transition>
+        <transition name="fade">
+          <div class="cover-box" id="all-order" v-show="activeIndex==='2'">
+            <template>
+              <el-tabs v-model="aoActiveName" @tab-click="handleOrderTab">
+                <el-tab-pane label="All" name="1"></el-tab-pane>
+                <el-tab-pane label="Unpaid" name="2"></el-tab-pane>
+                <el-tab-pane label="UnDelivered" name="3"></el-tab-pane>
+                <el-tab-pane label="Unconfirmed" name="4"></el-tab-pane>
+              </el-tabs>
+            </template>
+            <template>
+              <el-table
+                id="allorder-table"
+                ref="orderMultipleTable"
+                height="calc(100% - 100px)"
+                :data="orderData.filter(data => orderFilter==='All' || data.orderStatus === orderFilter)"
+                tooltip-effect="dark"
+                style="width: 100%"
+                @selection-change="handleSelectionChange">
+                <el-table-column
+                  type="selection"
+                  width="55" fixed>
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  label="Datetime"                  
+                   show-overflow-tooltip>
+                   <template slot-scope="scope"><i class="fa fa-calendar" aria-hidden="true"></i>{{scope.row.orderDateTime}}</template>
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  label="Shop"                  
+                   show-overflow-tooltip>
+                   <template slot-scope="scope"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.shopName}}</template>
+                </el-table-column>
+                <el-table-column
+                  label="items"
+                  width="300">
+                  <template slot-scope="scope">
+                      <el-image style="width: 100px;height: 75px;background-color: gray;margin-right: 10px" :src="item.imgUrl" v-for="(item, i) in scope.row.items" v-show="i < 2"
+                          fit="cover" class="inline-block">
+                          <div slot="placeholder" class="image-slot">
+                              <i class="el-icon-loading"></i> Loading
+                          </div>
+                          <div slot="error" class="image-slot">
+                              <i class="el-icon-picture-outline"></i>
+                          </div>
+                      </el-image>
+                  </template>
+                </el-table-column>
+                
+                <el-table-column
+                  prop="orderStatus"
+                  label="Status"
+                  width="140">
+                  <template slot-scope="scope">
+                    <el-tag type="danger">{{scope.row.orderStatus}}</el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="price"
+                  label="Price"
+                  width="120">
+                  <template slot-scope="scope">
+                      <span class="item-price">$ {{scope.row.price}}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="Operation"
+                  width="120">
+                  <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" type="text" size="small">View</el-button>
+                    <el-button type="text" size="small" v-show="scope.row.orderStatus==='Unpaid'">Cancel</el-button>
+                    <el-button type="text" size="small" v-show="scope.row.orderStatus!=='Unpaid'">Service</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <!-- <div style="margin-top: 20px" class="row-flex-box">
+                  <div class="inline-block">Selected Price: <span class="item-price">$ {{totalPrice}}</span></div>
+                  <div class="float-right">
+                      <el-button type="primary">Submit Order</el-button>
+                  </div>
+              </div> -->
+          </template>
+          </div>
+        </transition>
         </div>
         
       </el-col>

@@ -113,6 +113,7 @@ var a = new Vue({
           type: "Blue;128G",
         },
       ],
+      
       multipleSelection: [],
     //   totalPrice: 0,
     };

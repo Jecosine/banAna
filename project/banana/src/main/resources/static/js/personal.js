@@ -5,6 +5,7 @@ var a = new Vue({
     },
     data() {
         return {
+            aoActiveName: '1',
             onTop: true,
             screenWidth: window.innerWidth,
             userData: {
@@ -44,6 +45,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -52,6 +54,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -60,6 +63,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -68,6 +72,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -76,6 +81,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -84,6 +90,7 @@ var a = new Vue({
                     imgUrl: "#",
                     amount: 1,
                     price: 100.00,
+                    orderStatus: 'Unpaid',
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
                 {
@@ -95,7 +102,53 @@ var a = new Vue({
                     address: "上海市普陀区金沙江路 1518 弄",
                 },
             ],
+            orderData: [
+                {
+                    orderDateTime: '2020/03/05 20:02:11',
+                    orderId: '12hj3vjv22',
+                    shopName: "Shop Name 1",
+                    orderStatus: 'Unpaid',
+                    price: 1000.00,
+                    items: [
+                        {
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },
+                        {
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },
+                        {
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },{
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },{
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },{
+                            name: "Item 1",
+                            imgUrl: "#",
+                            amount: 1,
+                            price: 100
+                        },
+                    ]            
+                }
+              ],
+            orderMultipleSelection: [],
             multipleSelection: [],
+            orderFilter: 'All'
         };
     },
     methods: {
@@ -110,6 +163,14 @@ var a = new Vue({
         },
         handleSelectionChange(val) {
             this.multipleSelection = val;
+        },
+        handleClick(v)
+        {
+
+        },
+        handleOrderTab: function(tab, event) {
+            console.log(tab.label, event);
+            this.orderFilter = tab.label;
         },
         resetForm(formName) {
             this.$refs[formName].resetFields();

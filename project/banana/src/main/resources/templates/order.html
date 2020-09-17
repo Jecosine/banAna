@@ -33,7 +33,7 @@
     <el-row>
       <el-col :span="18" :offset="3">
         <div id="order-container" class="cover-box">
-          <div class="section-title">Item List</div>
+          <div class="section-title"><i class="fa fa-list" aria-hidden="true"></i> Item List</div>
           <el-divider></el-divider>
           <template>
             <el-table
@@ -105,7 +105,7 @@
       <el-col :span="18" :offset="3">
         
         <div id="order-info-container" class="cover-box">
-          <div class="section-title">Delivery Information </div>
+          <div class="section-title"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery Information </div>
           <el-divider></el-divider>
           <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in addressInfo">
             <div class="address-title">
@@ -113,13 +113,13 @@
             </div>
             <div class="address-phone"><i class="el-icon-mobile"></i>{{item.phone}}</div>
             <div class="address-content">
-              <i class="el-icon-location-outline"></i>  {{item.address}}
+              <i class="el-icon-location-outline"></i> {{item.address}}
             </div>            
           </el-radio>
         </div>
         <div style="margin-top: 20px" class="row-flex-box">
           <el-divider></el-divider>
-          <div class="inline-block order-summary" >Selected Price:&nbsp;&nbsp;<span class="item-price">$ {{totalPrice}}</span></div>
+          <div class="inline-block order-summary" ><i class="fa fa-check-circle" aria-hidden="true"></i> Selected Price:&nbsp;&nbsp;<span class="item-price">$ {{totalPrice}}</span></div>
           <div class="float-right">
               <el-button type="primary">Submit Order</el-button>
           </div>
