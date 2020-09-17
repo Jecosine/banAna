@@ -103,7 +103,7 @@
 }
 #all-order {
   margin-top: 40px;
-  overflow: scroll-y;
+  overflow-y: scroll;
   /* height: calc(100vh - 400px); */
 }
 #allorder-table .el-table__row {

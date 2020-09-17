@@ -32,9 +32,8 @@ var nv = {
                         <i class="el-icon-service"></i>
                         <span>Service</span>
                     </template>
-                    <el-menu-item index="4-1">选项1</el-menu-item>
-                    <el-menu-item index="4-2">选项2</el-menu-item>
-                    <el-menu-item index="4-3">选项3</el-menu-item>
+                    <el-menu-item index="4-1">Feed Back</el-menu-item>
+                    <el-menu-item index="4-2">My Service</el-menu-item>
                 </el-submenu>
                 <el-menu-item index="2"><i class="el-icon-thumb"></i><span>About Us</span></el-menu-item>
                 <!-- </el-menu> -->
@@ -48,15 +47,9 @@ var nv = {
                     <template slot="title">
                         <el-avatar :size="40" :src="userData.avatarUrl"></el-avatar>
                     </template>
-                    <el-menu-item index="6-1">选项1</el-menu-item>
-                    <el-menu-item index="6-2">选项2</el-menu-item>
-                    <el-menu-item index="6-3">选项3</el-menu-item>
-                    <el-submenu index="6-4">
-                        <template slot="title">选项4</template>
-                        <el-menu-item index="6-4-1">选项1</el-menu-item>
-                        <el-menu-item index="6-4-2">选项2</el-menu-item>
-                        <el-menu-item index="6-4-3">选项3</el-menu-item>
-                    </el-submenu>
+                    <el-menu-item index="6-1" @click="window.location.href='/personal?tab=1'"><i class="el-icon-user"></i> My Profile</el-menu-item>
+                    <el-menu-item index="6-2" @click="window.location.href='/personal?tab=6'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
+                    <el-menu-item index="6-3" @click="window.location.href='/personal?tab=7'"><i class="el-icon-setting"></i> Settings</el-menu-item>
                 </el-submenu>
                 <!-- </div> -->
             </el-menu>
