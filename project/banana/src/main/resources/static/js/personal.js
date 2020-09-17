@@ -157,9 +157,12 @@ var a = new Vue({
         totalPrice: function()
         {
             let tt = 0.0;
+            let temp;
             for(let i in this.multipleSelection)
             {
-                tt += i.price * i.amount;
+                // console.log(i);
+                temp = this.multipleSelection[i];
+                tt += temp.price * temp.amount;
             }
             return tt;
         }
