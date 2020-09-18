@@ -237,6 +237,7 @@ a:hover {
 #center-ads {
     border-bottom-left-radius: 0px;
     width: 100%;
+    height: 600px;
 }
 
 #center-ads .el-card {
@@ -247,6 +248,7 @@ a:hover {
     /* background-color: rgb(110, 110, 110); */
     /* border-left: solid 1px #e6e6e6; */
     /* box-shadow: 0px 0px 1px 1px #f3f3f3; */
+    height: 600px;
 }
 .right-item {
     /* margin-left: 20px; */
@@ -259,8 +261,8 @@ a:hover {
 }
 .left-item {
     /* width: 100%; */
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     /* color: var(--select-color); */
     color: var(--selected-font-color);
@@ -297,6 +299,7 @@ a:hover {
 }
 .coverbox > .el-row > .el-col {
     margin-bottom: 20px;
+    height: 600px;
 }
 .padding-box {
     padding: 20px;
@@ -352,6 +355,7 @@ a:hover {
     /* padding: 5px; */
     z-index: 999;
     background-color: rgb(255, 255, 255);
+    overflow-y: scroll;
     /* pointer-events: none; */
 }
 

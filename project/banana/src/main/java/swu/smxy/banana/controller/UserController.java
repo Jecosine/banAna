@@ -44,16 +44,7 @@ public class UserController extends BaseController<UserService>
         return responseType;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    // @Controller
-    public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
-        if (request.getSession().getAttribute("user_auth") != null)
-        {
-            response.sendRedirect("/");
-        }
-        return "login.html";
-    }
+    
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void requestMethodName(HttpServletRequest request, HttpServletResponse response) throws IOException
