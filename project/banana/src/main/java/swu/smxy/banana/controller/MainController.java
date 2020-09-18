@@ -26,7 +26,7 @@ public class MainController
     @RequestMapping("/")
     public String banana(Model model)
     {
-        return "test.html";
+        return "index.html";
     }
     @RequestMapping("/404")
     public String errorPage404()
