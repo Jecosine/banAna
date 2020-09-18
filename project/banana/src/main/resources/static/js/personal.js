@@ -11,7 +11,7 @@ var a = new Vue({
             userData: {
                 userName: "jecosine",
                 expired: new Date(),
-                avatarUrl: "../static/img/avatar.jpg",
+                avatarUrl: "img/avatar.jpg",
                 address: "Chongqing",
                 shopCart: {},
             },
@@ -249,7 +249,7 @@ var a = new Vue({
             type: "get",
             cache: false,
             async: false,
-            url: "../static/json/user.json",
+            url: "json/user.json",
             success: function (res) {
                 console.log(res);
                 that.cateData = res;
@@ -258,5 +258,6 @@ var a = new Vue({
                 console.log("failed:" + status);
             },
         });
+        this.activeIndex = $.getUrlParam("tab")
     },
 });

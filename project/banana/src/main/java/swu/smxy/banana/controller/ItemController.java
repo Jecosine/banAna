@@ -38,7 +38,7 @@ public class ItemController extends BaseController<ItemService>
     }
     // TODO update item data
     @ResponseBody
-    @RequestMapping(value="/item/update", method = RequestMethod.POST)
+    @RequestMapping(value="/update", method = RequestMethod.POST)
     public ResponseType<String> updateItem(@RequestBody Item item, HttpServletRequest request, HttpServletResponse response)
     {
         ResponseType<String> resp = new ResponseType<String>();
@@ -46,7 +46,7 @@ public class ItemController extends BaseController<ItemService>
         resp.setMessage("Update successfully");
         return resp; 
     }
-    @RequestMapping(value="/item/delete", method = RequestMethod.GET)
+    @RequestMapping(value="/delete", method = RequestMethod.GET)
     public ResponseType<String> deleteByItem(@RequestBody Item item)
     {
         ResponseType<String> response = new ResponseType<String>();

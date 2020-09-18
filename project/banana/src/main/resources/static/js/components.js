@@ -14,8 +14,8 @@ var nv = {
                 circle></el-button>
         </div>
         <div id="logo" class="inline-block" :style="{left: (screenWidth < 1200)?'60px':'0'}">
-            <a href="index.html">
-                <el-image style="width: 110px" src="../static/img/logo.png" fit="contain"></el-image>
+            <a href="/">
+                <el-image style="width: 110px" src="img/logo.png" fit="contain"></el-image>
             </a>
         </div>
         <transition name="fade">

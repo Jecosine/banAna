@@ -4,7 +4,18 @@
  * @LastEditTime: 2020-08-27 02:06:44
  */
 var reachTop = true;
-
+(function ($) {
+    $.getUrlParam = function (name) {
+     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if (r != null) return unescape(r[2]); return null;
+    }
+})(jQuery);
+var getUrlParam = function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
 window.onscroll = () => {
     // console.log(window.scrollY);
 
@@ -39,7 +50,7 @@ window.onscroll = () => {
 var user = {
     'userName': 'jecosine',
     'expired': new Date(),
-    'avatarUrl': '../static/img/avatar.jpg',
+    'avatarUrl': 'img/avatar.jpg',
     'shopCart': {
 
     }

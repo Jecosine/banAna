@@ -55,4 +55,7 @@ public interface ItemMapper extends BaseMapper<Item>
 
     @Select("select * from subitem where parentId=#{itemId}")
     public List<Item> deleteByItem(Item item);
+
+    @Select("select * from item where UPPER(itemName) like CONCAT('%', #{key}, '%') limit 100")
+    public List<Item> blurSearchItem(String key);
 }

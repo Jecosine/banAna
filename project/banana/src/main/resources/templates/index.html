@@ -23,15 +23,15 @@
     <meta name="applicable-device" content="mobile">
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait">
-    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/vue.js"></script>
-    <script type="text/javascript" src="../static/js/element.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/element.js"></script>
     <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
 
 
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/base.css">
 </head>
 
 <body>
@@ -45,7 +45,7 @@
             </div>
             <div id="logo" class="inline-block" :style="{left: (screenWidth < 1200)?'60px':'0'}">
                 <a href="index.html">
-                    <el-image style="width: 110px" src="../static/img/logo.png" fit="contain"></el-image>
+                    <el-image style="width: 110px" src="img/logo.png" fit="contain"></el-image>
                 </a>
             </div>
             <transition name="fade">
@@ -80,6 +80,7 @@
                         <el-menu-item index="6-1" @click="window.location.href='/personal?tab=1'"><i class="el-icon-user"></i> My Profile</el-menu-item>
                         <el-menu-item index="6-2" @click="window.location.href='/personal?tab=6'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
                         <el-menu-item index="6-3" @click="window.location.href='/personal?tab=7'"><i class="el-icon-setting"></i> Settings</el-menu-item>
+                        <el-menu-item index="6-4" @click="window.location.href='/logout'"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</el-menu-item>
                     </el-submenu>
                     <el-submenu index="6" v-if="userData==null">
                         <template slot="title">
@@ -99,7 +100,7 @@
         <div id="banner-container">
             <el-carousel trigger="click" height="100vh">
                 <el-carousel-item v-for="item in 4" :key="item">
-                    <el-image style="width: 100%;height: 100%" src="../static/img/banner1.png" fit="fill"></el-image>
+                    <el-image style="width: 100%;height: 100%" src="img/banner1.png" fit="fill"></el-image>
                 </el-carousel-item>
             </el-carousel>
         </div>
@@ -260,8 +261,8 @@
         </el-row>
     </div>
     <div id="footer" class="general-shadow"> </div>
-    <script type="text/javascript" src="../static/js/base.js"></script>
-    <script type="text/javascript" src="../static/js/index.js"></script>
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
 
 </html>

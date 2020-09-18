@@ -235,7 +235,7 @@ var b = new Vue({
             type: "get",
             cache: false,
             async: false,
-            url: "../static/json/cate.json",
+            url: "json/cate.json",
             success: function(res)
             {
                 console.log(res);

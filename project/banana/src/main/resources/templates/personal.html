@@ -17,14 +17,14 @@
     <meta name="applicable-device" content="mobile">
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait" />
-    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/vue.js"></script>
-    <script type="text/javascript" src="../static/js/element.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/element.js"></script>
     <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/base.css">
-    <link rel="stylesheet" href="../static/css/personal.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/personal.css">
 </head>
 <body>
   <div id="app">
@@ -33,7 +33,7 @@
       <el-col :span="4" :offset="3">
         <div id="side-menu-container">
           <el-menu
-            default-active="1"
+            :default-active="activeIndex"
             class="el-menu-vertical-demo"
             @select="handleSelect">
             <el-menu-item index="1">
@@ -60,7 +60,7 @@
               <i class="el-icon-bank-card"></i>
               <span slot="title">Gift Cards</span>
             </el-menu-item>
-            <el-menu-item index="6">
+            <el-menu-item index="7">
               <i class="el-icon-setting"></i>
               <span slot="title">Settings</span>
             </el-menu-item>
@@ -283,9 +283,12 @@
     </el-row>
     <div id="footer"></div>
   </div>
-  <script src="../static/js/addresspicker.js"></script>
-  <!-- <script src="../static/js/base.js"></script> -->
-  <script src="../static/js/components.js"></script>
-  <script src="../static/js/personal.js"></script>
+  <script src="js/base.js"></script>
+  
+  <script src="js/addresspicker.js"></script>
+  <!-- <script src="js/base.js"></script> -->
+  <script src="js/components.js"></script>
+  
+  <script src="js/personal.js"></script>
 </body>
 </html>
