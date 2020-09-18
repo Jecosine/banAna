@@ -19,7 +19,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 //https://www.jianshu.com/p/3cb4dcd456d3
-@Component
+
+// @Component
 public class RedisUtils {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.ResponseType;
+import swu.smxy.banana.entity.User;
 import swu.smxy.banana.service.CartService;
 
 @RestController
@@ -24,20 +26,25 @@ public class CartController extends BaseController<CartService> {
 	@Autowired
 	private CartService cartService;
 	
-	@RequestMapping(value = "/getCartService", method = RequestMethod.POST)
+	@RequestMapping(value = "/getCartService", method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseType<List<CartItem>> getCartService(@RequestParam String userId,
-			HttpServletRequest request, HttpServletResponse response) throws IOException
+	public ResponseType<List<CartItem>> getCartService(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		User user = (User)request.getSession().getAttribute("user_auth");
+		String userId = (user == null) ? null:user.getUserId();
 		ResponseType<List<CartItem>> responseType = cartService.getCartService(userId);
 		return responseType;
 	}
 	
-	@RequestMapping(value = "/addItemToCartService", method = RequestMethod.GET)
+	@RequestMapping(value = "/addItemToCartService", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseType<CartItem> addItemToCartService(@RequestParam CartItem cartItem,
+	public ResponseType<CartItem> addItemToCartService(@RequestBody CartItem cartItem,
 			HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		System.out.println(cartItem);
+		User user = (User)request.getSession().getAttribute("user_auth");
+		String userId = (user == null) ? null:user.getUserId();
+		cartItem.setUserId(userId);
 		ResponseType<CartItem> responseType = cartService.addItemToCartService(cartItem);
 		return responseType;
 	}

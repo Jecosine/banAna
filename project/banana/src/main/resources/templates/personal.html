@@ -17,14 +17,14 @@
     <meta name="applicable-device" content="mobile">
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait" />
-    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/vue.js"></script>
-    <script type="text/javascript" src="../static/js/element.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/element.js"></script>
     <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/base.css">
-    <link rel="stylesheet" href="../static/css/personal.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/personal.css">
 </head>
 <body>
   <div id="app">
@@ -33,7 +33,7 @@
       <el-col :span="4" :offset="3">
         <div id="side-menu-container">
           <el-menu
-            default-active="1"
+            :default-active="activeIndex"
             class="el-menu-vertical-demo"
             @select="handleSelect">
             <el-menu-item index="1">
@@ -58,9 +58,9 @@
             </el-menu-item>
             <el-menu-item index="6">
               <i class="el-icon-bank-card"></i>
-              <span slot="title">Wallet</span>
+              <span slot="title">Gift Cards</span>
             </el-menu-item>
-            <el-menu-item index="6">
+            <el-menu-item index="7">
               <i class="el-icon-setting"></i>
               <span slot="title">Settings</span>
             </el-menu-item>
@@ -80,7 +80,6 @@
                   :show-file-list="false"
                   :auto-upload="false"
                   :file-list="fileList"
-
                   :on-success="handleAvatarSuccess"
                   :on-change="beforeAvatarUpload">
                   <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -96,7 +95,7 @@
                 :key="contact.key"
                 :prop="contact.address"
                 :rules="{
-                  required: true, message: '域名不能为空', trigger: 'blur'
+                  required: true, message: 'Cannot be null', trigger: 'blur'
                 }">
                 <el-input v-model="contact.name">
                   <template slot="prepend"><i class="el-icon-user"></i>  Name</template> 
@@ -146,7 +145,7 @@
                         label="Thumbnail"
                         width="120">
                         <template slot-scope="scope">
-                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.imgUrl"
+                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.pics[0]"
                                 fit="cover" class="inline-block">
                                 <div slot="placeholder" class="image-slot">
                                     <i class="el-icon-loading"></i> Loading
@@ -158,12 +157,11 @@
                         </template>
                       </el-table-column>
                       <el-table-column
-                        prop="name"
+                        prop="itemName"
                         label="Name"
                          show-overflow-tooltip>
                       </el-table-column>
-                      <el-table-column
-                        prop="amount"
+                      <el-table-column                        
                         label="Amount"
                         width="140">
                         <template slot-scope="scope">
@@ -171,7 +169,7 @@
                             size="mini" 
                             :min="1"
                             :step="1"
-                            v-model="scope.row.amount"></el-input-number>
+                            v-model="scope.row.itemCount"></el-input-number>
                         </template>
                       </el-table-column>
                       <el-table-column
@@ -179,7 +177,7 @@
                         label="Price"
                         width="120">
                         <template slot-scope="scope">
-                            <span class="item-price">$ {{scope.row.price * scope.row.amount}}</span>
+                            <span class="item-price">$ {{scope.row.price * scope.row.itemCount}}</span>
                         </template>
                       </el-table-column>
                     </el-table>
@@ -192,15 +190,104 @@
                 </template>
             </div>
         </transition>
+        <transition name="fade">
+          <div class="cover-box" id="all-order" v-show="activeIndex==='2'">
+            <template>
+              <el-tabs v-model="aoActiveName" @tab-click="handleOrderTab">
+                <el-tab-pane label="All" name="1"></el-tab-pane>
+                <el-tab-pane label="Unpaid" name="2"></el-tab-pane>
+                <el-tab-pane label="UnDelivered" name="3"></el-tab-pane>
+                <el-tab-pane label="Unconfirmed" name="4"></el-tab-pane>
+              </el-tabs>
+            </template>
+            <template>
+              <el-table
+                id="allorder-table"
+                ref="orderMultipleTable"
+                height="calc(100% - 100px)"
+                :data="orderData.filter(data => orderFilter==='All' || data.orderStatus === orderFilter)"
+                tooltip-effect="dark"
+                style="width: 100%"
+                @selection-change="handleSelectionChange">
+                <el-table-column
+                  type="selection"
+                  width="55" fixed>
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  label="Datetime"                  
+                   show-overflow-tooltip>
+                   <template slot-scope="scope"><i class="fa fa-calendar" aria-hidden="true"></i>{{scope.row.orderDateTime}}</template>
+                </el-table-column>
+                <el-table-column
+                  fixed
+                  label="Shop"                  
+                   show-overflow-tooltip>
+                   <template slot-scope="scope"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.shopName}}</template>
+                </el-table-column>
+                <el-table-column
+                  label="items"
+                  width="300">
+                  <template slot-scope="scope">
+                      <el-image style="width: 100px;height: 75px;background-color: gray;margin-right: 10px" :src="item.imgUrl" v-for="(item, i) in scope.row.items" v-show="i < 2"
+                          fit="cover" class="inline-block">
+                          <div slot="placeholder" class="image-slot">
+                              <i class="el-icon-loading"></i> Loading
+                          </div>
+                          <div slot="error" class="image-slot">
+                              <i class="el-icon-picture-outline"></i>
+                          </div>
+                      </el-image>
+                  </template>
+                </el-table-column>
+                
+                <el-table-column
+                  prop="orderStatus"
+                  label="Status"
+                  width="140">
+                  <template slot-scope="scope">
+                    <el-tag type="danger">{{scope.row.orderStatus}}</el-tag>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  prop="price"
+                  label="Price"
+                  width="120">
+                  <template slot-scope="scope">
+                      <span class="item-price">$ {{scope.row.price}}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="Operation"
+                  width="120">
+                  <template slot-scope="scope">
+                    <el-button @click="handleClick(scope.row)" type="text" size="small">View</el-button>
+                    <el-button type="text" size="small" v-show="scope.row.orderStatus==='Unpaid'">Cancel</el-button>
+                    <el-button type="text" size="small" v-show="scope.row.orderStatus!=='Unpaid'">Service</el-button>
+                  </template>
+                </el-table-column>
+              </el-table>
+              <!-- <div style="margin-top: 20px" class="row-flex-box">
+                  <div class="inline-block">Selected Price: <span class="item-price">$ {{totalPrice}}</span></div>
+                  <div class="float-right">
+                      <el-button type="primary">Submit Order</el-button>
+                  </div>
+              </div> -->
+          </template>
+          </div>
+        </transition>
         </div>
         
       </el-col>
     </el-row>
     <div id="footer"></div>
   </div>
-  <script src="../static/js/addresspicker.js"></script>
-  <!-- <script src="../static/js/base.js"></script> -->
-  <script src="../static/js/components.js"></script>
-  <script src="../static/js/personal.js"></script>
+  <script src="js/base.js"></script>
+  
+  <script src="js/addresspicker.js"></script>
+  <!-- <script src="js/base.js"></script> -->
+  <script src="js/components.js"></script>
+  
+  <script src="js/personal.js"></script>
 </body>
 </html>

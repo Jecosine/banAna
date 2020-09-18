@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/element.js"></script>
+    <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+  <div id="app"  class="scroll-body">
+    <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    <el-backtop target=".scroll-body" :bottom="100">
+      <i class="el-icon-caret-top"></i>
+    </el-backtop>
+    <div id="main-container">
+    <el-row>
+      <el-col id="search-container" :xs="{span:22, offset:1}" :lg="{span:18, offset:3}" :sm="{span:20, offset:2}">
+          <el-input placeholder="Search what you want" v-model="searchInput.text" class="input-with-select">
+              <el-select v-model="searchInput.type" slot="prepend" placeholder="Please Select">
+                  <el-option label="Item" value="1"></el-option>
+                  <el-option label="Shop" value="2"></el-option>
+              </el-select>
+              <el-button slot="append" icon="el-icon-search" @click="doSearch"></el-button>
+          </el-input>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :xs="{span:22, offset:1}" :lg="{span:18, offset:3}" :sm="{span:20, offset:2}"id="content-container">
+        <el-card class="section-card">
+          <div slot="header"><i class="el-icon-search"></i>Search Result for '{{searchInput.text}}'</div>
+          <div class="section-content recom">
+              <el-row :gutter="14">
+                  <el-col :xs="12" :sm="8" :md="6" :lg="4" v-for="(item, i) in searchResult">
+                      <el-card class="shop-item" shadow="never">
+                          <el-image style="width: 100%;height: 150px;background-color: gray;" :src="item.pics[0]"
+                              fit="cover" class="inline-block">
+                              <div slot="placeholder" class="image-slot">
+                                  <i class="el-icon-loading"></i> Loading
+                              </div>
+                              <div slot="error" class="image-slot-recom">
+                                  <i class="el-icon-picture-outline"></i>
+                              </div>
+                          </el-image>
+                          <div class="item-info">
+                              <div class="item-price">$ {{item.price}}</div>
+                              <div class="item-title"><a href="#">{{cutStr(item.itemName, 40)}}</a></div>
+                              <div class="item-shop inline-block"><a href="#"><i class="fa fa-shopping-bag"
+                                          aria-hidden="true"></i>{{cutStr(item.businessName,15)}}</a></div>
+                              <div class="item-shop inline-block float-right"><i class="fa fa-map-marker"
+                                      aria-hidden="true"></i> {{item.location}}</div>
+                              <div>
+                              </div>
+                          </div>
+                      </el-card>
+                  </el-col>
+              </el-row>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/components.js"></script>
+  <script type="text/javascript" src="js/base.js"></script>
+  <script type="text/javascript" src="js/search.js"></script>
+
+</body>
+</html>

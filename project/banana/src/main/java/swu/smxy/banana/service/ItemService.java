@@ -44,6 +44,44 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             response.setMessage("No such item");
             response.setStatus(-1);
         }
+        session.close();
         return response;
     }
+    public ResponseType<List<Item>> blurSearchItem(String s)
+    {
+        ResponseType<List<Item>> response = new ResponseType<List<Item>>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(ItemMapper.class);
+        List<Item> data = mapper.blurSearchItem(s);
+        response.setStatus(0);
+        response.setData(data);
+        response.setMessage("Get Items Successfully");
+        session.close();
+        return response;
+    }
+    public ResponseType<List<Item>> recoms()
+    {
+        ResponseType<List<Item>> response = new ResponseType<List<Item>>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(ItemMapper.class);
+        List<Item> data = mapper.recomList();
+        response.setStatus(0);
+        response.setData(data);
+        response.setMessage("Get Items Successfully");
+        session.close();
+        return response;
+    }
+    public ResponseType<List<Item>> getByCate(String cateId)
+    {
+        ResponseType<List<Item>> response = new ResponseType<List<Item>>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(ItemMapper.class);
+        List<Item> data = mapper.getByCate(cateId);
+        response.setStatus(0);
+        response.setData(data);
+        response.setMessage("Get Items Successfully");
+        session.close();
+        return response;
+    }
+
 }

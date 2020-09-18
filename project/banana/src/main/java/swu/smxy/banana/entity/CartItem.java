@@ -15,7 +15,8 @@ public class CartItem {
     private String businessId;
     private String userId;
     private Float price;
-
+    private String pics;
+    private String itemName;
     /**
      * @return String return the cartId
      */
@@ -98,6 +99,36 @@ public class CartItem {
      */
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+
+    /**
+     * @return String return the pics
+     */
+    public String getPics() {
+        return pics;
+    }
+
+    /**
+     * @param pics the pics to set
+     */
+    public void setPics(String pics) {
+        this.pics = pics;
+    }
+
+
+    /**
+     * @return String return the itemName
+     */
+    public String getItemName() {
+        return itemName;
+    }
+
+    /**
+     * @param itemName the itemName to set
+     */
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
 }
