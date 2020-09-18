@@ -50,8 +50,6 @@ public class MainController
     {
         return itemService.blurSearchItem(s);
     }
-    
-    
     @RequestMapping("/search")
     public String search()
     {

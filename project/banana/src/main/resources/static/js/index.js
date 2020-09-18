@@ -6,6 +6,10 @@ var a = new Vue({
     el: '#navigation-container',
     data() {
         return {
+            searchInput: {
+                text: '',
+                type: 'Item'
+            },
             onTop: true,
             isCollapsed: false,
             screenWidth: window.innerWidth,
@@ -17,6 +21,7 @@ var a = new Vue({
     computed: {
     },
     methods: {
+        
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         },
@@ -130,6 +135,10 @@ var b = new Vue({
         };
     },
     methods: {
+        doSearch(e)
+        {
+            window.open("/search?s=" + this.searchInput.text + "&t=" + this.searchInput.type)
+        },
         getStrLength(str) {
             var l = str.length;
             var blen = 0;
@@ -222,10 +231,8 @@ var b = new Vue({
     },
     mounted: function()
     {
-        
         console.log($("#cate-right-container").css("width").slice(0, -2));
         this.rightContainerWidth = parseInt($("#cate-right-container").css("width").slice(0, -2)) - 20;
-        
     },
     created: function()
     {

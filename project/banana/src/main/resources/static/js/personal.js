@@ -258,6 +258,6 @@ var a = new Vue({
                 console.log("failed:" + status);
             },
         });
-        this.activeIndex = $.getUrlParam("tab")
+        this.activeIndex = $.getUrlParam("tab");
     },
 });
