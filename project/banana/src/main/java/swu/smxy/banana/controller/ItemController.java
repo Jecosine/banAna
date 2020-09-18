@@ -62,7 +62,7 @@ public class ItemController extends BaseController<ItemService>
         ResponseType<Item> resp = new ResponseType<Item>();
         resp.setStatus(0);
         resp.setMessage("Update successfully");
-        resp.setData(itemService.getByCate(cateId));
+        // resp.setData(itemService.getByCate(cateId));
         return resp;
     }
     // TODO update item data
