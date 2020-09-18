@@ -24,17 +24,20 @@ public class LoginConfiguration implements WebMvcConfigurer
     {
         InterceptorRegistration interceptorRegistration = interceptorRegistry.addInterceptor(new LoginInterceptor());
         // add intercept path
-        // interceptorRegistration.addPathPatterns("/**"); // add all path
+        interceptorRegistration.addPathPatterns("/**"); // add all path
 
         // add exclude path
         interceptorRegistration.excludePathPatterns(
-        	"/**",
-            "/user/login",
+            "/login",
             "/user/loginService",
             "/",
             "/**/*.html",
             "/**/*.js",
-            "/**/*.css"
+            "/**/*.css",
+            "/**/*.png",
+            "/**/*.jpg",
+            "/**/*.webp",
+            "/**/fonts/*"
         );
     }
 }

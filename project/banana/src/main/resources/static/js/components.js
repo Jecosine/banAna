@@ -15,7 +15,7 @@ var nv = {
         </div>
         <div id="logo" class="inline-block" :style="{left: (screenWidth < 1200)?'60px':'0'}">
             <a href="/">
-                <el-image style="width: 110px" src="img/logo.png" fit="contain"></el-image>
+                <el-image style="width: 110px" src="/img/logo.png" fit="contain"></el-image>
             </a>
         </div>
         <transition name="fade">

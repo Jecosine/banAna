@@ -252,7 +252,25 @@ var b = new Vue({
             {
                 console.log("failed:" + status);
             }
-        })
+        });
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/item/recommend",
+            success: function(res)
+            {
+                console.log(res);
+                that.recommend = res.data;
+            },
+            error: function(xhr, status, err)
+            {
+                console.log("failed:" + status);
+            }
+        });
+        this.recommend.forEach((item, i) => {
+            item.pics = JSON.parse(item.pics);
+        });
     }
 })
 // window.onscroll = () => {

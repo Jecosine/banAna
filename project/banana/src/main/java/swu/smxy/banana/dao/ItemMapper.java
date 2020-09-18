@@ -43,14 +43,15 @@ public interface ItemMapper extends BaseMapper<Item>
     public Item getByName(String itemName);
     // @Update("update item set ")
     // public int update(Item item);
-    
+    @Select("select * from item where cateId=#{cateId}")
+    public List<Item> getByCate(String cateId);
     @Delete("delete from item where itemId=#{itemId}")
     public int deleteById(String itemId);
 
     @Delete("delete from item where itemId=#{itemId}")
     public int delete(Item business);
 
-    @Select("select * from item where parentId=#{itemId} and typeCode=#{typeCode")
+    @Select("select * from item where parentId=#{itemId} and typeCode=#{typeCode}")
     public Item getByIdAndType(String itemId, String typeCode);
 
     @Select("select * from subitem where parentId=#{itemId}")
@@ -58,4 +59,6 @@ public interface ItemMapper extends BaseMapper<Item>
 
     @Select("select item.*,business.businessName  from item, business where UPPER(itemName) like CONCAT('%', #{key}, '%') and business.businessId=item.businessId limit 100")
     public List<Item> blurSearchItem(String key);
+    @Select("select item.*,business.businessName  from item, business where UPPER(itemName) like CONCAT('%', '小米', '%') and business.businessId=item.businessId limit 12")
+    public List<Item> recomList();
 }

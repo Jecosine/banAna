@@ -143,7 +143,7 @@
                                                 <div class="subitem-title">{{ subitem["cateName"] }}</div>
                                                 <div class="cate-item inline-block"
                                                     v-for="(cate, k) in subitem['data']"><a
-                                                        href="#">{{ cate.cateName }}</a></div>
+                                                        :href="'/cate?id=' + cate.cateId">{{ cate.cateName }}</a></div>
                                             </div>
 
                                         </el-card>
@@ -231,9 +231,9 @@
                     <div slot="header"><i class="el-icon-thumb"></i>Recommendations</div>
                     <div class="section-content recom">
                         <el-row :gutter="14">
-                            <el-col :xs="12" :sm="8" :md="6" :lg="4" v-for="i in 12">
+                            <el-col :xs="12" :sm="8" :md="6" :lg="4" v-for="(item, i) in recommend">
                                 <el-card class="shop-item" shadow="never">
-                                    <el-image style="width: 100%;height: 150px;background-color: gray;" src=""
+                                    <el-image style="width: 100%;height: 150px;background-color: gray;" :src="item.pics[0]"
                                         fit="cover" class="inline-block">
                                         <div slot="placeholder" class="image-slot">
                                             <i class="el-icon-loading"></i> Loading
@@ -243,12 +243,12 @@
                                         </div>
                                     </el-image>
                                     <div class="item-info">
-                                        <div class="item-price">$8,456.38</div>
-                                        <div class="item-title"><a href="#">Test item for preview card</a></div>
-                                        <div class="item-shop inline-block"><a href="#"><i class="fa fa-shopping-bag"
-                                                    aria-hidden="true"></i>shop 2</a></div>
+                                        <div class="item-price">$ {{item.price}}</div>
+                                        <div class="item-title"><a :href="'/item/?itemId=' + item.itemId">{{cutStr(item.itemName,40)}}</a></div>
+                                        <div class="item-shop inline-block"><a :href="'/item?itemId=' + item.itemId"><i class="fa fa-shopping-bag"
+                                                    aria-hidden="true"></i>{{cutStr(item.businessName, 15)}}</a></div>
                                         <div class="item-shop inline-block float-right"><i class="fa fa-map-marker"
-                                                aria-hidden="true"></i> China</div>
+                                                aria-hidden="true"></i> {{item.location}}</div>
                                         <div>
                                         </div>
                                     </div>

@@ -58,6 +58,23 @@ var a = new Vue({
                     return false;
                 }
             });
+            $.ajax({
+                url: "/user/loginService",
+                contentType: "application/x-www-form-urlencoded",
+                type: "post",
+                data: $("#login-form").serialize(),
+                success: (res) => {
+                    console.log(res);
+                    if(res.status === 0) {
+                        window.location.href = '/';
+                        window.localStorage.setItem("user_data", JSON.stringify(res.data));
+                    }
+                    $("#err").text((res["status"] == -1) ? res["message"] : "");
+                },
+                error: () => {
+                    console.log("Failed");
+                }
+            })
         },
         resetForm(formName) {
             console.log("ASDSAD");
@@ -65,18 +82,3 @@ var a = new Vue({
         }
     }
 })
-$("#submitbutton").click(() => {
-    $.ajax({
-        url: "/user/loginService",
-        contentType: "application/x-www-form-urlencoded",
-        type: "post",
-        data: $("#login-form").serialize(),
-        success: (res) => {
-            console.log(res);
-            $("#err").text((res["status"] == -1) ? res["message"] : "");
-        },
-        error: () => {
-            console.log("Failed");
-        }
-    })
-});

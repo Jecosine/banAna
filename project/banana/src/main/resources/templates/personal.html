@@ -95,7 +95,7 @@
                 :key="contact.key"
                 :prop="contact.address"
                 :rules="{
-                  required: true, message: '域名不能为空', trigger: 'blur'
+                  required: true, message: 'Cannot be null', trigger: 'blur'
                 }">
                 <el-input v-model="contact.name">
                   <template slot="prepend"><i class="el-icon-user"></i>  Name</template> 
@@ -145,7 +145,7 @@
                         label="Thumbnail"
                         width="120">
                         <template slot-scope="scope">
-                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.imgUrl"
+                            <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.pics[0]"
                                 fit="cover" class="inline-block">
                                 <div slot="placeholder" class="image-slot">
                                     <i class="el-icon-loading"></i> Loading
@@ -157,12 +157,11 @@
                         </template>
                       </el-table-column>
                       <el-table-column
-                        prop="name"
+                        prop="itemName"
                         label="Name"
                          show-overflow-tooltip>
                       </el-table-column>
-                      <el-table-column
-                        prop="amount"
+                      <el-table-column                        
                         label="Amount"
                         width="140">
                         <template slot-scope="scope">
@@ -170,7 +169,7 @@
                             size="mini" 
                             :min="1"
                             :step="1"
-                            v-model="scope.row.amount"></el-input-number>
+                            v-model="scope.row.itemCount"></el-input-number>
                         </template>
                       </el-table-column>
                       <el-table-column
@@ -178,7 +177,7 @@
                         label="Price"
                         width="120">
                         <template slot-scope="scope">
-                            <span class="item-price">$ {{scope.row.price * scope.row.amount}}</span>
+                            <span class="item-price">$ {{scope.row.price * scope.row.itemCount}}</span>
                         </template>
                       </el-table-column>
                     </el-table>

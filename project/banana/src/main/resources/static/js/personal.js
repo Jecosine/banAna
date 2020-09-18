@@ -19,7 +19,7 @@ var a = new Vue({
             activeIndex: "1",
             activeIndex2: "1",
             form: {
-                name: "Banana",
+                name: "jecosine",
                 region: "",
                 date1: "",
                 date2: "",
@@ -38,70 +38,18 @@ var a = new Vue({
             },
             imageUrl: "",
             fileList: [],
-            tableData: [
-                {
-                    date: "2016-05-03",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-02",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-04",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-01",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-08",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-06",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    orderStatus: 'Unpaid',
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-                {
-                    date: "2016-05-07",
-                    name: "Test Item",
-                    imgUrl: "#",
-                    amount: 1,
-                    price: 100.00,
-                    address: "上海市普陀区金沙江路 1518 弄",
-                },
-            ],
+            tableData: [],
+            // tableData: [
+            //     {
+            //         date: "2016-05-03",
+            //         name: "Test Item",
+            //         imgUrl: "#",
+            //         amount: 1,
+            //         price: 100.00,
+            //         orderStatus: 'Unpaid',
+            //         address: "上海市普陀区金沙江路 1518 弄",
+            //     }
+            // ],
             orderData: [
                 {
                     orderDateTime: '2020/03/05 20:02:11',
@@ -223,7 +171,7 @@ var a = new Vue({
             {
                 // console.log(i);
                 temp = this.multipleSelection[i];
-                tt += temp.price * temp.amount;
+                tt += temp.price * temp.itemCount;
             }
             return tt;
         }
@@ -245,6 +193,7 @@ var a = new Vue({
     mounted: function () {},
     created: function () {
         var that = this;
+        // get user data
         $.ajax({
             type: "get",
             cache: false,
@@ -259,5 +208,23 @@ var a = new Vue({
             },
         });
         this.activeIndex = $.getUrlParam("tab");
+        // get cart data
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/cart/getCartService",
+            success: function (res) {
+                console.log(res);
+                that.tableData = res.data;
+                if (that.tableData!=null)
+                that.tableData.forEach((item, i) => {
+                    item.pics = JSON.parse(item.pics);
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log("failed:" + status);
+            },
+        });
     },
 });

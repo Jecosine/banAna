@@ -6,13 +6,18 @@
  */
 package swu.smxy.banana.controller;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,5 +69,15 @@ public class MainController
     public String errorPage500()
     {
         return "500";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    // @Controller
+    public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+        if (request.getSession().getAttribute("user_auth") != null)
+        {
+            response.sendRedirect("/");
+        }
+        return "login.html";
     }
 }

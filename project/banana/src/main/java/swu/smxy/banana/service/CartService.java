@@ -12,18 +12,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import swu.smxy.banana.util.UuidGenerator;
 @Service
 public class CartService extends BaseService<CartItem, CartMapper> {
 
 	private CartMapper mapper;
 	@Resource(name = "sqlSessionFactory")
 	private SqlSessionFactory sqlSessionFactory;
-	
+
 	@Transactional
-	public ResponseType<List<CartItem>> getCartService(String userId)
-	{
+	public ResponseType<List<CartItem>> getCartService(String userId) {
 		ResponseType<List<CartItem>> response = new ResponseType<List<CartItem>>();
+		if(userId == null || userId.isEmpty()){
+			response.setStatus(-1);
+			return response;
+		}
 		SqlSession session = sqlSessionFactory.openSession();
 		mapper = session.getMapper(CartMapper.class);
 		List<CartItem> cartItems = mapper.getByUserId(userId);
@@ -43,20 +46,18 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			session.close();
 		}
 		response.setData(cartItems);
-        response.setStatus(status);
-        response.setMessage(message);
-        return response;
+		response.setStatus(status);
+		response.setMessage(message);
+		return response;
 	}
-	
-	
-	
+
 	@Transactional
-	public ResponseType<CartItem> addItemToCartService(CartItem cartItem)
-	{
+	public ResponseType<CartItem> addItemToCartService(CartItem cartItem) {
 		ResponseType<CartItem> response = new ResponseType<CartItem>();
 		SqlSession session = sqlSessionFactory.openSession();
 		mapper = session.getMapper(CartMapper.class);
 		int status = 0;
+		cartItem.setCartId(UuidGenerator.getUuid(20));
 		String message = "Add Successfully!";
 		try {
 			mapper.addItemById(cartItem);
@@ -72,14 +73,13 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			session.close();
 		}
 		response.setData(cartItem);
-        response.setStatus(status);
-        response.setMessage(message);
-        return response;
+		response.setStatus(status);
+		response.setMessage(message);
+		return response;
 	}
-	
+
 	@Transactional
-	public ResponseType<CartItem> deleteItemFromCartService(CartItem cartItem)
-	{
+	public ResponseType<CartItem> deleteItemFromCartService(CartItem cartItem) {
 		ResponseType<CartItem> response = new ResponseType<CartItem>();
 		SqlSession session = sqlSessionFactory.openSession();
 		mapper = session.getMapper(CartMapper.class);
@@ -99,14 +99,13 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			session.close();
 		}
 		response.setData(cartItem);
-        response.setStatus(status);
-        response.setMessage(message);
-        return response;
+		response.setStatus(status);
+		response.setMessage(message);
+		return response;
 	}
-	
+
 	@Transactional
-	public ResponseType<List<CartItem>> batchDeleteService(String[] cartIdList)
-	{
+	public ResponseType<List<CartItem>> batchDeleteService(String[] cartIdList) {
 		ResponseType<List<CartItem>> response = new ResponseType<List<CartItem>>();
 		SqlSession session = sqlSessionFactory.openSession();
 		mapper = session.getMapper(CartMapper.class);
@@ -127,10 +126,9 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			session.close();
 		}
 		response.setData(cartItems);
-        response.setStatus(status);
-        response.setMessage(message);
-        return response;
+		response.setStatus(status);
+		response.setMessage(message);
+		return response;
 	}
-	
-	
+
 }
