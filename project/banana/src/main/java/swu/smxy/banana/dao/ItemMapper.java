@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 import swu.smxy.banana.entity.Item;
@@ -34,6 +35,8 @@ public interface ItemMapper extends BaseMapper<Item>
     @Select("select * from item where itemId=#{itemId}")
     public Item getById(String itemId);
 
+    @Update("update item set remain=#{remain}, itemStatus=#{itemStatus} where itemId=#{itemId}")
+    public int updateStock(Item item);
     /**
      * @description: get by name
      * @param name - item name

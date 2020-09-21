@@ -29,6 +29,7 @@ public class Item implements Serializable
     private String cateId;
     private String typeCode;
     private String parentId;
+    private String itemStatus;
     private List<ItemType> itemTypesList;
     /**
      * @return String return the itemId
@@ -268,6 +269,21 @@ public class Item implements Serializable
      */
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+
+    /**
+     * @return String return the itemStatus
+     */
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    /**
+     * @param itemStatus the itemStatus to set
+     */
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
     }
 
 }
