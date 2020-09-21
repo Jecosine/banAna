@@ -28,6 +28,7 @@ import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
 import swu.smxy.banana.entity.Order;
 import swu.smxy.banana.entity.ResponseType;
+import swu.smxy.banana.entity.User;
 import swu.smxy.banana.service.ItemService;
 
 // @RestController
@@ -91,9 +92,19 @@ public class MainController
     }
     @ResponseBody
     @RequestMapping(value = "/orderinfo", method = RequestMethod.POST)
-    public ResponseType<List<Order>> getorderInfo(@RequestBody List<CartItem> items)
+    public ResponseType<List<Order>> getOrderInfo(@RequestBody List<CartItem> items, HttpServletRequest request)
     {
-        
-        return itemService.generateOrder(items);
+        User user = (User)request.getSession().getAttribute("user_auth");
+        return itemService.generateOrder(items, user);
+    }
+    @RequestMapping("/order")
+    public String getOrder(HttpServletRequest request)
+    {
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user == null)
+        {
+            return "login.html";
+        }
+        return "order.html";
     }
 }

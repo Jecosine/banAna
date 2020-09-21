@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +30,14 @@ import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
 import swu.smxy.banana.entity.Order;
 import swu.smxy.banana.entity.ResponseType;
+import swu.smxy.banana.entity.User;
 import swu.smxy.banana.util.UuidGenerator;
 
 @Service
 public class ItemService extends BaseService<Item, ItemMapper> {
     private ItemMapper mapper;
+    @Autowired
+    private BusinessService businessService;
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
 
@@ -44,9 +48,15 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     }
 
     @Transactional
-    public ResponseType<List<Order>> generateOrder(@RequestBody List<CartItem> items) {
+    public ResponseType<List<Order>> generateOrder(List<CartItem> items, User user) {
         ResponseType<List<Order>> response = new ResponseType<List<Order>>();
         Map<String, Order> mp = new HashMap();
+        if (user == null)
+        {
+            response.setStatus(-2);
+            response.setMessage("Not login");
+            return response;
+        }
         Order temp = null;
         Item tempItem = null;
         SqlSession session = sqlSessionFactory.openSession();
@@ -87,10 +97,11 @@ public class ItemService extends BaseService<Item, ItemMapper> {
                 temp = new Order();
                 temp.setOrderId(UuidGenerator.getUuid(20));
                 temp.setBusinessId(item.getBusinessId());
-                temp.setBusinessName(item.getBusinessName());
+                temp.setBusinessName(businessService.getNameById(item.getBusinessId()));
                 temp.setOrderItemList(new ArrayList<CartItem>());
                 temp.getOrderItemList().add(item);
                 temp.setOrderStatus("Unpaid");
+                temp.setUserId(user.getUserId());
                 // calc total
                 temp.setOrderPrice(item.getPrice() * ((item.getItemCount()!=null)?item.getItemCount():0));
                 mp.put(item.getBusinessId(), temp);

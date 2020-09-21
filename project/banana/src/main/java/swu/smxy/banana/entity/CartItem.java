@@ -5,6 +5,8 @@
  */
 package swu.smxy.banana.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +23,11 @@ public class CartItem {
     private Float price;
     private String pics;
     private String itemName;
+    private String typeCode;
+    private String typeJson;
+    private List<List<String>> typeObject;
+    private List<Integer> typeCodeObject;
+    private String selected;
     /**
      * @return String return the cartId
      */
@@ -148,6 +155,78 @@ public class CartItem {
      */
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+
+    /**
+     * @return String return the typeCode
+     */
+    public String getTypeCode() {
+        return typeCode;
+    }
+
+    /**
+     * @param typeCode the typeCode to set
+     */
+    public void setTypeCode(String typeCode) {
+        this.typeCode = typeCode;
+    }
+
+    /**
+     * @return String return the typeJson
+     */
+    public String getTypeJson() {
+        return typeJson;
+    }
+
+    /**
+     * @param typeJson the typeJson to set
+     */
+    public void setTypeJson(String typeJson) {
+        this.typeJson = typeJson;
+    }
+
+    /**
+     * @return List<List<String>> return the typeObject
+     */
+    public List<List<String>> getTypeObject() {
+        return typeObject;
+    }
+
+    /**
+     * @param typeObject the typeObject to set
+     */
+    public void setTypeObject(List<List<String>> typeObject) {
+        this.typeObject = typeObject;
+    }
+
+    /**
+     * @return List<Integer> return the typeCodeObject
+     */
+    public List<Integer> getTypeCodeObject() {
+        return typeCodeObject;
+    }
+
+    /**
+     * @param typeCodeObject the typeCodeObject to set
+     */
+    public void setTypeCodeObject(List<Integer> typeCodeObject) {
+        this.typeCodeObject = typeCodeObject;
+    }
+
+
+    /**
+     * @return String return the selected
+     */
+    public String getSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected the selected to set
+     */
+    public void setSelected(String selected) {
+        this.selected = selected;
     }
 
 }

@@ -32,7 +32,8 @@ public interface BusinessMapper extends BaseMapper<Business>
      */
     @Select("select * from business")
     public List<Business> getAll();
-
+    @Select("select businessName from business where businessId=#{businessId}")
+    public String getNameById(String businessId);
     /**
      * @description: get by id
      * @param id - business id
