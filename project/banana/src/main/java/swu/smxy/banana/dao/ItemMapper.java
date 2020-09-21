@@ -43,7 +43,7 @@ public interface ItemMapper extends BaseMapper<Item>
     public Item getByName(String itemName);
     // @Update("update item set ")
     // public int update(Item item);
-    @Select("select * from item where cateId=#{cateId}")
+    @Select("select item.*, business.businessName from item, business where cateId=#{cateId} and business.businessId=item.businessId")
     public List<Item> getByCate(String cateId);
     @Delete("delete from item where itemId=#{itemId}")
     public int deleteById(String itemId);

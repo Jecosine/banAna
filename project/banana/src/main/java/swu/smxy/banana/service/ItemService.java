@@ -5,16 +5,22 @@
  */
 package swu.smxy.banana.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import swu.smxy.banana.dao.ItemMapper;
+import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
+import swu.smxy.banana.entity.Order;
 import swu.smxy.banana.entity.ResponseType;
 
 @Service
@@ -22,6 +28,32 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     private ItemMapper mapper;
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
+    public ResponseType<List<Order>> generateOrder(@RequestBody List<CartItem> items)
+    {
+        ResponseType<List<Order>> response = new ResponseType<List<Order>>();
+        Map<String, Order> mp = new HashMap();
+
+        Order temp = null;
+        for (CartItem item : items) {
+            temp = mp.get(item.getBusinessId());
+            if (temp!=null)
+            {
+                temp.getOrderItemList().add(item);
+            }
+            else
+            {
+                temp = new Order();
+                temp.setBusinessId(item.getBusinessId());
+                temp.setBusinessName(item.getBusinessName());
+                temp.setOrderItemList(new ArrayList<CartItem>());
+                temp.getOrderItemList().add(item);
+                mp.put(item.getBusinessId(), temp);
+            }
+        }
+        List<Order> orders = new ArrayList<Order>(mp.values());
+        response.setData(orders);
+        return response;
+    }
     public ResponseType<Item> getByIdAndType(String itemId, String typeCode)
     {
         ResponseType<Item> response = new ResponseType<Item>();

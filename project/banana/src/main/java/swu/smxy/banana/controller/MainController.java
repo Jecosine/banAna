@@ -8,6 +8,7 @@ package swu.smxy.banana.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,13 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
+import swu.smxy.banana.entity.Order;
 import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.service.ItemService;
 
@@ -84,5 +88,12 @@ public class MainController
             response.sendRedirect("/");
         }
         return "login.html";
+    }
+    @ResponseBody
+    @RequestMapping(value = "/orderinfo", method = RequestMethod.POST)
+    public ResponseType<List<Order>> getorderInfo(@RequestBody List<CartItem> items)
+    {
+        
+        return itemService.generateOrder(items);
     }
 }

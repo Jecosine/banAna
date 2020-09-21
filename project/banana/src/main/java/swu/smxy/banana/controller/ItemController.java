@@ -34,6 +34,7 @@ public class ItemController extends BaseController<ItemService>
     @Autowired
     private ItemService itemService;
     
+    
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String getItem()
     {

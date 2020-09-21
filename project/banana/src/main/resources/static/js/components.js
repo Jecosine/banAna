@@ -39,12 +39,12 @@ var nv = {
                 <!-- </el-menu> -->
                 <!-- <el-menu :default-active="activeIndex" class="inline-block float-right" mode="horizontal" @select="handleSelect"> -->
                 <!-- <div class="float-right"> -->
-                <el-menu-item index="3"><a href="#" target="_blank"><i class="el-icon-tickets"></i><span>All
+                <el-menu-item index="3"><a href="/personal?tab=2" target="_blank"><i class="el-icon-tickets"></i><span>All
                             Orders</span></a></el-menu-item>
-                <el-menu-item index="4"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></el-menu-item>
-                <el-menu-item index="5"><i class="el-icon-bell"></i><span>Notifications</span></el-menu-item>
+                <el-menu-item index="4"><a href="/personal?tab=5"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></a></el-menu-item>
+                <el-menu-item index="5"><a href="/personal?tab=4"><i class="el-icon-bell"></i><span>Notifications</span></a></el-menu-item>
                 <el-submenu index="6">
-                    <template v-if="userData.userName != undefined">
+                    <template v-if="userData != null && userData.userName != undefined">
                     <template slot="title">
                         <el-avatar :size="40" :src="userData.avatarUrl"></el-avatar>
                         <div class="inline-block">{{userData.userName}}</div>

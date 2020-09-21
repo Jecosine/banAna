@@ -9,6 +9,7 @@ public class Order {
     private String orderId;
     private String orderDateTime;
     private String businessId;
+    private String businessName;
     private Float orderPrice;
     private List<CartItem> orderItemList;
     private String orderStatus;
@@ -96,6 +97,21 @@ public class Order {
      */
     public void setBusinessId(String businessId) {
         this.businessId = businessId;
+    }
+
+
+    /**
+     * @return String return the businessName
+     */
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    /**
+     * @param businessName the businessName to set
+     */
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
 }

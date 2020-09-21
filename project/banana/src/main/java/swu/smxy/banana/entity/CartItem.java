@@ -5,14 +5,18 @@
  */
 package swu.smxy.banana.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import org.springframework.stereotype.Component;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Component
 public class CartItem {
     private String cartId;
     private String itemId;
     private Integer itemCount;
     private String businessId;
+    private String businessName;
     private String userId;
     private Float price;
     private String pics;
@@ -129,6 +133,21 @@ public class CartItem {
      */
     public void setItemName(String itemName) {
         this.itemName = itemName;
+    }
+
+
+    /**
+     * @return String return the businessName
+     */
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    /**
+     * @param businessName the businessName to set
+     */
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
 }
