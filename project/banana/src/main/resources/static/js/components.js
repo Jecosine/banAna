@@ -44,12 +44,22 @@ var nv = {
                 <el-menu-item index="4"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></el-menu-item>
                 <el-menu-item index="5"><i class="el-icon-bell"></i><span>Notifications</span></el-menu-item>
                 <el-submenu index="6">
+                    <template v-if="userData.userName != undefined">
                     <template slot="title">
                         <el-avatar :size="40" :src="userData.avatarUrl"></el-avatar>
+                        <div class="inline-block">{{userData.userName}}</div>
                     </template>
                     <el-menu-item index="6-1" @click="window.location.href='/personal?tab=1'"><i class="el-icon-user"></i> My Profile</el-menu-item>
                     <el-menu-item index="6-2" @click="window.location.href='/personal?tab=6'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
                     <el-menu-item index="6-3" @click="window.location.href='/personal?tab=7'"><i class="el-icon-setting"></i> Settings</el-menu-item>
+                    </template>
+                    <template v-else>
+                    <template slot="title">
+                        <i class="el-icon-user"></i>
+                    </template>
+                    <el-menu-item index="6-1" @click="window.location.href='/login'"><i class="el-icon-user"></i> Login</el-menu-item>
+                    <el-menu-item index="6-2" @click="window.location.href='/register'"><i class="el-icon-edit-outline"></i> Register</el-menu-item>
+                    </template>
                 </el-submenu>
                 <!-- </div> -->
             </el-menu>

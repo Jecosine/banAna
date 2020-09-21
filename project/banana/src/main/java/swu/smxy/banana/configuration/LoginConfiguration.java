@@ -30,10 +30,12 @@ public class LoginConfiguration implements WebMvcConfigurer
         interceptorRegistration.excludePathPatterns(
             "/login",
             "/user/loginService",
+            "/cate",
             "/",
             "/**/*.html",
             "/**/*.js",
             "/**/*.css",
+            "/**/*.json",
             "/**/*.png",
             "/**/*.jpg",
             "/**/*.webp",

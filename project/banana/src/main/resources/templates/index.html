@@ -36,8 +36,7 @@
 
 <body>
     <!-- <h1>Index</h1> -->
-    <div id="navigation-container" class="general-shadow" :style="{'backgroundColor':(onTop)?'transparent':'white'}">
-        <!-- <div id="navigation-mask"></div> -->
+    <!-- <div id="navigation-container" class="general-shadow" :style="{'backgroundColor':(onTop)?'transparent':'white'}">
         <div class="navigation-wrapper">
             <div class="inline-block" id="collapser" v-show="screenWidth < 1200">
                 <el-button @click="isCollapsed = !isCollapsed" :icon="(isCollapsed)?'el-icon-s-unfold':'el-icon-s-fold'"
@@ -49,7 +48,6 @@
                 </a>
             </div>
             <transition name="fade">
-                <!-- <div id="navigation-right" class="inline-block float-right"> -->
                 <el-menu v-show="(screenWidth > 1200) || isCollapsed"
                     :mode="(screenWidth > 1200)?'horizontal':'vertical'" :default-active="activeIndex"
                     :class="{ 'float-right':screenWidth > 1200, 'mobile-menu':screenWidth <= 1200}"
@@ -64,12 +62,9 @@
                         </template>
                         <el-menu-item index="4-1">Feed Back</el-menu-item>
                         <el-menu-item index="4-2">My Service</el-menu-item>
-                        <!-- <el-menu-item index="4-3">选项3</el-menu-item> -->
                     </el-submenu>
                     <el-menu-item index="2"><i class="el-icon-thumb"></i><span>About Us</span></el-menu-item>
-                    <!-- </el-menu> -->
-                    <!-- <el-menu :default-active="activeIndex" class="inline-block float-right" mode="horizontal" @select="handleSelect"> -->
-                    <!-- <div class="float-right"> -->
+
                     <el-menu-item index="3"><a href="#" target="_blank"><i class="el-icon-tickets"></i><span>All Orders</span></a></el-menu-item>
                     <el-menu-item index="4"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></el-menu-item>
                     <el-menu-item index="5"><i class="el-icon-bell"></i><span>Notifications</span></el-menu-item>
@@ -89,14 +84,17 @@
                         <el-menu-item index="6-1" @click="window.location.href='/login'"><i class="el-icon-user"></i> My Profile</el-menu-item>
                         <el-menu-item index="6-2" @click="window.location.href='/register'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
                     </el-submenu>
-                    <!-- </div> -->
+
                 </el-menu>
             </transition>
         </div>
 
-    </div>
-
-    <div id="main-container">
+    </div > -->
+    <navigator id="navigation-container" class="general-shadow" :style="{'backgroundColor':(onTop)?'transparent':'white'}"
+    :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    
+    <div id="main-container" class="target_top">
+        <el-backtop></el-backtop>
         <div id="banner-container">
             <el-carousel trigger="click" height="100vh">
                 <el-carousel-item v-for="item in 4" :key="item">
@@ -261,6 +259,7 @@
         </el-row>
     </div>
     <div id="footer" class="general-shadow"> </div>
+    <script type="text/javascript" src="js/components.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>

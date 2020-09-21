@@ -1,9 +1,12 @@
 // import { Vue } from './vue'
 
-localStorage.setItem('user', JSON.stringify(user));
+// localStorage.setItem('user', JSON.stringify(user));
 
 var a = new Vue({
     el: '#navigation-container',
+    components: {
+        'navigator' : nv
+    },
     data() {
         return {
             searchInput: {
@@ -64,6 +67,26 @@ var a = new Vue({
             })();
         }
         
+    },
+    created: function()
+    {
+        let that = this;
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/user/currentinfo",
+            success: function(res)
+            {
+                console.log(res.data);
+                that.userData = res.data;
+                // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+            },
+            error: function(xhr, status, err)
+            {
+                console.log("failed:" + status);
+            }
+        });
     }
     
 })
@@ -253,6 +276,7 @@ var b = new Vue({
                 console.log("failed:" + status);
             }
         });
+        
         $.ajax({
             type: "get",
             cache: false,
