@@ -70,6 +70,11 @@ public class MainController
     {
         return "500";
     }
+    @RequestMapping("/cate")
+    public String cate()
+    {
+        return "cate.html";
+    }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     // @Controller
     public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
