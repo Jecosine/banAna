@@ -34,6 +34,7 @@ public class ItemController extends BaseController<ItemService>
     @Autowired
     private ItemService itemService;
     
+    
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String getItem()
     {
@@ -57,13 +58,9 @@ public class ItemController extends BaseController<ItemService>
     }
     @ResponseBody
     @RequestMapping(value="/getByCate", method = RequestMethod.GET)
-    public ResponseType<Item> getItemByCate(@RequestParam("id") String cateId)
+    public ResponseType<List<Item>> getItemByCate(@RequestParam("id") String cateId)
     {
-        ResponseType<Item> resp = new ResponseType<Item>();
-        resp.setStatus(0);
-        resp.setMessage("Update successfully");
-        // resp.setData(itemService.getByCate(cateId));
-        return resp;
+        return itemService.getByCate(cateId);
     }
     // TODO update item data
     @ResponseBody

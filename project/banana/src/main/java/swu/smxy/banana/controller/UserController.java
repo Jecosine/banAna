@@ -69,5 +69,12 @@ public class UserController extends BaseController<UserService>
     	ResponseType<User> responseType = userService.updateUserInfoService(user);
     	return responseType;
     }
+    @RequestMapping(value="/currentinfo", method=RequestMethod.GET)
+    public ResponseType<User> requestMethodName(HttpServletRequest request) {
+        ResponseType<User> resp = new ResponseType<User>();
+        resp.setData((User)request.getSession().getAttribute("user_auth"));
+        return resp;
+    }
+    
 
 }

@@ -47,11 +47,12 @@ window.onscroll = () => {
 
 }
 // login simulation
-var user = {
-    'userName': 'jecosine',
-    'expired': new Date(),
-    'avatarUrl': 'img/avatar.jpg',
-    'shopCart': {
+var user  = {};
+// var user = {
+//     'userName': 'jecosine',
+//     'expired': new Date(),
+//     'avatarUrl': 'img/avatar.jpg',
+//     'shopCart': {
 
-    }
-}
+//     }
+// }

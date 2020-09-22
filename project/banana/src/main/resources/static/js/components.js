@@ -39,17 +39,27 @@ var nv = {
                 <!-- </el-menu> -->
                 <!-- <el-menu :default-active="activeIndex" class="inline-block float-right" mode="horizontal" @select="handleSelect"> -->
                 <!-- <div class="float-right"> -->
-                <el-menu-item index="3"><a href="#" target="_blank"><i class="el-icon-tickets"></i><span>All
+                <el-menu-item index="3"><a href="/personal?tab=2" target="_blank"><i class="el-icon-tickets"></i><span>All
                             Orders</span></a></el-menu-item>
-                <el-menu-item index="4"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></el-menu-item>
-                <el-menu-item index="5"><i class="el-icon-bell"></i><span>Notifications</span></el-menu-item>
+                <el-menu-item index="4"><a href="/personal?tab=5"><i class="el-icon-shopping-cart-1"></i><span>Shop Cart</span></a></el-menu-item>
+                <el-menu-item index="5"><a href="/personal?tab=4"><i class="el-icon-bell"></i><span>Notifications</span></a></el-menu-item>
                 <el-submenu index="6">
+                    <template v-if="userData != null && userData.userName != undefined">
                     <template slot="title">
                         <el-avatar :size="40" :src="userData.avatarUrl"></el-avatar>
+                        <div class="inline-block">{{userData.userName}}</div>
                     </template>
                     <el-menu-item index="6-1" @click="window.location.href='/personal?tab=1'"><i class="el-icon-user"></i> My Profile</el-menu-item>
                     <el-menu-item index="6-2" @click="window.location.href='/personal?tab=6'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
                     <el-menu-item index="6-3" @click="window.location.href='/personal?tab=7'"><i class="el-icon-setting"></i> Settings</el-menu-item>
+                    </template>
+                    <template v-else>
+                    <template slot="title">
+                        <i class="el-icon-user"></i>
+                    </template>
+                    <el-menu-item index="6-1" @click="window.location.href='/login'"><i class="el-icon-user"></i> Login</el-menu-item>
+                    <el-menu-item index="6-2" @click="window.location.href='/register'"><i class="el-icon-edit-outline"></i> Register</el-menu-item>
+                    </template>
                 </el-submenu>
                 <!-- </div> -->
             </el-menu>

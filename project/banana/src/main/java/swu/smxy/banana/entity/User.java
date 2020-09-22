@@ -24,22 +24,7 @@ public class User implements Serializable, BaseEntity
     private String email;
     private String phone;
     private List<Address> address;
-    
-    /**
-     * 用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 , 1:正常状态,2：用户被锁定.
-     */
-    private byte state;
-    /**
-     * 立即从数据库中进行加载数据;
-     */
-    @ManyToMany(fetch= FetchType.EAGER)//
-    @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns ={@JoinColumn(name = "roleId") })
-    /**
-     * 一个用户具有多个角色
-     */
-    private List<SysRole> roleList;//
-    
-    
+    private String avatarUrl;
     @Override
     public String toString()
     {
@@ -184,16 +169,19 @@ public class User implements Serializable, BaseEntity
         return state;
     }
 
-    public void setState(byte state) {
-        this.state = state;
-    }
-    
-    public List<SysRole> getRoleList() {
-        return roleList;
+
+    /**
+     * @return String return the avatarUrl
+     */
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setRoleList(List<SysRole> roleList) {
-        this.roleList = roleList;
+    /**
+     * @param avatarUrl the avatarUrl to set
+     */
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
 }
