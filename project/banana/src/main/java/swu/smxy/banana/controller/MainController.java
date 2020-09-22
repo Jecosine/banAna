@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 13:50:28
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-08-31 02:33:40
+ * @LastEditTime: 2020-09-22 11:44:18
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\MainController.java
  */
 package swu.smxy.banana.controller;
@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
 import swu.smxy.banana.entity.Order;
 import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.entity.User;
+import swu.smxy.banana.service.FileService;
 import swu.smxy.banana.service.ItemService;
 
 // @RestController
@@ -43,7 +45,8 @@ public class MainController
      */
     @Autowired
     private ItemService itemService;
-    
+    @Autowired
+    private FileService fileService;
     @RequestMapping("/")
     public String index(Model model)
     {
@@ -106,5 +109,16 @@ public class MainController
             return "login.html";
         }
         return "order.html";
+    }
+    @RequestMapping("/manage")
+    public String manage()
+    {
+        return "manage.html";
+    }
+    @ResponseBody
+    @RequestMapping(value="/upload", method=RequestMethod.POST)
+    public ResponseType<String> uploadSingleFile(@RequestParam("file") MultipartFile file)
+    {
+        return fileService.uploadFile(file);
     }
 }

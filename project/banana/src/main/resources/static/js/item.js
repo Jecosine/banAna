@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-08-27 01:59:44
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-08 08:12:40
+ * @LastEditTime: 2020-09-22 08:55:33
  */
 // var rdata = JSON.parse(regionData);
 var a = new Vue({
@@ -39,15 +39,7 @@ var a = new Vue({
             }, 
             onTop: true,
             screenWidth: window.innerWidth,
-            userData: {
-                'userName': 'jecosine',
-                'expired': new Date(),
-                'avatarUrl': '/img/avatar.jpg',
-                'address': "Chongqing",
-                'shopCart': {
-
-                }
-            },
+            userData: {},
             activeIndex: '1',
             activeIndex2: '1'
         }

@@ -100,6 +100,20 @@ var a = new Vue({
         };
     },
     methods: {
+        addDomain() {
+            this.form.address.push({
+                phone: "",
+                address: "",
+                key: Date.now(),
+            });
+        },
+        onSubmit: function () {},
+        handleOpen: function () {},
+        handleClose: function () {},
+        handleOrderTab: function(tab, event) {
+            console.log(tab.label, event);
+            this.orderFilter = tab.label;
+        },
         toggleSelection(rows) {
             if (rows) {
                 rows.forEach((row) => {
@@ -116,30 +130,6 @@ var a = new Vue({
         {
 
         },
-        handleOrderTab: function(tab, event) {
-            console.log(tab.label, event);
-            this.orderFilter = tab.label;
-        },
-        resetForm(formName) {
-            this.$refs[formName].resetFields();
-        },
-        removeContact(item) {
-            var index = this.form.address.indexOf(item);
-            if (index !== -1) {
-                this.form.address.splice(index, 1);
-            }
-        },
-        addDomain() {
-            this.form.address.push({
-                phone: "",
-                address: "",
-                key: Date.now(),
-            });
-        },
-
-        onSubmit: function () {},
-        handleOpen: function () {},
-        handleClose: function () {},
         handleSelect(key, keyPath) {
             this.activeIndex = key;
         },
@@ -163,18 +153,6 @@ var a = new Vue({
         },
     },
     computed: {
-        totalPrice: function()
-        {
-            let tt = 0.0;
-            let temp;
-            for(let i in this.multipleSelection)
-            {
-                // console.log(i);
-                temp = this.multipleSelection[i];
-                tt += temp.price * temp.itemCount;
-            }
-            return tt;
-        }
     },
     watch: {
         screenWidth(val) {
@@ -193,21 +171,7 @@ var a = new Vue({
     mounted: function () {},
     created: function () {
         var that = this;
-        // get user data
-        // $.ajax({
-        //     type: "get",
-        //     cache: false,
-        //     async: false,
-        //     url: "json/user.json",
-        //     success: function (res) {
-        //         console.log(res);
-        //         that.cateData = res;
-        //     },
-        //     error: function (xhr, status, err) {
-        //         console.log("failed:" + status);
-        //     },
-        // });
-        this.activeIndex = $.getUrlParam("tab");
+        // get user dat
         // get cart data
         $.ajax({
             type: "get",
