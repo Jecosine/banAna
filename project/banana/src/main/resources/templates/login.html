@@ -23,23 +23,23 @@
     <meta name="applicable-device" content="mobile">
     <meta name="screen-orientation" content="portrait">
     <meta name="x5-orientation" content="portrait" />
-    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/vue.js"></script>
-    <script type="text/javascript" src="../static/js/element.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/vue.js"></script>
+    <script type="text/javascript" src="/js/element.js"></script>
     <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
 
 
-    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/index.css">
 
-    <!-- <link rel="stylesheet" href="../static/css/base.css"> -->
-    <link rel="stylesheet" href="../static/css/login.css">
+    <!-- <link rel="stylesheet" href="/css/base.css"> -->
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 
 <body>
     <div id="login-app">
         <div id="header-container" class="general-shadow">
-            <el-image style="height: 100%;" fit="contain" src="../static/img/logo.png"></el-image>
+            <el-image style="height: 100%;" fit="contain" src="/img/logo.png"></el-image>
         </div>
         <div id="login-container">
             <el-row>
@@ -49,12 +49,12 @@
                         <div id="col-aligner">
                             <el-form id="login-form" ref="loginForm" :model="loginForm" :rules="rules">
                                 <el-form-item prop="userName">
-                                    <el-input clearable prefix-icon="el-icon-user" placeholder="Input your username."
+                                    <el-input name="userName" clearable prefix-icon="el-icon-user" placeholder="Input your username."
                                         v-model="loginForm.userName">
                                     </el-input>
                                 </el-form-item>
                                 <el-form-item prop="password">
-                                    <el-input clearable show-password prefix-icon="el-icon-lock" type="password"
+                                    <el-input name="password"  clearable show-password prefix-icon="el-icon-lock" type="password"
                                         autocomplete="off" v-model="loginForm.password"
                                         placeholder="Input your password."></el-input>
                                 </el-form-item>
@@ -77,7 +77,7 @@
         <div id="footer" class="general-shadow">
         </div>
     </div>
-    <script src="../static/js/login.js"></script>
+    <script src="/js/login.js"></script>
 
 </body>
 </html>

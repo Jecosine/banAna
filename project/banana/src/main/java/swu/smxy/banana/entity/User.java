@@ -22,6 +22,7 @@ public class User implements Serializable, BaseEntity
     private String email;
     private String phone;
     private List<Address> address;
+    private String avatarUrl;
     @Override
     public String toString()
     {
@@ -160,6 +161,21 @@ public class User implements Serializable, BaseEntity
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    /**
+     * @return String return the avatarUrl
+     */
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    /**
+     * @param avatarUrl the avatarUrl to set
+     */
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
 }

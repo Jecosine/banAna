@@ -29,7 +29,10 @@ public class BusinessService extends BaseService<Business, BusinessMapper>
     private BusinessMapper mapper;
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
-    
+    public String getNameById(String businessId)
+    {
+        return sqlSessionFactory.openSession().getMapper(BusinessMapper.class).getNameById(businessId);
+    }
     // public List<Business> getAll()
     // {
     //     businessMapper = sqlSessionFactory.openSession().getMapper(BusinessMapper.class);

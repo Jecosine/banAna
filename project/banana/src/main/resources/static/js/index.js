@@ -1,11 +1,18 @@
 // import { Vue } from './vue'
 
-localStorage.setItem('user', JSON.stringify(user));
+// localStorage.setItem('user', JSON.stringify(user));
 
 var a = new Vue({
     el: '#navigation-container',
+    components: {
+        'navigator' : nv
+    },
     data() {
         return {
+            searchInput: {
+                text: '',
+                type: 'Item'
+            },
             onTop: true,
             isCollapsed: false,
             screenWidth: window.innerWidth,
@@ -17,6 +24,7 @@ var a = new Vue({
     computed: {
     },
     methods: {
+        
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
         },
@@ -59,6 +67,26 @@ var a = new Vue({
             })();
         }
         
+    },
+    created: function()
+    {
+        let that = this;
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/user/currentinfo",
+            success: function(res)
+            {
+                console.log(res.data);
+                that.userData = res.data;
+                // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+            },
+            error: function(xhr, status, err)
+            {
+                console.log("failed:" + status);
+            }
+        });
     }
     
 })
@@ -130,6 +158,10 @@ var b = new Vue({
         };
     },
     methods: {
+        doSearch(e)
+        {
+            window.open("/search?s=" + this.searchInput.text + "&t=" + this.searchInput.type)
+        },
         getStrLength(str) {
             var l = str.length;
             var blen = 0;
@@ -222,10 +254,8 @@ var b = new Vue({
     },
     mounted: function()
     {
-        
         console.log($("#cate-right-container").css("width").slice(0, -2));
         this.rightContainerWidth = parseInt($("#cate-right-container").css("width").slice(0, -2)) - 20;
-        
     },
     created: function()
     {
@@ -235,7 +265,7 @@ var b = new Vue({
             type: "get",
             cache: false,
             async: false,
-            url: "../static/json/cate.json",
+            url: "json/cate.json",
             success: function(res)
             {
                 console.log(res);
@@ -245,7 +275,26 @@ var b = new Vue({
             {
                 console.log("failed:" + status);
             }
-        })
+        });
+        
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/item/recommend",
+            success: function(res)
+            {
+                console.log(res);
+                that.recommend = res.data;
+            },
+            error: function(xhr, status, err)
+            {
+                console.log("failed:" + status);
+            }
+        });
+        this.recommend.forEach((item, i) => {
+            item.pics = JSON.parse(item.pics);
+        });
     }
 })
 // window.onscroll = () => {

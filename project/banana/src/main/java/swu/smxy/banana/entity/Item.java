@@ -16,8 +16,10 @@ public class Item implements Serializable
 {
     private String itemId;
     private String itemName;
+    private String pics;
     private Integer itemCount;
     private String businessId;
+    private String businessName;
     private Integer remain;
     private String tsid;
     private String tid;
@@ -27,6 +29,7 @@ public class Item implements Serializable
     private String cateId;
     private String typeCode;
     private String parentId;
+    private String itemStatus;
     private List<ItemType> itemTypesList;
     /**
      * @return String return the itemId
@@ -236,6 +239,51 @@ public class Item implements Serializable
      */
     public void setItemTypesList(List<ItemType> itemTypesList) {
         this.itemTypesList = itemTypesList;
+    }
+
+
+    /**
+     * @return List<String> return the pics
+     */
+    public String getPics() {
+        return pics;
+    }
+
+    /**
+     * @param pics the pics to set
+     */
+    public void setPics(String pics) {
+        this.pics = pics;
+    }
+
+
+    /**
+     * @return String return the businessName
+     */
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    /**
+     * @param businessName the businessName to set
+     */
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
+
+    /**
+     * @return String return the itemStatus
+     */
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    /**
+     * @param itemStatus the itemStatus to set
+     */
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
     }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import swu.smxy.banana.interceptor.LoginInterceptor;
 
-@Configuration
+// @Configuration
 public class LoginConfiguration implements WebMvcConfigurer
 {
     /**
@@ -28,13 +28,18 @@ public class LoginConfiguration implements WebMvcConfigurer
 
         // add exclude path
         interceptorRegistration.excludePathPatterns(
-        	"/**",
-            "/user/login",
+            "/login",
             "/user/loginService",
+            "/cate",
             "/",
             "/**/*.html",
             "/**/*.js",
-            "/**/*.css"
+            "/**/*.css",
+            "/**/*.json",
+            "/**/*.png",
+            "/**/*.jpg",
+            "/**/*.webp",
+            "/**/fonts/*"
         );
     }
 }

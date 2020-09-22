@@ -22,7 +22,7 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-@Configuration
+// @Configuration
 @EnableCaching
 public class RedisConfiguration
 {

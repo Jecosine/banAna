@@ -33,7 +33,7 @@ public class LoginInterceptor implements HandlerInterceptor
                 // // TODO: jump back to referer
                 return true;
             }
-            response.sendRedirect(request.getContextPath() + "/user/login");
+            response.sendRedirect(request.getContextPath() + "/login");
         } catch (IOException e)
         {
             e.printStackTrace();

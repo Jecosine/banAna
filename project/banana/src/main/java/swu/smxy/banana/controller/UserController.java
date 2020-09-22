@@ -44,16 +44,7 @@ public class UserController extends BaseController<UserService>
         return responseType;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    // @Controller
-    public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
-        if (request.getSession().getAttribute("user_auth") != null)
-        {
-            response.sendRedirect("/");
-        }
-        return "login.html";
-    }
+    
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void requestMethodName(HttpServletRequest request, HttpServletResponse response) throws IOException
@@ -78,5 +69,12 @@ public class UserController extends BaseController<UserService>
     	ResponseType<User> responseType = userService.updateUserInfoService(user);
     	return responseType;
     }
+    @RequestMapping(value="/currentinfo", method=RequestMethod.GET)
+    public ResponseType<User> requestMethodName(HttpServletRequest request) {
+        ResponseType<User> resp = new ResponseType<User>();
+        resp.setData((User)request.getSession().getAttribute("user_auth"));
+        return resp;
+    }
+    
 
 }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Item preview</title>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/vue.js"></script>
+    <script type="text/javascript" src="/js/element.js"></script>
+    <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/order.css">
+</head>
+<body>
+  <div id="app">
+    <navigator :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
+    
+    <el-row>
+      <el-col :span="18" :offset="3">
+        <div id="order-container" class="cover-box">
+          <div class="section-title"><i class="fa fa-list" aria-hidden="true"></i> Item List</div>
+          <el-divider></el-divider>
+          <template>
+            <el-table
+              id="cart-table"
+              ref="multipleTable"
+              :data="tableData"
+              height="calc(100% - 100px)"
+              tooltip-effect="dark"
+              :span-method="objectSpanMethod"
+              style="width: 100%">
+              <el-table-column
+                label="Shop"
+                width="180">
+                <template slot-scope="scope">
+                    <a :href="'/business/' + scope.row.businessId"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.businessName}}</a>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="Thumbnail"
+                width="120">
+                <template slot-scope="scope">
+                    <el-image style="width: 100px;height: 75px;background-color: gray;" :src="scope.row.pics[0]"
+                        fit="cover" class="inline-block">
+                        <div slot="placeholder" class="image-slot">
+                            <i class="el-icon-loading"></i> Loading
+                        </div>
+                        <div slot="error" class="image-slot">
+                            <i class="el-icon-picture-outline"></i>
+                        </div>
+                    </el-image>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="itemName"
+                label="Name"
+                show-overflow-tooltip>
+              </el-table-column>
+              <el-table-column
+                prop="selected"
+                label="Type"
+                width="140">
+                <template slot-scope="scope">
+                    <el-tag type="info">{{scope.row.selected}}</el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column
+                label="Amount"
+                width="140">
+                <template slot-scope="scope">
+                    {{scope.row.itemCount}}
+                </template>
+              </el-table-column>
+              
+              <el-table-column
+                prop="price"
+                label="Price"
+                width="120">
+                <template slot-scope="scope">
+                    <span class="item-price">$ {{(scope.row.price * scope.row.itemCount).toFixed(2)}}</span>
+                </template>
+              </el-table-column>
+            </el-table>
+        </template>
+        </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="18" :offset="3">        
+        <div id="order-info-container" class="cover-box">
+          <div class="section-title"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery Information </div>
+          <el-divider></el-divider>
+          <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in addressInfo">
+            <div class="address-title">
+              {{item.name}}
+            </div>
+            <div class="address-phone"><i class="el-icon-mobile"></i>{{item.phone}}</div>
+            <div class="address-content">
+              <i class="el-icon-location-outline"></i> {{item.address}}
+            </div>            
+          </el-radio>
+        </div>
+        <div style="margin-top: 20px" class="row-flex-box">
+          <el-divider></el-divider>
+          <div class="inline-block order-summary" ><i class="fa fa-check-circle" aria-hidden="true"></i> Selected Price:&nbsp;&nbsp;<span class="item-price">$ {{totalPrice}}</span></div>
+          <div class="float-right">
+              <el-button type="primary">Submit Order</el-button>
+          </div>
+        </div>
+        
+      </el-col>
+    </el-row>
+  </div>
+  <script src="/js/components.js"></script>
+  <script src="/js/order.js"></script>
+</body>
+</html>
