@@ -32,6 +32,7 @@ import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.entity.User;
 import swu.smxy.banana.service.FileService;
 import swu.smxy.banana.service.ItemService;
+import swu.smxy.banana.service.OrderService;
 
 // @RestController
 @Controller
@@ -47,6 +48,8 @@ public class MainController
     private ItemService itemService;
     @Autowired
     private FileService fileService;
+    @Autowired
+    private OrderService orderService;
     @RequestMapping("/")
     public String index(Model model)
     {
@@ -95,11 +98,25 @@ public class MainController
     }
     @ResponseBody
     @RequestMapping(value = "/orderinfo", method = RequestMethod.POST)
-    public ResponseType<List<Order>> getOrderInfo(@RequestBody List<CartItem> items, HttpServletRequest request)
+    public ResponseType<List<Order>> newOrder(@RequestBody List<CartItem> items, HttpServletRequest request)
     {
         User user = (User)request.getSession().getAttribute("user_auth");
         return itemService.generateOrder(items, user);
     }
+    @ResponseBody
+    @RequestMapping("/order/getByUserId")
+    public ResponseType<List<Order>> getOrderByUserId(HttpServletRequest request, HttpServletResponse response)
+            throws IOException
+    {
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user == null)
+        {
+            response.sendRedirect("/login");
+        }
+
+        return orderService.getByUserId(user.getUserId());
+    }
+
     @RequestMapping("/order")
     public String getOrder(HttpServletRequest request)
     {

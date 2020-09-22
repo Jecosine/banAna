@@ -33,7 +33,7 @@ public interface CartMapper extends BaseMapper<CartItem>
     public List<CartItem> getByUserId(String userId);
 
     // @Insert("insert into cart set cartId = #{cartId}, itemId = #{itemId}, itemCount=#{itemCount},businessId=#{businessId},userId=#{userId},price=#{price}")
-    @Insert("insert into cart values(#{cartId}, #{itemId},#{itemCount},#{businessId},#{price},#{userId}, #{pics}, #{itemName})")
+    @Insert("insert into cart values(#{cartId}, #{itemId},#{itemCount},#{businessId},#{price},#{userId}, #{pics}, #{itemName},#{typeJson}, #{typeCode})")
     public int addItemById(CartItem cartItem);
 
     @Update("update cart set cartId=#{cartId}, itemId=#{itemId}, itemCount=#{itemCount}, businessId=#{businessId}, userId=#{userId}, price=#{price} where itemId=#{itemId}")

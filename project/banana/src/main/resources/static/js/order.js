@@ -186,6 +186,22 @@ var a = new Vue({
             console.log("failed:" + status);
         }
     });
+    $.ajax({
+      type: "get",
+      cache: false,
+      async: false,
+      url: "/orderinfo",
+      success: function(res)
+      {
+          console.log(res.data);
+          that.userData = res.data;
+          // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+      },
+      error: function(xhr, status, err)
+      {
+          console.log("failed:" + status);
+      }
+  });
     resdata = [{"orderId":"db916d3de7624405b20e","orderDateTime":null,"businessId":"c9a841ae09","userId":"524a2be500","businessName":"天猫超市","orderPrice":111.700005,"orderItemList":[{"cartId":null,"itemId":"0264e3fa35","itemCount":1,"businessId":"c9a841ae09","businessName":null,"userId":null,"price":17.9,"pics":"[\"//g-search2.alicdn.com/img/bao/uploaded/i4/i3/725677994/O1CN011OGlcB28vIlV4Tfzl_!!0-item_pic.jpg\"]","itemName":"【长城牌】香辣豆豉鱼罐头184g午餐下酒菜特产即食拌饭鲮鱼肉罐头","typeCode":null,"typeJson":null,"typeObject":null,"typeCodeObject":null,"selected":null},{"cartId":null,"itemId":"02b8501aad","itemCount":1,"businessId":"c9a841ae09","businessName":null,"userId":null,"price":93.8,"pics":"[\"//g-search3.alicdn.com/img/bao/uploaded/i4/i4/725677994/O1CN011qAY7328vIlkEalLj_!!0-item_pic.jpg\"]","itemName":"富力鲜猫罐头85g*13罐泰国进口成幼猫白肉猫零食补充营养增肥","typeCode":null,"typeJson":null,"typeObject":null,"typeCodeObject":null,"selected":null}],"orderStatus":"Unpaid"}];
     let _tableData = [];
     resdata.forEach((item, i) => {
