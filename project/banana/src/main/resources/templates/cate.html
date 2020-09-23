@@ -63,7 +63,7 @@
                           </el-image>
                           <div class="item-info">
                               <div class="item-price">$ {{item.price}}</div>
-                              <div class="item-title"><a href="#">{{cutStr(item.itemName, 40)}}</a></div>
+                              <div class="item-title"><a :href="'/item/?itemId=' + item.itemId">{{cutStr(item.itemName, 40)}}</a></div>
                               <div class="item-shop inline-block"><a href="#"><i class="fa fa-shopping-bag"
                                           aria-hidden="true"></i>{{cutStr(item.businessName,15)}}</a></div>
                               <div class="item-shop inline-block float-right"><i class="fa fa-map-marker"

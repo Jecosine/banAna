@@ -8,22 +8,16 @@ var a = new Vue({
             aoActiveName: '1',
             onTop: true,
             screenWidth: window.innerWidth,
-            userData: {
-                userName: "jecosine",
-                expired: new Date(),
-                avatarUrl: "img/avatar.jpg",
-                address: "Chongqing",
-                shopCart: {},
-            },
+            userData: {},
             regionData: regionData,
             activeIndex: "1",
             activeIndex2: "1",
             form: {
-                name: "jecosine",
+                name: "",
                 region: "",
-                date1: "",
-                date2: "",
-                delivery: false,
+                qq: "",
+                gender: "",
+                email: false,
                 type: [],
                 resource: "",
                 address: [
@@ -136,8 +130,49 @@ var a = new Vue({
                 key: Date.now(),
             });
         },
-
-        onSubmit: function () {},
+        submitOrder: function() {
+            let that = this;
+            let _selected = that.multipleSelection;
+            _selected.forEach((item, i) => {
+                that.multipleSelection[i].pics = JSON.stringify(item.pics);
+            });
+            $.ajax({
+                type: "post",
+                cache: false,
+                async: false,
+                contentType: "application/json",
+                data: JSON.stringify(_selected),
+                url: "/newOrder",
+                success: function (res) {
+                    console.log(res);
+                    window.location.href = "/order/" + res.data;
+                },
+                error: function (xhr, status, err) {
+                    console.log("failed:" + status);
+                },
+            });
+            console.log(JSON.stringify(_selected));
+            console.log(_selected);
+        },
+        onSubmit: function () {
+            let that= this;
+            $.ajax({
+                type: "post",
+                cache: false,
+                async: false,
+                contentType: "application/json",
+                data: JSON.stringify(that.form),
+                url: "/user/info",
+                success: function (res) {
+                    console.log(res);
+                    window.location.replace("/personal");
+                    // window.location.href = "/order/" + res.data;
+                },
+                error: function (xhr, status, err) {
+                    console.log("failed:" + status);
+                },
+            });
+        },
         handleOpen: function () {},
         handleClose: function () {},
         handleSelect(key, keyPath) {
@@ -145,6 +180,8 @@ var a = new Vue({
         },
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
+            console.log(res);
+            this.form.avatarUrl = "/file/" + res.message;
         },
         beforeAvatarUpload(file) {
             console.log(file);
@@ -192,7 +229,7 @@ var a = new Vue({
     },
     mounted: function () {},
     created: function () {
-        var that = this;
+        // var that = this;
         // get user data
         // $.ajax({
         //     type: "get",
@@ -207,7 +244,23 @@ var a = new Vue({
         //         console.log("failed:" + status);
         //     },
         // });
-        this.activeIndex = $.getUrlParam("tab");
+        this.activeIndex = $.getUrlParam("tab") || '1';
+        let that = this;
+        $.ajax({
+        type: "get",
+        cache: false,
+        async: false,
+        url: "/user/currentinfo",
+        success: function (res) {
+            console.log(res.data);
+            that.userData = res.data;
+            that.form = that.userData;
+            // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+        },
+        error: function (xhr, status, err) {
+            console.log("failed:" + status);
+        },
+        });
         // get cart data
         $.ajax({
             type: "get",
@@ -220,6 +273,27 @@ var a = new Vue({
                 if (that.tableData!=null)
                 that.tableData.forEach((item, i) => {
                     item.pics = JSON.parse(item.pics);
+                });
+            },
+            error: function (xhr, status, err) {
+                console.log("failed:" + status);
+            },
+        });
+        // get order data
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/order/getByUserId",
+            success: function (res) {
+                console.log(res);
+                that.orderData = res.data;
+                if (that.orderData!=null)
+                that.orderData.forEach((item, i) => {
+                    item.orderItemListParsed = JSON.parse(item.orderItemListParsed);
+                    item.orderItemListParsed.forEach((item, i) => {
+                        item.pics = JSON.parse(item.pics);
+                    });
                 });
             },
             error: function (xhr, status, err) {

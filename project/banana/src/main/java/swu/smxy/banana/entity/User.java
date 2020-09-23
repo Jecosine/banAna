@@ -9,8 +9,10 @@ package swu.smxy.banana.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import org.springframework.stereotype.Component;
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Component
 public class User implements Serializable, BaseEntity
 {
@@ -161,6 +163,10 @@ public class User implements Serializable, BaseEntity
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public byte getState() {
+        return state;
     }
 
 

@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
@@ -49,7 +50,8 @@ public class UserService extends BaseService<User, UserMapper>
 
     public ResponseType<User> userInfoService(String id)
     {
-        mapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(UserMapper.class);
         User user = mapper.getById(id);
         int status = 0;
         String message = "Search Successfully";
@@ -63,9 +65,11 @@ public class UserService extends BaseService<User, UserMapper>
         response.setData(user);
         response.setStatus(status);
         response.setMessage(message);
+        session.clearCache();
+        session.close();
         return response;
     }
-    @Transactional
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public ResponseType<User> updateUserInfoService(User user)
     {
         ResponseType<User> response = new ResponseType<User>();
@@ -76,18 +80,21 @@ public class UserService extends BaseService<User, UserMapper>
         // TODO 这里最好加一个和原来得user比较看是否更改了 其实这个前端做很麻烦，后台更好困了 2分钟内        
         try {
             mapper.update(user);
+            session.commit();
+
         } catch (Exception e) {
             status = -1;
             message = "Invalid modify:" + e.getMessage();
             System.out.println("status: " + status + " " + message + "\n" + user);
             response.setStatus(status);
             response.setMessage(message);
-            return response;
-        } finally {
-            session.commit();
             session.close();
+            return response;
         }
-        // System.out.println("status: " + status + "\n" + user);
+        session.close();
+
+        // session.clearCache();
+        System.out.println("status: " + status + "\n" + user);
         response.setData(user);
         response.setStatus(status);
         response.setMessage(message);

@@ -29,7 +29,7 @@ import swu.smxy.banana.dao.*;
 // @RestController
 // @RequestMapping("/business")
 @SuppressWarnings("unchecked")
-public class BaseController<T extends BaseService<?, ? extends BaseMapper<?> > >
+public class BaseController<T extends BaseService<?, ? extends BaseMapper<?>>>
 {
     @Autowired
     private T baseService;
