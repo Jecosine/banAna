@@ -6,6 +6,7 @@
 package swu.smxy.banana.controller;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,15 +43,13 @@ public class UserController extends BaseController<UserService>
             request.getSession().setAttribute("user_auth", responseType.getData());
         }
         return responseType;
-    }
-
-    
+    }    
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public void requestMethodName(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         request.getSession().removeAttribute("user_auth");
-        response.sendRedirect("/user/login");
+        response.sendRedirect("/login");
     }
     
     @RequestMapping(value = "/info", method = RequestMethod.GET)
@@ -64,9 +63,13 @@ public class UserController extends BaseController<UserService>
     
     @RequestMapping(value = "/info", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseType<User> updateUserInfoService(@RequestBody User user) throws IOException
+    public ResponseType<User> updateUserInfoService(@RequestBody User user, HttpServletRequest request) throws IOException
     {
-    	ResponseType<User> responseType = userService.updateUserInfoService(user);
+        ResponseType<User> responseType = userService.updateUserInfoService(user);
+        if(responseType.getStatus() == 0)
+        {
+            request.getSession().setAttribute("user_auth", responseType.getData());
+        }
     	return responseType;
     }
     @RequestMapping(value="/currentinfo", method=RequestMethod.GET)

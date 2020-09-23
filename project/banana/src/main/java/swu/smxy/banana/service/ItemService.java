@@ -38,6 +38,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     private ItemMapper mapper;
     @Autowired
     private BusinessService businessService;
+    @Autowired
+    private OrderService orderService;
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
 
@@ -48,8 +50,9 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     }
 
     @Transactional
-    public ResponseType<List<Order>> generateOrder(List<CartItem> items, User user) {
-        ResponseType<List<Order>> response = new ResponseType<List<Order>>();
+    public ResponseType<String> generateOrder(List<CartItem> items, User user) {
+        ResponseType<String> response = new ResponseType<String>();
+        String parentId = UuidGenerator.getUuid(20);
         Map<String, Order> mp = new HashMap();
         if (user == null)
         {
@@ -74,6 +77,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
                     e.printStackTrace();
                 }
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                session.commit();
                 session.close();
                 return response;
             }
@@ -95,6 +99,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             {
                 // set order data
                 temp = new Order();
+                temp.setOrderParentId(parentId);
                 temp.setOrderId(UuidGenerator.getUuid(20));
                 temp.setBusinessId(item.getBusinessId());
                 temp.setBusinessName(businessService.getNameById(item.getBusinessId()));
@@ -108,7 +113,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             }
         }
         List<Order> orders = new ArrayList<Order>(mp.values());
-        response.setData(orders);
+        orderService.newOrder(orders);
+        response.setData(parentId);
         session.commit();
         session.close();
         return response;

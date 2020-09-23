@@ -20,19 +20,6 @@ var a = new Vue({
             previewOffset: 0,
             showIndex: 0,
             itemData: {},
-            // itemData: {
-            //     "itemName": "",
-            //     "itemAddress": "",
-            //     "pics": [
-            //         '/img/1.jpg',
-            //         '/img/1.jpg',
-            //         '/img/2.jpg'
-            //     ],
-            //     "price": 1550.00,
-            //     "itemIndex": 1,
-            //     "itemRemain": 100,
-            //     "statisticData" : {"sale": 12314,"want": 4312,"comment": 2145}
-            // },
             searchInput: {
                 type: "1",
                 text: ''
@@ -58,13 +45,6 @@ var a = new Vue({
         addToCart()
         {
             let that = this;
-            console.log("Addd>>>");
-    //         private String cartId;
-    // private String itemId;
-    // private Integer itemCount;
-    // private String businessId;
-    // private String userId;
-    // private Float price;
             cartItem = {
                 cartId: '',
                 itemId: that.itemData.itemId,
@@ -96,7 +76,6 @@ var a = new Vue({
         }
     },
     computed: {
-
     },
     watch: {
         screenWidth(val) {
@@ -111,7 +90,6 @@ var a = new Vue({
                     // console.log(that.screenWidth);
                     that.timer = false;
                 }, 500);
-
             }
         }
     },

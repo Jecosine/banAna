@@ -1,3 +1,106 @@
+[
+  {
+    "name": "分类1",
+    "data": ["子分类1-1", "子分类1-2", "子分类1-3"]
+  },
+  {
+    "name": "分类2",
+    "data": ["子分类2-1", "子分类2-2", "子分类2-3"]
+  }
+]
+
+[0,1]
+
 {
-  
+  "id": "cateId",
+  "name": "cateName",
+  "parentId": "parentId"
 }
+
+{
+  "orderId": "",
+  "orderDateTime": "",
+  "businessId": "",
+  "userId": "",
+  "businessName":"",
+  "orderPrice": 0.0,
+  "orderItemList": [
+    { ..CartItem ..},
+    { ..CartItem ..}
+  ],
+  "orderStatus": "Unpaid | UnConfirmed | Completed | Canceled",
+  "parentId": ""
+}
+
+├─.mvn
+│  └─wrapper
+├─.settings
+├─.vscode
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─swu
+│  │  │      └─smxy
+│  │  │          └─banana
+│  │  │              ├─configuration
+│  │  │              ├─controller
+│  │  │              ├─dao
+│  │  │              ├─entity
+│  │  │              ├─interceptor
+│  │  │              ├─listener
+│  │  │              ├─rabbitmq
+│  │  │              ├─response
+│  │  │              ├─service
+│  │  │              └─util
+│  │  └─resources
+│  │      ├─static
+│  │      │  ├─css
+│  │      │  ├─fonts
+│  │      │  ├─img
+│  │      │  ├─js
+│  │      │  └─json
+│  │      └─templates
+│  └─test
+│      └─java
+│          └─swu
+│              └─smxy
+│                  └─banana
+│                      └─service
+└─target
+    ├─classes
+    │  ├─static
+    │  │  ├─css
+    │  │  ├─fonts
+    │  │  ├─img
+    │  │  ├─js
+    │  │  └─json
+    │  ├─swu
+    │  │  └─smxy
+    │  │      └─banana
+    │  │          ├─configuration
+    │  │          ├─controller
+    │  │          ├─dao
+    │  │          ├─entity
+    │  │          ├─interceptor
+    │  │          ├─listener
+    │  │          ├─rabbitmq
+    │  │          ├─response
+    │  │          ├─service
+    │  │          └─util
+    │  └─templates
+    ├─generated-sources
+    │  └─annotations
+    ├─generated-test-sources
+    │  └─test-annotations
+    ├─maven-status
+    │  └─maven-compiler-plugin
+    │      ├─compile
+    │      │  └─default-compile
+    │      └─testCompile
+    │          └─default-testCompile
+    ├─surefire-reports
+    └─test-classes
+        └─swu
+            └─smxy
+                └─banana
+                    └─service

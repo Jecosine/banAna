@@ -78,16 +78,17 @@
                 <el-upload
                   class="avatar-uploader"
                   :show-file-list="false"
-                  :auto-upload="false"
+                  :auto-upload="true"
+                  action="/upload"
                   :file-list="fileList"
                   :on-success="handleAvatarSuccess"
                   :on-change="beforeAvatarUpload">
-                  <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                  <img v-if="form.avatarUrl" :src="form.avatarUrl" class="avatar">
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
               </el-form-item>
               <el-form-item label="Nick Name">
-                <el-input v-model="form.name"></el-input>
+                <el-input v-model="form.userName"></el-input>
               </el-form-item>
               <el-form-item
                 v-for="(contact, index) in form.address"
@@ -184,7 +185,7 @@
                     <div style="margin-top: 20px" class="row-flex-box">
                         <div class="inline-block">Selected Price: <span class="item-price">$ {{totalPrice}}</span></div>
                         <div class="float-right">
-                            <el-button type="primary">Submit Order</el-button>
+                            <el-button type="primary" @click="submitOrder">Submit Order</el-button>
                         </div>
                     </div>
                 </template>
@@ -204,10 +205,10 @@
               <el-table
                 id="allorder-table"
                 ref="orderMultipleTable"
-                height="calc(100% - 100px)"
+                height="600px"
                 :data="orderData.filter(data => orderFilter==='All' || data.orderStatus === orderFilter)"
                 tooltip-effect="dark"
-                style="width: 100%"
+                style="width: 100%;"
                 @selection-change="handleSelectionChange">
                 <el-table-column
                   type="selection"
@@ -215,21 +216,23 @@
                 </el-table-column>
                 <el-table-column
                   fixed
+                  width="200"
                   label="Datetime"                  
                    show-overflow-tooltip>
                    <template slot-scope="scope"><i class="fa fa-calendar" aria-hidden="true"></i>{{scope.row.orderDateTime}}</template>
                 </el-table-column>
                 <el-table-column
                   fixed
+                  width="120"
                   label="Shop"                  
                    show-overflow-tooltip>
-                   <template slot-scope="scope"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.shopName}}</template>
+                   <template slot-scope="scope"><i class="fa fa-shopping-bag" aria-hidden="true"></i>{{scope.row.businessName}}</template>
                 </el-table-column>
                 <el-table-column
                   label="items"
                   width="300">
                   <template slot-scope="scope">
-                      <el-image style="width: 100px;height: 75px;background-color: gray;margin-right: 10px" :src="item.imgUrl" v-for="(item, i) in scope.row.items" v-show="i < 2"
+                      <el-image style="width: 100px;height: 75px;background-color: gray;margin-right: 10px" :src="item.pics[0]" v-for="(item, i) in scope.row.orderItemListParsed" v-show="i < 2"
                           fit="cover" class="inline-block">
                           <div slot="placeholder" class="image-slot">
                               <i class="el-icon-loading"></i> Loading
@@ -254,11 +257,12 @@
                   label="Price"
                   width="120">
                   <template slot-scope="scope">
-                      <span class="item-price">$ {{scope.row.price}}</span>
+                      <span class="item-price">$ {{scope.row.orderPrice.toFixed(2)}}</span>
                   </template>
                 </el-table-column>
                 <el-table-column
                   label="Operation"
+                  fixed="right"
                   width="120">
                   <template slot-scope="scope">
                     <el-button @click="handleClick(scope.row)" type="text" size="small">View</el-button>
