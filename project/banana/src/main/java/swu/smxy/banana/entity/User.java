@@ -164,6 +164,10 @@ public class User implements Serializable, BaseEntity
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public byte getState() {
+        return state;
+    }
 
 
     /**
