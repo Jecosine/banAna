@@ -22,7 +22,7 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Update("update `order` set orderStatus=#{orderStatus}, address=#{address} where orderId=#{orderId}")
     public int update(Order order);
-    @Insert("insert into `order` values(#{orderId}, NOW(), #{businessId}, #{userId}, #{businessName}, #{orderPrice}, #{orderItemListParsed}, #{orderStatus}, #{parentId})")
+    @Insert("insert into `order` values(#{orderId}, NOW(), #{businessId}, #{userId}, #{businessName}, #{orderPrice}, #{orderItemListParsed}, #{orderStatus}, #{parentId}, #{address})")
     public Integer newOrder(Order order);
 
 }

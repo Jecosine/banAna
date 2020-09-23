@@ -95,7 +95,8 @@ var a = new Vue({
       multipleSelection: [],
       orderMultipleSelection: [],
       orderFilter: "All",
-      profileLoading: false
+      profileLoading: false,
+      giftLoading: false
     };
   },
   methods: {
@@ -127,6 +128,44 @@ var a = new Vue({
       if (index !== -1) {
         this.form.contact.splice(index, 1);
       }
+    },
+    buyGift(e)
+    {
+        let that = this;
+        this.giftLoading = true;
+        let temp = JSON.parse(JSON.stringify(that.userData));
+        temp.contact = JSON.stringify(temp.contact);
+        temp.point += e;
+        $.ajax({
+            type: "post",
+            cache: false,
+            async: false,
+            contentType: "application/json",
+            data: JSON.stringify(temp),
+            url: "/user/info",
+            success: function (res) {
+              console.log(res);
+              setTimeout(() => {
+                  that.giftLoading=false;
+                  if(res.status===0)
+                  {
+                      that.$message({
+                          message: "Buy successfully",
+                          type: "success"
+                      });
+                      that.userData.point = temp.point;
+                  } else {
+                    that.$message.error("Update Failed");
+                  }
+              }, 500);
+            },
+            error: function (xhr, status, err) {
+              console.log("failed:" + status);
+              that.$message.error("Update Failed");
+
+            },
+          });
+      
     },
     addDomain() {
       this.form.contact.push({
@@ -207,7 +246,9 @@ var a = new Vue({
       that.profileLoading = true;
       let _form = JSON.parse(JSON.stringify(that.form));
       console.log(_form);
+      
       _form.contact = JSON.stringify(_form.contact);
+
       $.ajax({
         type: "post",
         cache: false,

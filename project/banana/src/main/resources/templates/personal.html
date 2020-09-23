@@ -175,8 +175,9 @@
                   <el-tabs v-model="aoActiveName" @tab-click="handleOrderTab">
                     <el-tab-pane label="All" name="1"></el-tab-pane>
                     <el-tab-pane label="Unpaid" name="2"></el-tab-pane>
-                    <el-tab-pane label="UnDelivered" name="3"></el-tab-pane>
-                    <el-tab-pane label="Unconfirmed" name="4"></el-tab-pane>
+                    <el-tab-pane label="Unconfirmed" name="3"></el-tab-pane>
+                    <el-tab-pane label="Completed" name="4"></el-tab-pane>
+                    <el-tab-pane label="Canceled" name="5"></el-tab-pane>
                   </el-tabs>
                 </template>
                 <template>
@@ -235,8 +236,20 @@
               </div>
             </transition>
             <transition name="fade">
-              <div class="cover-box" id="gift-card">
-                
+              <div class="cover-box" id="gift-card" v-show="activeIndex==='6'">
+                <h3>Current Credit Point: <span style="color:#FF8623; font-size: 2em;margin-left: 20px">{{userData.point.toFixed(2)}}</span></h3>
+                <el-divider></el-divider>
+                <div><i class="el-icon-coin"></i> Increase your Credit</div>
+                <el-row :gutter="12">
+                  <el-col :span="8" v-for="i in 6">
+                    <el-card shadow="hover">
+                      <div slot="header" class="clearfix">
+                        <div class="inline-block"><i class="el-icon-present"></i> Gift Card</div> <div class="float-right inline-block"><el-button @click="buyGift(Math.pow(10, i))" type="text" size="small" :loading="giftLoading">Buy</el-button></div>
+                      </div>
+                      <span style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;color:#FF8623">{{Math.pow(10, i)}}</span> Credit
+                    </el-card>
+                  </el-col>
+                </el-row>
               </div>
             </transition>
           </div>

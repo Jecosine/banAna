@@ -76,6 +76,7 @@ public class OrderService extends BaseService<Order, OrderMapper> {
       for (Order order : orders) {
         System.out.println(new ObjectMapper().writeValueAsString(order.getOrderItemList()));
         order.setOrderItemListParsed(new ObjectMapper().writeValueAsString(order.getOrderItemList()));
+        order.setAddress("{}");
         mapper.newOrder(order);
       }
     } catch (Exception e) {

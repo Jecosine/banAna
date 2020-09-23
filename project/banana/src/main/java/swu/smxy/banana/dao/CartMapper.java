@@ -38,7 +38,7 @@ public interface CartMapper extends BaseMapper<CartItem>
     @Insert("insert into cart values(#{cartId}, #{itemId},#{itemCount},#{businessId},#{price},#{userId}, #{pics}, #{itemName},#{typeJson}, #{typeCode}, #{itemStatus})")
     public int addItemById(CartItem cartItem);
 
-    @Update("update cart set cartId=#{cartId}, itemId=#{itemId}, itemCount=#{itemCount}, businessId=#{businessId}, userId=#{userId}, price=#{price}, itemStatus=#{itemStatus} where itemId=#{itemId}")
+    @Update("update cart set itemId=#{itemId}, itemCount=#{itemCount}, businessId=#{businessId}, userId=#{userId}, price=#{price}, itemStatus=#{itemStatus} where cartId=#{cartId}")
     public int update(CartItem cartItem);
 
     @Delete("delete from cart where cartId=#{cartId}")

@@ -104,11 +104,14 @@
         <div id="order-info-container" class="cover-box">
           <div class="section-title"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery Information </div>
           <el-divider></el-divider>
-          <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in addressInfo">
+          <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in userData.contact">
             <div class="address-title">
               {{item.name}}
             </div>
             <div class="address-phone"><i class="el-icon-mobile"></i>{{item.phone}}</div>
+            <div class="address-content">
+              <i class="el-icon-location-outline"></i> {{item.location1}}
+            </div>            
             <div class="address-content">
               <i class="el-icon-location-outline"></i> {{item.address}}
             </div>            
@@ -124,6 +127,7 @@
       </el-col>
     </el-row>
   </div>
+  <script src="/js/addresspicker.js"></script>
   <script src="/js/components.js"></script>
   <script src="/js/order.js"></script>
 </body>
