@@ -1,7 +1,7 @@
 <!--
  * @Date: 2020-09-22 08:50:22
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-22 10:33:59
+ * @LastEditTime: 2020-09-22 16:06:11
 -->
 <!DOCTYPE html>
 <html>
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/personal.css">
     <link rel="stylesheet" href="css/manage.css">
 </head>
 
@@ -39,7 +40,7 @@
     <div id="app">
         <navigator id="navigation-container" class="general-shadow" :style="{'backgroundColor':(onTop)?'transparent':'white'}"
         :reachtop="onTop" :swidth="screenWidth" :user="userData"></navigator>
-        <el-row :gutter="20" style="margin-top: 100px;">
+        <el-row :gutter="20">
             <el-col :span="4" :offset="0">
                 <div id="side-menu-container">
                     <el-menu
@@ -55,16 +56,12 @@
                           <span>All Orders</span>
                       </el-menu-item>
                       <el-menu-item index="3">
-                        <i class="el-icon-service"></i>
+                        <i class="el-icon-menu"></i>
                           <span>My Items</span>
                       </el-menu-item>
                       <el-menu-item index="4">
                         <i class="el-icon-bell"></i>
                           <span>Notifications</span>
-                      </el-menu-item>
-                      <el-menu-item index="5">
-                        <i class="el-icon-shopping-cart-1"></i>
-                        <span>Shop Cart</span>
                       </el-menu-item>
                       <el-menu-item index="6">
                         <i class="el-icon-bank-card"></i>
@@ -153,6 +150,7 @@
                             :data="orderData.filter(data => orderFilter==='All' || data.orderStatus === orderFilter)"
                             tooltip-effect="dark"
                             style="width: 100%"
+                            empty-text="No Data"
                             @selection-change="handleSelectionChange">
                             <el-table-column
                               type="selection"

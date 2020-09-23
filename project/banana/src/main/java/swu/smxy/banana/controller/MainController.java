@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 13:50:28
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-22 11:44:18
+ * @LastEditTime: 2020-09-23 15:20:59
  * @FilePath: \banana\src\main\java\swu\smxy\banana\controller\MainController.java
  */
 package swu.smxy.banana.controller;
@@ -64,6 +64,11 @@ public class MainController
     public String personal(Model model)
     {
         return "personal.html";
+    }
+    @RequestMapping("/register")
+    public String register(Model model)
+    {
+        return "register.html";
     }
     @ResponseBody
     @RequestMapping("/searchresult")
