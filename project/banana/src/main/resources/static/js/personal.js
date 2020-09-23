@@ -124,7 +124,8 @@ var a = new Vue({
             }
         },
         addDomain() {
-            this.form.address.push({
+            this.form.contact.push({
+            	name: "",
                 phone: "",
                 address: "",
                 key: Date.now(),
@@ -134,7 +135,7 @@ var a = new Vue({
             let that = this;
             let _selected = that.multipleSelection;
             _selected.forEach((item, i) => {
-                that.multipleSelection[i].pics = JSON.stringify(item.pics);
+                item.pics = JSON.stringify(item.pics);
             });
             $.ajax({
                 type: "post",
@@ -156,6 +157,8 @@ var a = new Vue({
         },
         onSubmit: function () {
             let that= this;
+            let _form = that.form;
+            _form.contact = JSON.stringify(_form.contact);
             $.ajax({
                 type: "post",
                 cache: false,
@@ -255,6 +258,10 @@ var a = new Vue({
             console.log(res.data);
             that.userData = res.data;
             that.form = that.userData;
+            if (that.form.contact == undefined)
+            	{
+            		that.form.contact = [];
+            	}
             // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
         },
         error: function (xhr, status, err) {

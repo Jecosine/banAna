@@ -31,7 +31,13 @@ public class UserController extends BaseController<UserService>
 {
     @Autowired
     private UserService userService;
-
+    
+    @RequestMapping(value = "/registerService", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseType<User> registerService(@RequestBody User user)
+    {
+    	return userService.addUser(user);
+    }
     @RequestMapping(value = "/loginService", method = RequestMethod.POST)
     @ResponseBody
     public ResponseType<User> loginService(@RequestParam String userName, @RequestParam String password,

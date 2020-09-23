@@ -61,12 +61,7 @@
                                         autocomplete="off" v-model="loginForm.confirm_password"
                                         placeholder="Confirm your password."></el-input>
                                 </el-form-item>
-                                <el-form-item>
-                                    <el-button class="login-btn" :loading="loading" @click="submitForm('loginForm')"
-                                        type="primary">Login</el-button>
-                                    <el-button class="login-btn float-right" @click="resetForm('loginForm')">Reset
-                                    </el-button>
-                                </el-form-item>
+                                
                                 <el-form-item prop="email">
                                     <el-input name="email" clearable prefix-icon="el-icon-user" placeholder="Input your email."
                                         v-model="loginForm.email">
@@ -82,6 +77,12 @@
                                         v-model="loginForm.phone">
                                     </el-input>
                                 </el-form-item>
+                                <el-form-item>
+                                    <el-button class="login-btn" :loading="loading" @click="submitForm('loginForm')"
+                                        type="primary">Register</el-button>
+                                    <el-button class="login-btn float-right" @click="resetForm('loginForm')">Reset
+                                    </el-button>
+                                </el-form-item>
                             </el-form>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
         <div id="footer" class="general-shadow">
         </div>
     </div>
-    <script src="/js/login.js"></script>
+    <script src="/js/register.js"></script>
 
 </body>
 </html>

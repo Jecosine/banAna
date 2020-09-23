@@ -65,6 +65,7 @@ public class MainController
     {
         return "personal.html";
     }
+    
     @RequestMapping("/register")
     public String register(Model model)
     {
