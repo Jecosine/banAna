@@ -25,6 +25,7 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 		ResponseType<List<CartItem>> response = new ResponseType<List<CartItem>>();
 		if(userId == null || userId.isEmpty()){
 			response.setStatus(-1);
+			response.setMessage("Not login");
 			return response;
 		}
 		SqlSession session = sqlSessionFactory.openSession();
@@ -42,7 +43,6 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			response.setMessage(message);
 			return response;
 		} finally {
-			session.commit();
 			session.close();
 		}
 		response.setData(cartItems);

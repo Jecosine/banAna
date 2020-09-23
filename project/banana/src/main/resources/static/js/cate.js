@@ -156,7 +156,6 @@ var a = new Vue({
         async: false,
         url: "/item/getByCate" + window.location.search,
         success: function (res) {
-          // console.log(res);
           that.searchResult = res.data;
           that.total = res.data.length;
         },

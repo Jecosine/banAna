@@ -198,10 +198,13 @@ a:hover {
 
 /* scroll bar settting */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
+    height: 5px; 
+    z-index: 9999;
 }
 ::-webkit-scrollbar-thumb {
-    width: 8px;
+    width: 5px;
+    height: 5px;
 }
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: rgba(0,0,0,0.1);
