@@ -51,7 +51,9 @@ public interface UserMapper extends BaseMapper<User> {
     public User getByName(String userName);
     // @Update("update user set ")
     // public int update(User user);
-
+    	
+    @Insert("insert into user values(#{userId}, #{userName}, #{gender}, #{password},#{qq},#{email}, #{phone}, #{avatarUrl})")
+    public int addUser(User user);
     @Delete("delete from user where userId=#{userId}")
     public int deleteById(String userId);
 

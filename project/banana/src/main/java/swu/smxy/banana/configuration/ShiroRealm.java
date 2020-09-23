@@ -11,8 +11,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import swu.smxy.banana.dao.UserMapper;
-import swu.smxy.banana.entity.SysPermission;
-import swu.smxy.banana.entity.SysRole;
+//import swu.smxy.banana.entity.SysPermission;
+//import swu.smxy.banana.entity.SysRole;
 import swu.smxy.banana.entity.User;
 
 public class ShiroRealm extends AuthorizingRealm {
@@ -29,13 +29,13 @@ public class ShiroRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		User userInfo = (User)principals.getPrimaryPrincipal();
 		
-		for (SysRole role : userInfo.getRoleList()) {
-			info.addRole(role.getRole());
-			//用户拥有的权限
-			for (SysPermission p : role.getPermissions()) {
-				info.addStringPermission(p.getPermission());
-			}
-		}
+//		for (SysRole role : userInfo.getRoleList()) {
+//			info.addRole(role.getRole());
+//			//用户拥有的权限
+//			for (SysPermission p : role.getPermissions()) {
+//				info.addStringPermission(p.getPermission());
+//			}
+//		}
 		
 		return info;
 	}
