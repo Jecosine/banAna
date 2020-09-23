@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import swu.smxy.banana.util.UuidGenerator;
+
 @Service
 public class CartService extends BaseService<CartItem, CartMapper> {
 
@@ -23,7 +24,7 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 	@Transactional
 	public ResponseType<List<CartItem>> getCartService(String userId) {
 		ResponseType<List<CartItem>> response = new ResponseType<List<CartItem>>();
-		if(userId == null || userId.isEmpty()){
+		if (userId == null || userId.isEmpty()) {
 			response.setStatus(-1);
 			response.setMessage("Not login");
 			return response;
@@ -59,6 +60,32 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 		int status = 0;
 		cartItem.setCartId(UuidGenerator.getUuid(20));
 		String message = "Add Successfully!";
+		// check if is in cart
+		List<CartItem> origins = mapper.getByItemId(cartItem.getItemId());
+		if (origins != null && !origins.isEmpty()) {
+			for (CartItem origin : origins) {
+				if (origin.getTypeCode().equals(cartItem.getTypeCode())) {
+					origin.setItemCount(origin.getItemCount() + cartItem.getItemCount());
+					try {
+						mapper.update(origin);
+					} catch (Exception e) {
+						status = -1;
+						message = "Add failed:" + e.getMessage();
+						System.out.println("status: " + status + " " + message + "\n" + cartItem);
+						response.setStatus(status);
+						response.setMessage(message);
+						session.clearCache();
+						return response;
+					}
+					session.commit();
+					response.setData(cartItem);
+					response.setStatus(status);
+					response.setMessage(message);
+					return response;
+				}
+			}
+
+		}
 		try {
 			mapper.addItemById(cartItem);
 		} catch (Exception e) {
@@ -67,10 +94,10 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			System.out.println("status: " + status + " " + message + "\n" + cartItem);
 			response.setStatus(status);
 			response.setMessage(message);
+			session.commit();
 			return response;
 		} finally {
 			session.commit();
-			session.close();
 		}
 		response.setData(cartItem);
 		response.setStatus(status);
@@ -87,6 +114,7 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 		String message = "Delete Successfully!";
 		try {
 			mapper.deleteById(cartItem.getCartId());
+			session.commit();
 		} catch (Exception e) {
 			status = -1;
 			message = "Delete failed:" + e.getMessage();
@@ -94,9 +122,6 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			response.setStatus(status);
 			response.setMessage(message);
 			return response;
-		} finally {
-			session.commit();
-			session.close();
 		}
 		response.setData(cartItem);
 		response.setStatus(status);
@@ -104,6 +129,7 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 		return response;
 	}
 
+	
 	@Transactional
 	public ResponseType<List<CartItem>> batchDeleteService(String[] cartIdList) {
 		ResponseType<List<CartItem>> response = new ResponseType<List<CartItem>>();
@@ -123,7 +149,6 @@ public class CartService extends BaseService<CartItem, CartMapper> {
 			return response;
 		} finally {
 			session.commit();
-			session.close();
 		}
 		response.setData(cartItems);
 		response.setStatus(status);

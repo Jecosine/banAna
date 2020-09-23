@@ -29,18 +29,20 @@ public interface CartMapper extends BaseMapper<CartItem>
     @Select("select * from cart where cartId=#{cartId}")
     public CartItem getByCartId(String cartId);
 
-    @Select("select cart.*, item.pics, item.itemName from cart, item where cart.userId=#{userId} and cart.itemId=item.itemId")
+    @Select("select cart.*, item.pics, item.itemName from cart, item where cart.userId=#{userId} and cart.itemId=item.itemId and cart.itemStatus='active'")
     public List<CartItem> getByUserId(String userId);
 
+    @Select("select * from cart where itemId = #{itemId}")
+    public List<CartItem> getByItemId(String itemId);
     // @Insert("insert into cart set cartId = #{cartId}, itemId = #{itemId}, itemCount=#{itemCount},businessId=#{businessId},userId=#{userId},price=#{price}")
-    @Insert("insert into cart values(#{cartId}, #{itemId},#{itemCount},#{businessId},#{price},#{userId}, #{pics}, #{itemName},#{typeJson}, #{typeCode})")
+    @Insert("insert into cart values(#{cartId}, #{itemId},#{itemCount},#{businessId},#{price},#{userId}, #{pics}, #{itemName},#{typeJson}, #{typeCode}, #{itemStatus})")
     public int addItemById(CartItem cartItem);
 
-    @Update("update cart set cartId=#{cartId}, itemId=#{itemId}, itemCount=#{itemCount}, businessId=#{businessId}, userId=#{userId}, price=#{price} where itemId=#{itemId}")
+    @Update("update cart set cartId=#{cartId}, itemId=#{itemId}, itemCount=#{itemCount}, businessId=#{businessId}, userId=#{userId}, price=#{price}, itemStatus=#{itemStatus} where itemId=#{itemId}")
     public int update(CartItem cartItem);
 
     @Delete("delete from cart where cartId=#{cartId}")
-    public int deleteById(String cartID);
+    public int deleteById(String cartId);
 
     public List<CartItem> batchDeleteCartItem(String[] cartIdlist);
     // <delete id="deleteMoreCartItem" parameterType="cartIdList">

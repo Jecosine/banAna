@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import swu.smxy.banana.dao.CartMapper;
 import swu.smxy.banana.dao.ItemMapper;
 import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
@@ -53,6 +54,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     public ResponseType<String> generateOrder(List<CartItem> items, User user) {
         ResponseType<String> response = new ResponseType<String>();
         String parentId = UuidGenerator.getUuid(20);
+        CartMapper cartMapper;
         Map<String, Order> mp = new HashMap();
         if (user == null)
         {
@@ -66,6 +68,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
         for (CartItem item : items) {
             temp = mp.get(item.getBusinessId());
             mapper = session.getMapper(ItemMapper.class);
+            cartMapper = session.getMapper(CartMapper.class);
             tempItem = mapper.getById(item.getItemId());
             // update stock
             if (tempItem.getRemain() < item.getItemCount()) {
@@ -89,6 +92,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
                     tempItem.setItemStatus("Undercarriaged");
                 }
                 mapper.updateStock(tempItem);
+                item.setItemStatus("inactive");
+                cartMapper.update(item);
             }
             if (temp!=null)
             {
@@ -99,13 +104,13 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             {
                 // set order data
                 temp = new Order();
-                temp.setOrderParentId(parentId);
+                temp.setParentId(parentId);
                 temp.setOrderId(UuidGenerator.getUuid(20));
                 temp.setBusinessId(item.getBusinessId());
                 temp.setBusinessName(businessService.getNameById(item.getBusinessId()));
                 temp.setOrderItemList(new ArrayList<CartItem>());
                 temp.getOrderItemList().add(item);
-                temp.setOrderStatus("Unpaid");
+                temp.setOrderStatus("Pre");
                 temp.setUserId(user.getUserId());
                 // calc total
                 temp.setOrderPrice(item.getPrice() * ((item.getItemCount()!=null)?item.getItemCount():0));

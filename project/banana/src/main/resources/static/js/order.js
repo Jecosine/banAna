@@ -17,7 +17,7 @@ var a = new Vue({
           phone: "13452455515",
         },
       ],
-      addressSelect: "1",
+      addressSelect: 0,
       onTop: true,
       screenWidth: window.innerWidth,
       userData: {},
@@ -111,11 +111,55 @@ var a = new Vue({
       resdata: [],
       multipleSelection: [],
       OrderIndexArr: [],
-      hoverOrderArr: []
+      hoverOrderArr: [],
+      orderLoading: false
       //   totalPrice: 0,
     };
   },
   methods: {
+    confirmOrder: function()
+    {
+      
+
+      let that = this;
+      this.orderLoading = true;
+      console.log(that.backupData);
+      this.backupData.forEach((item, i) => {
+        item.orderStatus = "Unpaid";
+        item.orderItemList = undefined;
+        item.address = JSON.stringify(that.addressInfo[that.addressSelect]);
+      });
+      this.backupData.orderItemList = JSON.stringify(this.backupData.orderItemList);
+      $.ajax({
+        type: "post",
+        cache: false,
+        async: false,
+        contentType: "application/json",
+        data: JSON.stringify(that.backupData),
+        url: "/order/update",
+        success: function (res) {
+          console.log(res.data);
+          if(res.status === 0)
+          {
+            
+            setTimeout(() => {
+              that.orderLoading = false;
+              that.$message({
+                message: "Successfully submit order",
+                type: "success"
+              });
+              // window.location.href="/paid";
+            }, 500);
+          }
+          
+          // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+        },
+        error: function (xhr, status, err) {
+          that.$message.error("Failed to submit order");
+          console.log("failed:" + status);
+        },
+      });
+    },
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
         if (rowIndex % 2 === 0) {
@@ -232,14 +276,17 @@ var a = new Vue({
       async: false,
       url: "/order/getById?id=" + window.location.href.split("/").pop(),
       success: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         that.resdata = res.data;
+        that.backupData = res.data.slice();
         let _tableData = [];
         that.resdata.forEach((item, i) => {
           item.orderItemList = JSON.parse(item.orderItemListParsed);
           item.orderItemList.forEach((item1, j) => {
             item1["businessName"] = item.businessName;
             item1["pics"] = JSON.parse(item1["pics"]);
+            item1.typeJson = JSON.parse(item1.typeJson);
+            item1.typeCode = JSON.parse(item1.typeCode);
           });
           // console.log(item.orderItemList);
           _tableData = _tableData.concat(item.orderItemList);

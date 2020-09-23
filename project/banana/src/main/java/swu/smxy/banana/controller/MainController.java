@@ -101,9 +101,11 @@ public class MainController
     // @Controller
     public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        if (request.getSession().getAttribute("user_auth") != null)
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user != null)
         {
-            response.sendRedirect("/");
+            if(user.getUserId() != null)
+                response.sendRedirect("/");
         }
         return "login.html";
     }
@@ -122,14 +124,22 @@ public class MainController
         return orderService.getByParentId(id);
     }
     @ResponseBody
+    @RequestMapping(value="/order/update", method=RequestMethod.POST)
+    public ResponseType<String> updateOrder(@RequestBody List<Order> orders)
+    {
+        return orderService.updateOrder(orders);
+    }
+    @ResponseBody
     @RequestMapping("/order/getByUserId")
     public ResponseType<List<Order>> getOrderByUserId(HttpServletRequest request, HttpServletResponse response)
             throws IOException
     {
         User user = (User)request.getSession().getAttribute("user_auth");
-        if (user == null)
+        if (user == null || user.getUserId()==null)
         {
-            response.sendRedirect("/login");
+            ResponseType<List<Order>> resp = new ResponseType<List<Order>>();
+            resp.setStatus(-1);
+            return resp;
         }
 
         return orderService.getByUserId(user.getUserId());

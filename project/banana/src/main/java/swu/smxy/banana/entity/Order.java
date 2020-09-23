@@ -16,7 +16,8 @@ public class Order implements Serializable{
     private List<CartItem> orderItemList;
     private String orderItemListParsed;
     private String orderStatus;
-    private String orderParentId;
+    private String parentId;
+    private String address;
     /**
      * @return String return the orderId
      */
@@ -133,22 +134,6 @@ public class Order implements Serializable{
         this.userId = userId;
     }
 
-
-    /**
-     * @return String return the orderParentId
-     */
-    public String getOrderParentId() {
-        return orderParentId;
-    }
-
-    /**
-     * @param orderParentId the orderParentId to set
-     */
-    public void setOrderParentId(String orderParentId) {
-        this.orderParentId = orderParentId;
-    }
-
-
     /**
      * @return String return the orderItemListParsed
      */
@@ -161,6 +146,36 @@ public class Order implements Serializable{
      */
     public void setOrderItemListParsed(String orderItemListParsed) {
         this.orderItemListParsed = orderItemListParsed;
+    }
+
+
+    /**
+     * @return String return the parentId
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * @param parentId the parentId to set
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+
+    /**
+     * @return String return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

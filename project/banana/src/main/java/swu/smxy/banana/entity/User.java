@@ -23,7 +23,7 @@ public class User implements Serializable, BaseEntity
     private String qq;
     private String email;
     private String phone;
-    private List<Address> address;
+    private String contact;
     private String avatarUrl;
     @Override
     public String toString()
@@ -108,21 +108,6 @@ public class User implements Serializable, BaseEntity
     }
 
     /**
-     * @return List<Address> return the address
-     */
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(List<Address> address) {
-        this.address = address;
-    }
-
-
-    /**
      * @return String return the phone
      */
     public String getPhone() {
@@ -177,6 +162,21 @@ public class User implements Serializable, BaseEntity
      */
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+
+    /**
+     * @return String return the contact
+     */
+    public String getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
 }

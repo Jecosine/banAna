@@ -30,6 +30,7 @@ public class Item implements Serializable
     private String typeCode;
     private String parentId;
     private String itemStatus;
+    private String typeJson;
     private List<ItemType> itemTypesList;
     /**
      * @return String return the itemId
@@ -284,6 +285,22 @@ public class Item implements Serializable
      */
     public void setItemStatus(String itemStatus) {
         this.itemStatus = itemStatus;
+    }
+
+
+
+    /**
+     * @return String return the typeJson
+     */
+    public String getTypeJson() {
+        return typeJson;
+    }
+
+    /**
+     * @param typeJson the typeJson to set
+     */
+    public void setTypeJson(String typeJson) {
+        this.typeJson = typeJson;
     }
 
 }

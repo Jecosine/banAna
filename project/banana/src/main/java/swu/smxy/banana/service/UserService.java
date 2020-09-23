@@ -15,6 +15,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.DigestUtils;
 
 import swu.smxy.banana.dao.UserMapper;
@@ -70,7 +71,7 @@ public class UserService extends BaseService<User, UserMapper>
         session.close();
         return response;
     }
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional
     public ResponseType<User> updateUserInfoService(User user)
     {
         ResponseType<User> response = new ResponseType<User>();
@@ -84,15 +85,14 @@ public class UserService extends BaseService<User, UserMapper>
             session.commit();
 
         } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             status = -1;
             message = "Invalid modify:" + e.getMessage();
             System.out.println("status: " + status + " " + message + "\n" + user);
             response.setStatus(status);
             response.setMessage(message);
-            session.close();
             return response;
         }
-        session.close();
 
         // session.clearCache();
         System.out.println("status: " + status + "\n" + user);
@@ -101,6 +101,7 @@ public class UserService extends BaseService<User, UserMapper>
         response.setMessage(message);
         return response;
     }
+    @Transactional
     public ResponseType<User> addUser(User user)
     {
     	ResponseType<User> response = new ResponseType<User>();
@@ -113,14 +114,13 @@ public class UserService extends BaseService<User, UserMapper>
             session.commit();
 
         } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         	System.out.println("failed to add" + e.getMessage());
-        	session.close();
         	response.setStatus(-1);
         	return response;
         }
         response.setMessage("successful");
         response.setData(user);
-        session.close();
         return response;
     }
 }

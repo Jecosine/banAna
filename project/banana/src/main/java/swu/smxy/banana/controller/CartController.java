@@ -56,9 +56,9 @@ public class CartController extends BaseController<CartService> {
 		return responseType;
 	}
 	
-	@RequestMapping(value = "/deleteItemFromCartService", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteItemFromCartService", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseType<CartItem> deleteItemFromCartService(@RequestParam CartItem cartItem,
+	public ResponseType<CartItem> deleteItemFromCartService(@RequestBody CartItem cartItem,
 			HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 		ResponseType<CartItem> responseType = cartService.deleteItemFromCartService(cartItem);
