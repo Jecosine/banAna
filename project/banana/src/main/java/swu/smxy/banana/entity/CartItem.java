@@ -28,6 +28,7 @@ public class CartItem {
     private List<List<String>> typeObject;
     private List<Integer> typeCodeObject;
     private String selected;
+    private String itemStatus;
     /**
      * @return String return the cartId
      */
@@ -227,6 +228,23 @@ public class CartItem {
      */
     public void setSelected(String selected) {
         this.selected = selected;
+    }
+
+
+
+
+    /**
+     * @return String return the itemStatus
+     */
+    public String getItemStatus() {
+        return itemStatus;
+    }
+
+    /**
+     * @param itemStatus the itemStatus to set
+     */
+    public void setItemStatus(String itemStatus) {
+        this.itemStatus = itemStatus;
     }
 
 }

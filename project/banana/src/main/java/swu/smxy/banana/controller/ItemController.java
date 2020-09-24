@@ -26,6 +26,7 @@ import swu.smxy.banana.service.BaseService;
 import swu.smxy.banana.service.ItemService;
 import swu.smxy.banana.entity.Item;
 import swu.smxy.banana.entity.ResponseType;
+import swu.smxy.banana.entity.User;
 
 @Controller
 @RequestMapping("/item")
@@ -85,5 +86,21 @@ public class ItemController extends BaseController<ItemService>
     public ResponseType<List<Item>> recoms()
     {
         return itemService.recoms();
+    }
+    @ResponseBody
+    @RequestMapping(value="/getByBusinessId", method=RequestMethod.GET)
+    public ResponseType<List<Item>> getByBusinessId(HttpServletRequest request)
+    {
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user != null)
+        {
+            if(user.getUserId() != null)
+            {
+                return itemService.getByBusinessId(user);
+            }
+        }
+        ResponseType<List<Item>> resp = new ResponseType<List<Item>>();
+        resp.setStatus(-1);
+        return resp;
     }
 }

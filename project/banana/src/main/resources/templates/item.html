@@ -124,8 +124,8 @@
                                         </div>
                                         <div class="detail-text-type text-row">
                                             <span class="inline-block">Types</span> 
-                                            <el-radio-group v-model="typeOption">
-                                                <el-radio border label="Type1" v-for="(item, i) in itemData.typeJson">{{item}}</el-radio>
+                                            <el-radio-group v-model="typeCode">
+                                                <el-radio border :label="i" v-for="(item, i) in itemData.typeJson">{{item}}</el-radio>
                                             </el-radio-group>
                                         </div>
                                         <div class="detail-text-quantity text-row">
@@ -136,7 +136,7 @@
                                             <div class="inline-block">({{itemData.remain}} in stock)</div>
                                         </div>
                                         <div class="detail-button-container">
-                                            <el-button type="primary" @click="addToCart"><i class="el-icon-shopping-cart-1"></i> Add to Cart</el-button>
+                                            <el-button type="primary" @click="addToCart" :loading="loading"><i class="el-icon-shopping-cart-1"></i> Add to Cart</el-button>
                                             <el-button type="plain"><i class="el-icon-box"></i>Buy Now</el-button>
                                         </div>
                                     </div>

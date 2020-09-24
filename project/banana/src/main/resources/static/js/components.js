@@ -32,8 +32,9 @@ var nv = {
                         <i class="el-icon-service"></i>
                         <span>Service</span>
                     </template>
-                    <el-menu-item index="4-1">Feed Back</el-menu-item>
-                    <el-menu-item index="4-2">My Service</el-menu-item>
+                    <el-menu-item index="4-1"><i class="el-icon-question"></i>Feed Back</el-menu-item>
+                    <el-menu-item index="4-2"><i class="el-icon-user-solid"></i>Become a Saler</el-menu-item>
+                    <el-menu-item index="4-3"><i class="el-icon-menu"></i>My Service</el-menu-item>
                 </el-submenu>
                 <el-menu-item index="2"><i class="el-icon-thumb"></i><span>About Us</span></el-menu-item>
                 <!-- </el-menu> -->
@@ -52,6 +53,8 @@ var nv = {
                     <el-menu-item index="6-1" @click="window.location.href='/personal?tab=1'"><i class="el-icon-user"></i> My Profile</el-menu-item>
                     <el-menu-item index="6-2" @click="window.location.href='/personal?tab=6'"><i class="el-icon-bank-card"></i> Gift Cards</el-menu-item>
                     <el-menu-item index="6-3" @click="window.location.href='/personal?tab=7'"><i class="el-icon-setting"></i> Settings</el-menu-item>
+                    <el-menu-item index="6-4" @click="window.location.href='/user/logout'"><i class="el-icon-d-arrow-right"></i> Logout</el-menu-item>
+                    
                     </template>
                     <template v-else>
                     <template slot="title">

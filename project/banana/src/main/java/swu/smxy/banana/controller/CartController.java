@@ -41,17 +41,24 @@ public class CartController extends BaseController<CartService> {
 	public ResponseType<CartItem> addItemToCartService(@RequestBody CartItem cartItem,
 			HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		ResponseType<CartItem> responseType = new ResponseType<CartItem>();
 		System.out.println(cartItem);
 		User user = (User)request.getSession().getAttribute("user_auth");
 		String userId = (user == null) ? null:user.getUserId();
+		if(userId == null){
+			responseType.setStatus(-1);
+			responseType.setMessage("Not login");
+
+			return responseType;
+		}
 		cartItem.setUserId(userId);
-		ResponseType<CartItem> responseType = cartService.addItemToCartService(cartItem);
+		responseType = cartService.addItemToCartService(cartItem);
 		return responseType;
 	}
 	
-	@RequestMapping(value = "/deleteItemFromCartService", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteItemFromCartService", method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseType<CartItem> deleteItemFromCartService(@RequestParam CartItem cartItem,
+	public ResponseType<CartItem> deleteItemFromCartService(@RequestBody CartItem cartItem,
 			HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 		ResponseType<CartItem> responseType = cartService.deleteItemFromCartService(cartItem);

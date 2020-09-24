@@ -43,8 +43,8 @@ var a = new Vue({
         };
     },
     methods: {
-        submitForm(formName) {
-            var that = this;
+        submitForm: function(formName) {
+            let that = this;
             console.log("press submit");
             this.loading = true;
             this.$refs[formName].validate((valid) => {
@@ -68,6 +68,9 @@ var a = new Vue({
                     if(res.status === 0) {
                         window.location.href = '/';
                         window.localStorage.setItem("user_data", JSON.stringify(res.data));
+                    } else {
+                    console.log("login failed!");
+                    that.$message.error("Login Failed, check your username or password.");
                     }
                     $("#err").text((res["status"] == -1) ? res["message"] : "");
                 },

@@ -1,3 +1,13 @@
+:root {
+  --navi-height: 60px;
+  --theme-color: #ff8623;
+  --theme-half-color: rgba(255, 134, 35, 0.5);
+  --normal-color: #909399;
+  --main-font-color: #303133;
+  --selected-font-color: #606266;
+  --selected-bar-color: #fff3e9;
+}
+
 #app {
   width: 100%;
   height: 100vh;
@@ -101,11 +111,25 @@
     background-color: white;;
     bottom: 0;
 }
-#all-order {
+#all-order{
   margin-top: 40px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   /* height: calc(100vh - 400px); */
 }
 #allorder-table .el-table__row {
-  width: 100px;
+  height: 100px;
+}
+#allorder-table {
+  position: relative;
+  top: 0;
+  z-index: 999;
+  overflow: auto;
+}
+#gift-card {
+  margin-top: 60px;
+  color: #606266;
+}
+#gift-card .el-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

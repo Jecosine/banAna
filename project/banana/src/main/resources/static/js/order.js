@@ -17,10 +17,11 @@ var a = new Vue({
           phone: "13452455515",
         },
       ],
-      addressSelect: "1",
+      addressSelect: 0,
       onTop: true,
       screenWidth: window.innerWidth,
       userData: {},
+      backupUser :{},
       // tableData: [
       //   {
       //     date: "2016-05-03",
@@ -108,22 +109,142 @@ var a = new Vue({
       //   },
       // ],
       tableData: [],
+      resdata: [],
       multipleSelection: [],
-    //   totalPrice: 0,
+      OrderIndexArr: [],
+      hoverOrderArr: [],
+      orderLoading: false
+      //   totalPrice: 0,
     };
   },
   methods: {
+    confirmOrder: function()
+    {
+      let that = this;
+      this.orderLoading = true;
+      console.log(that.backupData);
+      this.backupData.forEach((item, i) => {
+        item.orderStatus = "Unpaid";
+        item.orderItemList = undefined;
+        item.address = JSON.stringify(that.addressInfo[that.addressSelect]);
+      });
+      this.backupData.orderItemList = JSON.stringify(this.backupData.orderItemList);
+      $.ajax({
+        type: "post",
+        cache: false,
+        async: false,
+        contentType: "application/json",
+        data: JSON.stringify(that.backupData),
+        url: "/order/update",
+        success: function (res) {
+          console.log(res.data);
+          if(res.status === 0)
+          {
+            
+            setTimeout(() => {
+              that.orderLoading = false;
+              that.$message({
+                message: "Successfully submit order",
+                type: "success"
+              });
+              that.pay();
+              // window.location.href="/paid";
+            }, 500);
+          }
+          
+          // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+        },
+        error: function (xhr, status, err) {
+          that.$message.error("Failed to submit order");
+          console.log("failed:" + status);
+        },
+      });
+    },
+    pay: function()
+    {
+      let that = this;
+      this.$prompt('Input your password to pay', 'Identify', {
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel'
+      }).then(({ value }) => {
+        const loading = this.$loading({
+          lock: true,
+          text: 'Loading',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.2)'
+        });
+        this.backupData.forEach((item, i) => {
+          item.orderStatus = "Unconfirmed";
+          item.orderItemList = undefined;
+          item.address = JSON.stringify(that.addressInfo[that.addressSelect]);
+        });
+        $.ajax({
+          type: "post",
+          cache: false,
+          async: false,
+          contentType: "application/json",
+          data: JSON.stringify(that.backupData),
+          url: "/order/update",
+          success: function (res) {
+            console.log(res.data);
+            if(res.status === 0)
+            {
+
+            }
+            // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+          },
+          error: function (xhr, status, err) {
+            that.$message.error("Failed to submit order");
+            console.log("failed:" + status);
+          },
+        });
+        let temp = JSON.parse(JSON.stringify(that.userData));
+        temp.contact = JSON.stringify(temp.contact);
+        that.resdata.forEach((item, i) => {
+          temp.point -= item.orderPrice;
+        });
+        $.ajax({
+          type: "post",
+          cache: false,
+          async: false,
+          contentType: "application/json",
+          data: JSON.stringify(temp),
+          url: "/user/info",
+          success: function (res) {
+            console.log(res);
+          },
+          error: function (xhr, status, err) {
+            console.log("failed:" + status);
+            that.$message.error("Update Failed");
+
+          },
+        });
+        setTimeout(() => {
+          loading.close();
+          that.$message({
+            message:"Paid successfully",
+            type: "success"
+          });
+          window.location.href="/personal?tab=5";
+        }, 1500);
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Cancel Pay'
+        });       
+      });
+    },
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
         if (rowIndex % 2 === 0) {
           return {
             rowspan: 2,
-            colspan: 1
+            colspan: 1,
           };
         } else {
           return {
             rowspan: 0,
-            colspan: 0
+            colspan: 0,
           };
         }
       }
@@ -149,13 +270,53 @@ var a = new Vue({
         this.form.address.splice(index, 1);
       }
     },
+    getOrderNumber() {
+      let OrderObj = {}
+      this.tableData.forEach((element, index) => {
+          element.rowIndex = index
+          if (OrderObj[element.businessId]) {
+            OrderObj[element.businessId].push(index)
+          } else {
+            OrderObj[element.businessId] = []
+            OrderObj[element.businessId].push(index)
+          }
+      })
+      for (let k in OrderObj) {
+        if (OrderObj[k].length > 1) {
+          this.OrderIndexArr.push(OrderObj[k])
+        }
+      }
+    },
+    objectSpanMethod({row,column,rowIndex,columnIndex}) {
+      if (columnIndex === 0 || columnIndex === 3 || columnIndex === 4) {
+        for (let i = 0; i < this.OrderIndexArr.length; i++) {
+          let element = this.OrderIndexArr[i]
+          for (let j = 0; j < element.length; j++) {
+            let item = element[j]
+            if (rowIndex == item) {
+              if (j == 0) {
+                return {
+                  rowspan: element.length,
+                  colspan: 1
+                }
+              } else if (j != 0) {
+                return {
+                  rowspan: 0,
+                  colspan: 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
   },
   computed: {
     totalPrice() {
       console.log(this.tableData);
       let tt = 0.0;
       let temp;
-      for (let i in this.tableData) {        
+      for (let i in this.tableData) {
         temp = this.tableData[i];
         tt += temp.price * temp.itemCount;
       }
@@ -164,39 +325,122 @@ var a = new Vue({
     testComputed() {
       console.log(this.tableData);
 
-        return 100;
-    }
+      return 100;
+    },
   },
-  created: function()
-  {
+  created: function () {
     let that = this;
     $.ajax({
-        type: "get",
-        cache: false,
-        async: false,
-        url: "/user/currentinfo",
-        success: function(res)
+      type: "get",
+      cache: false,
+      async: false,
+      url: "/user/currentinfo",
+      success: function (res) {
+        console.log(res.data);
+        that.userData = res.data;
+        that.backupUser = JSON.parse(JSON.stringify(res.data));
+        that.userData.contact = JSON.parse(that.userData.contact);
+        let x = regionData;
+        if(that.userData.contact)
         {
-            console.log(res.data);
-            that.userData = res.data;
-            // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
-        },
-        error: function(xhr, status, err)
-        {
-            console.log("failed:" + status);
+          let x = regionData;
+          that.userData.contact.forEach((item, i) => {
+            // item.location = JSON.parse(item.location);
+            item.location1 = [];
+            item.location.forEach((location, j) => {
+                x = findObj(x, location);
+                item.location1.push(x.label);
+                console.log(location);
+                x = x.children;
+            });
+            item.location1 = item.location1.join('/');
+        });
         }
+        // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+      },
+      error: function (xhr, status, err) {
+        console.log("failed:" + status);
+      },
     });
-    resdata = [{"orderId":"db916d3de7624405b20e","orderDateTime":null,"businessId":"c9a841ae09","userId":"524a2be500","businessName":"天猫超市","orderPrice":111.700005,"orderItemList":[{"cartId":null,"itemId":"0264e3fa35","itemCount":1,"businessId":"c9a841ae09","businessName":null,"userId":null,"price":17.9,"pics":"[\"//g-search2.alicdn.com/img/bao/uploaded/i4/i3/725677994/O1CN011OGlcB28vIlV4Tfzl_!!0-item_pic.jpg\"]","itemName":"【长城牌】香辣豆豉鱼罐头184g午餐下酒菜特产即食拌饭鲮鱼肉罐头","typeCode":null,"typeJson":null,"typeObject":null,"typeCodeObject":null,"selected":null},{"cartId":null,"itemId":"02b8501aad","itemCount":1,"businessId":"c9a841ae09","businessName":null,"userId":null,"price":93.8,"pics":"[\"//g-search3.alicdn.com/img/bao/uploaded/i4/i4/725677994/O1CN011qAY7328vIlkEalLj_!!0-item_pic.jpg\"]","itemName":"富力鲜猫罐头85g*13罐泰国进口成幼猫白肉猫零食补充营养增肥","typeCode":null,"typeJson":null,"typeObject":null,"typeCodeObject":null,"selected":null}],"orderStatus":"Unpaid"}];
-    let _tableData = [];
-    resdata.forEach((item, i) => {
-        item.orderItemList.forEach((item1, j) => {
+    $.ajax({
+      type: "get",
+      cache: false,
+      async: false,
+      url: "/order/getById?id=" + window.location.href.split("/").pop(),
+      success: function (res) {
+        // console.log(res.data);
+        that.resdata = res.data;
+        that.backupData = res.data.slice();
+        let _tableData = [];
+        that.resdata.forEach((item, i) => {
+          item.orderItemList = JSON.parse(item.orderItemListParsed);
+          item.orderItemList.forEach((item1, j) => {
             item1["businessName"] = item.businessName;
             item1["pics"] = JSON.parse(item1["pics"]);
+            item1.typeJson = JSON.parse(item1.typeJson);
+            item1.typeCode = JSON.parse(item1.typeCode);
+          });
+          // console.log(item.orderItemList);
+          _tableData = _tableData.concat(item.orderItemList);
         });
-        console.log(item.orderItemList);
-        _tableData = _tableData.concat(item.orderItemList);
+        that.tableData = _tableData;
+        that.getOrderNumber();
+        // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+      },
+      error: function (xhr, status, err) {
+        console.log("failed:" + status);
+      },
     });
-    this.tableData = _tableData;
+    // resdata = [
+    //   {
+    //     orderId: "db916d3de7624405b20e",
+    //     orderDateTime: null,
+    //     businessId: "c9a841ae09",
+    //     userId: "524a2be500",
+    //     businessName: "天猫超市",
+    //     orderPrice: 111.700005,
+    //     orderItemList: [
+    //       {
+    //         cartId: null,
+    //         itemId: "0264e3fa35",
+    //         itemCount: 1,
+    //         businessId: "c9a841ae09",
+    //         businessName: null,
+    //         userId: null,
+    //         price: 17.9,
+    //         pics:
+    //           '["//g-search2.alicdn.com/img/bao/uploaded/i4/i3/725677994/O1CN011OGlcB28vIlV4Tfzl_!!0-item_pic.jpg"]',
+    //         itemName:
+    //           "【长城牌】香辣豆豉鱼罐头184g午餐下酒菜特产即食拌饭鲮鱼肉罐头",
+    //         typeCode: null,
+    //         typeJson: null,
+    //         typeObject: null,
+    //         typeCodeObject: null,
+    //         selected: null,
+    //       },
+    //       {
+    //         cartId: null,
+    //         itemId: "02b8501aad",
+    //         itemCount: 1,
+    //         businessId: "c9a841ae09",
+    //         businessName: null,
+    //         userId: null,
+    //         price: 93.8,
+    //         pics:
+    //           '["//g-search3.alicdn.com/img/bao/uploaded/i4/i4/725677994/O1CN011qAY7328vIlkEalLj_!!0-item_pic.jpg"]',
+    //         itemName:
+    //           "富力鲜猫罐头85g*13罐泰国进口成幼猫白肉猫零食补充营养增肥",
+    //         typeCode: null,
+    //         typeJson: null,
+    //         typeObject: null,
+    //         typeCodeObject: null,
+    //         selected: null,
+    //       },
+    //     ],
+    //     orderStatus: "Unpaid",
+    //   },
+    // ];
+    
 
-  }
+  },
 });

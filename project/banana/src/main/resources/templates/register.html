@@ -1,0 +1,98 @@
+<!--
+ * @Date: 2020-08-22 23:01:23
+ * @LastEditors: Jecosine
+ * @LastEditTime: 2020-09-23 15:20:23
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"> -->
+    <meta content="email=no" name="format-detection">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#FF8623">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait" />
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/vue.js"></script>
+    <script type="text/javascript" src="/js/element.js"></script>
+    <!-- <script src="//unpkg.com/element-ui@2.13.2/lib/index.js"></script> -->
+
+    
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+    <!-- <link rel="stylesheet" href="/css/base.css"> -->
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div id="login-app">
+        <div id="header-container" class="general-shadow">
+            <el-image style="height: 100%;" fit="contain" src="/img/logo.png"></el-image>
+        </div>
+        <div id="login-container">
+            <el-row>
+                <el-col :xs="{span: 22, offset:1}" :sm="{span: 12, offset:6}" :md="{span: 8, offset:8}"
+                    :lg="{span: 6, offset:9}" style="height: 60vh">
+                    <div id="form-container">
+                        <div id="col-aligner">
+                            <el-form id="login-form" ref="loginForm" :model="loginForm" :rules="rules">
+                                <el-form-item prop="userName">
+                                    <el-input name="userName" clearable prefix-icon="el-icon-user" placeholder="Input your username."
+                                        v-model="loginForm.userName">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item prop="password">
+                                    <el-input name="password"  clearable show-password prefix-icon="el-icon-lock" type="password"
+                                        autocomplete="off" v-model="loginForm.password"
+                                        placeholder="Input your password."></el-input>
+                                    <el-input name="confirm_password"  clearable show-password prefix-icon="el-icon-lock" type="password"
+                                        autocomplete="off" v-model="loginForm.confirm_password"
+                                        placeholder="Confirm your password."></el-input>
+                                </el-form-item>
+                                
+                                <el-form-item prop="email">
+                                    <el-input name="email" clearable prefix-icon="el-icon-user" placeholder="Input your email."
+                                        v-model="loginForm.email">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item prop="qq">
+                                    <el-input name="qq" clearable prefix-icon="el-icon-user" placeholder="Input your qq."
+                                        v-model="loginForm.qq">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item prop="phone">
+                                    <el-input name="phone" clearable prefix-icon="el-icon-user" placeholder="Input your phone."
+                                        v-model="loginForm.phone">
+                                    </el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button class="login-btn" :loading="loading" @click="submitForm('loginForm')"
+                                        type="primary">Register</el-button>
+                                    <el-button class="login-btn float-right" @click="resetForm('loginForm')">Reset
+                                    </el-button>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                    </div>
+                </el-col>
+            </el-row>
+        </div>
+        <div id="footer" class="general-shadow">
+        </div>
+    </div>
+    <script src="/js/register.js"></script>
+
+</body>
+</html>

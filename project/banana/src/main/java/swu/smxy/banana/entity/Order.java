@@ -1,11 +1,12 @@
 package swu.smxy.banana.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class Order {
+public class Order implements Serializable{
     private String orderId;
     private String orderDateTime;
     private String businessId;
@@ -13,7 +14,10 @@ public class Order {
     private String businessName;
     private Float orderPrice;
     private List<CartItem> orderItemList;
+    private String orderItemListParsed;
     private String orderStatus;
+    private String parentId;
+    private String address;
     /**
      * @return String return the orderId
      */
@@ -128,6 +132,50 @@ public class Order {
      */
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    /**
+     * @return String return the orderItemListParsed
+     */
+    public String getOrderItemListParsed() {
+        return orderItemListParsed;
+    }
+
+    /**
+     * @param orderItemListParsed the orderItemListParsed to set
+     */
+    public void setOrderItemListParsed(String orderItemListParsed) {
+        this.orderItemListParsed = orderItemListParsed;
+    }
+
+
+    /**
+     * @return String return the parentId
+     */
+    public String getParentId() {
+        return parentId;
+    }
+
+    /**
+     * @param parentId the parentId to set
+     */
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+
+    /**
+     * @return String return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 }

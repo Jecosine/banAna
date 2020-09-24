@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import swu.smxy.banana.dao.CartMapper;
 import swu.smxy.banana.dao.ItemMapper;
 import swu.smxy.banana.entity.CartItem;
 import swu.smxy.banana.entity.Item;
@@ -38,6 +39,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     private ItemMapper mapper;
     @Autowired
     private BusinessService businessService;
+    @Autowired
+    private OrderService orderService;
     @Resource(name = "sqlSessionFactory")
     private SqlSessionFactory sqlSessionFactory;
 
@@ -48,8 +51,10 @@ public class ItemService extends BaseService<Item, ItemMapper> {
     }
 
     @Transactional
-    public ResponseType<List<Order>> generateOrder(List<CartItem> items, User user) {
-        ResponseType<List<Order>> response = new ResponseType<List<Order>>();
+    public ResponseType<String> generateOrder(List<CartItem> items, User user) {
+        ResponseType<String> response = new ResponseType<String>();
+        String parentId = UuidGenerator.getUuid(20);
+        CartMapper cartMapper;
         Map<String, Order> mp = new HashMap();
         if (user == null)
         {
@@ -63,6 +68,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
         for (CartItem item : items) {
             temp = mp.get(item.getBusinessId());
             mapper = session.getMapper(ItemMapper.class);
+            cartMapper = session.getMapper(CartMapper.class);
             tempItem = mapper.getById(item.getItemId());
             // update stock
             if (tempItem.getRemain() < item.getItemCount()) {
@@ -74,6 +80,7 @@ public class ItemService extends BaseService<Item, ItemMapper> {
                     e.printStackTrace();
                 }
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+                session.commit();
                 session.close();
                 return response;
             }
@@ -85,6 +92,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
                     tempItem.setItemStatus("Undercarriaged");
                 }
                 mapper.updateStock(tempItem);
+                item.setItemStatus("inactive");
+                cartMapper.update(item);
             }
             if (temp!=null)
             {
@@ -95,12 +104,13 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             {
                 // set order data
                 temp = new Order();
+                temp.setParentId(parentId);
                 temp.setOrderId(UuidGenerator.getUuid(20));
                 temp.setBusinessId(item.getBusinessId());
                 temp.setBusinessName(businessService.getNameById(item.getBusinessId()));
                 temp.setOrderItemList(new ArrayList<CartItem>());
                 temp.getOrderItemList().add(item);
-                temp.setOrderStatus("Unpaid");
+                temp.setOrderStatus("Pre");
                 temp.setUserId(user.getUserId());
                 // calc total
                 temp.setOrderPrice(item.getPrice() * ((item.getItemCount()!=null)?item.getItemCount():0));
@@ -108,7 +118,8 @@ public class ItemService extends BaseService<Item, ItemMapper> {
             }
         }
         List<Order> orders = new ArrayList<Order>(mp.values());
-        response.setData(orders);
+        orderService.newOrder(orders);
+        response.setData(parentId);
         session.commit();
         session.close();
         return response;
@@ -174,5 +185,14 @@ public class ItemService extends BaseService<Item, ItemMapper> {
         session.close();
         return response;
     }
-
+    public ResponseType<List<Item>> getByBusinessId(User user)
+    {
+        String userId = user.getUserId();
+        ResponseType<List<Item>> response = new ResponseType<List<Item>>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(ItemMapper.class);
+        List<Item> items = mapper.getByBusinessId(userId);
+        response.setData(items);
+        return response;
+    }
 }

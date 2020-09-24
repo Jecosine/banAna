@@ -13,12 +13,15 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.util.DigestUtils;
 
 import swu.smxy.banana.dao.UserMapper;
 import swu.smxy.banana.entity.ResponseType;
 import swu.smxy.banana.entity.User;
+import swu.smxy.banana.util.UuidGenerator;
 
 @Service
 public class UserService extends BaseService<User, UserMapper>
@@ -49,7 +52,8 @@ public class UserService extends BaseService<User, UserMapper>
 
     public ResponseType<User> userInfoService(String id)
     {
-        mapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(UserMapper.class);
         User user = mapper.getById(id);
         int status = 0;
         String message = "Search Successfully";
@@ -63,6 +67,8 @@ public class UserService extends BaseService<User, UserMapper>
         response.setData(user);
         response.setStatus(status);
         response.setMessage(message);
+        session.clearCache();
+        session.close();
         return response;
     }
     @Transactional
@@ -73,24 +79,60 @@ public class UserService extends BaseService<User, UserMapper>
         mapper = session.getMapper(UserMapper.class);
         int status = 0;
         String message = "Update Successfully!";
-        // TODO 这里最好加一个和原来得user比较看是否更改了 其实这个前端做很麻烦，后台更好困了 2分钟内        
         try {
             mapper.update(user);
+            session.commit();
+
         } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             status = -1;
             message = "Invalid modify:" + e.getMessage();
             System.out.println("status: " + status + " " + message + "\n" + user);
             response.setStatus(status);
             response.setMessage(message);
             return response;
-        } finally {
-            session.commit();
-            session.close();
         }
-        // System.out.println("status: " + status + "\n" + user);
+
+        // session.clearCache();
+        System.out.println("status: " + status + "\n" + user);
         response.setData(user);
         response.setStatus(status);
         response.setMessage(message);
         return response;
     }
+    @Transactional
+    public ResponseType<User> addUser(User user)
+    {
+    	ResponseType<User> response = new ResponseType<User>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(UserMapper.class);
+        try {
+        	user.setUserId(UuidGenerator.getUuid(10));
+        	user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+            mapper.addUser(user);
+            session.commit();
+
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        	System.out.println("failed to add" + e.getMessage());
+        	response.setStatus(-1);
+        	return response;
+        }
+        response.setMessage("successful");
+        response.setData(user);
+        return response;
+    }
+    @Transactional
+	public void setSaler(User user) {
+        user.setIsSaler(1);
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(UserMapper.class);
+        try {
+            mapper.update(user);
+            session.commit();
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        	System.out.println("failed to add" + e.getMessage());
+        }
+	}
 }

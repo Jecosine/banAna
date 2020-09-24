@@ -8,34 +8,11 @@ var a = new Vue({
             aoActiveName: '1',
             onTop: true,
             screenWidth: window.innerWidth,
-            userData: {
-                userName: "jecosine",
-                expired: new Date(),
-                avatarUrl: "img/avatar.jpg",
-                address: "Chongqing",
-                shopCart: {},
-            },
+            userData: {},
             regionData: regionData,
-            activeIndex: "1",
+            activeIndex: "2",
             activeIndex2: "1",
-            form: {
-                name: "jecosine",
-                region: "",
-                date1: "",
-                date2: "",
-                delivery: false,
-                type: [],
-                resource: "",
-                address: [
-                    {
-                        key: Date.now(),
-                        name: "Jecosine",
-                        phone: "12345678910",
-                        address: "Guangdong",
-                    },
-                ],
-                desc: "",
-            },
+            form: { },
             imageUrl: "",
             fileList: [],
             tableData: [],
@@ -51,62 +28,16 @@ var a = new Vue({
             //     }
             // ],
             orderData: [
-                {
-                    orderDateTime: '2020/03/05 20:02:11',
-                    orderId: '12hj3vjv22',
-                    shopName: "Shop Name 1",
-                    orderStatus: 'Unpaid',
-                    price: 1000.00,
-                    items: [
-                        {
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },
-                        {
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },
-                        {
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },{
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },{
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },{
-                            name: "Item 1",
-                            imgUrl: "#",
-                            amount: 1,
-                            price: 100
-                        },
-                    ]            
-                }
               ],
+              itemData: [],
+            itemFilter: 'All',
             orderMultipleSelection: [],
             multipleSelection: [],
             orderFilter: 'All'
         };
     },
     methods: {
-        addDomain() {
-            this.form.address.push({
-                phone: "",
-                address: "",
-                key: Date.now(),
-            });
-        },
+        
         onSubmit: function () {},
         handleOpen: function () {},
         handleClose: function () {},
@@ -136,6 +67,10 @@ var a = new Vue({
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
         },
+        handleOrderTab: function (tab, event) {
+            console.log(tab.label, event);
+            this.itemFilter = tab.label;
+        },
         beforeAvatarUpload(file) {
             console.log(file);
             const isJPG = file.raw.type === "image/jpeg";
@@ -151,8 +86,18 @@ var a = new Vue({
             else return false;
             return true;
         },
+        getCate(e)
+        {
+            return e;
+        }
     },
     computed: {
+    },
+    handleOrderSelectionChange(val) {
+        this.orderMultipleSelection = val;
+    },
+    handleSelectionChange(val) {
+        this.multipleSelection = val;
     },
     watch: {
         screenWidth(val) {
@@ -168,21 +113,65 @@ var a = new Vue({
             }
         },
     },
-    mounted: function () {},
+    mounted: function () {
+        // var myChart = echarts.init(document.getElementById("chart1"));
+
+        // option = {
+        //   legend: {},
+        //   tooltip: {},
+        //   dataset: {
+        //     source: [
+        //       ["product", "2015", "2016", "2017"],
+        //       ["Mobile", 43.3, 85.8, 93.7],
+        //       ["Tablet", 32.45, 75.8, 83.7],
+        //       ["Eletronic", 63.3, 85.8, 103.7],
+        //       ["PC", 83.1, 73.4, 55.1],
+        //       ["Televison", 86.4, 65.2, 82.5],
+        //       ["GameBox", 72.4, 53.9, 39.1],
+        //     ],
+        //   },
+        //   xAxis: { type: "category" },
+        //   yAxis: {},
+        //   // Declare several bar series, each will be mapped
+        //   // to a column of dataset.source by default.
+        //   series: [{ type: "bar" }, { type: "bar" }, { type: "bar" }],
+        // };
+        // myChart.setOption(option);
+      
+    },
     created: function () {
         var that = this;
-        // get user dat
-        // get cart data
+        // get user data
         $.ajax({
             type: "get",
             cache: false,
             async: false,
-            url: "/cart/getCartService",
+            url: "/user/currentinfo",
+            success: function (res) {
+              console.log(res.data);
+              that.userData = res.data;
+              that.form = that.userData;
+              if (that.form.contact == undefined) {
+                that.form.contact = [];
+              } else 
+              that.form.contact = JSON.parse(that.form.contact);
+              // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
+            },
+            error: function (xhr, status, err) {
+              console.log("failed:" + status);
+            },
+          });
+        
+        $.ajax({
+            type: "get",
+            cache: false,
+            async: false,
+            url: "/item/getByBusinessId",
             success: function (res) {
                 console.log(res);
-                that.tableData = res.data;
-                if (that.tableData!=null)
-                that.tableData.forEach((item, i) => {
+                that.itemData = res.data;
+                if (that.itemData!=null)
+                that.itemData.forEach((item, i) => {
                     item.pics = JSON.parse(item.pics);
                 });
             },
