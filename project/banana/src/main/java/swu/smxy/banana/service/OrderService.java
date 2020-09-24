@@ -107,5 +107,13 @@ public class OrderService extends BaseService<Order, OrderMapper> {
     
     return response;
   }
-
+  @Transactional
+  public void cancelOrder(Order order) 
+  {
+    session = sqlSessionFactory.openSession();
+    mapper = session.getMapper(OrderMapper.class);
+    order.setOrderStatus("Canceled");
+    mapper.update(order);
+    session.commit();
+  }
 }

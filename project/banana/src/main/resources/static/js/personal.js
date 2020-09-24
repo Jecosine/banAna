@@ -360,7 +360,7 @@ var a = new Vue({
         that.form = that.userData;
         if (that.form.contact == undefined) {
           that.form.contact = [];
-        }
+        } else 
         that.form.contact = JSON.parse(that.form.contact);
         // window.localStorage.setItem("user_auth", JSON.stringify(res.data));
       },

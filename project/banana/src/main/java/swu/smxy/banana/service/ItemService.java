@@ -185,5 +185,14 @@ public class ItemService extends BaseService<Item, ItemMapper> {
         session.close();
         return response;
     }
-
+    public ResponseType<List<Item>> getByBusinessId(User user)
+    {
+        String userId = user.getUserId();
+        ResponseType<List<Item>> response = new ResponseType<List<Item>>();
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(ItemMapper.class);
+        List<Item> items = mapper.getByBusinessId(userId);
+        response.setData(items);
+        return response;
+    }
 }

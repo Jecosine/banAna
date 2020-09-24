@@ -80,7 +80,7 @@ public class DeadLetterConfiguration
     @Bean
     public Binding binding()
     {
-        return BindingBuilder.bind(deadQueue()).to(directExchange()).with(directKey);
+        return BindingBuilder.bind(deadQueue()).to(directExchange()).with(deadkey);
     }
 
 }

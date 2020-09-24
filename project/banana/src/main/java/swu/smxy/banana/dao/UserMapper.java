@@ -49,7 +49,8 @@ public interface UserMapper extends BaseMapper<User> {
      */
     @Select("select * from user where userName=#{userName}")
     public User getByName(String userName);
-    	
+        
+
     @Insert("insert into user values(#{userId}, #{userName}, #{gender}, #{password},#{qq},#{email}, #{phone}, #{avatarUrl}， #{contact})")
     public int addUser(User user);
     @Delete("delete from user where userId=#{userId}")
@@ -58,6 +59,6 @@ public interface UserMapper extends BaseMapper<User> {
     @Delete("delete from user where userId=#{userId}")
     public int delete(User user);
     
-    @Update("update user set userName=#{userName},gender=#{gender},qq=#{qq},email=#{email},phone=#{phone}, avatarUrl=#{avatarUrl}, contact=#{contact},point=#{point} where userId=#{userId}")
+    @Update("update user set userName=#{userName},gender=#{gender},qq=#{qq},email=#{email},phone=#{phone}, avatarUrl=#{avatarUrl}, contact=#{contact},point=#{point}, isSaler=#{isSaler} where userId=#{userId}")
     public int update(User user);
 }

@@ -48,6 +48,10 @@ public interface ItemMapper extends BaseMapper<Item>
     // public int update(Item item);
     @Select("select item.*, business.businessName from item, business where cateId=#{cateId} and business.businessId=item.businessId")
     public List<Item> getByCate(String cateId);
+
+    @Select("select * from item where businessId=#{businessId}")
+    public List<Item> getByBusinessId(String businessId);
+
     @Delete("delete from item where itemId=#{itemId}")
     public int deleteById(String itemId);
 

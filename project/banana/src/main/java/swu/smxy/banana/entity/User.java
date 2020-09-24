@@ -26,6 +26,7 @@ public class User implements Serializable, BaseEntity
     private String contact;
     private String avatarUrl;
     private Float point;
+    private Integer isSaler;
     @Override
     public String toString()
     {
@@ -193,6 +194,21 @@ public class User implements Serializable, BaseEntity
      */
     public void setPoint(Float point) {
         this.point = point;
+    }
+
+
+    /**
+     * @return Integer return the isSaler
+     */
+    public Integer getIsSaler() {
+        return isSaler;
+    }
+
+    /**
+     * @param isSaler the isSaler to set
+     */
+    public void setIsSaler(Integer isSaler) {
+        this.isSaler = isSaler;
     }
 
 }

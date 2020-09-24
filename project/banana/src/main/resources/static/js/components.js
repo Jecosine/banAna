@@ -32,8 +32,9 @@ var nv = {
                         <i class="el-icon-service"></i>
                         <span>Service</span>
                     </template>
-                    <el-menu-item index="4-1">Feed Back</el-menu-item>
-                    <el-menu-item index="4-2">My Service</el-menu-item>
+                    <el-menu-item index="4-1"><i class="el-icon-question"></i>Feed Back</el-menu-item>
+                    <el-menu-item index="4-2"><i class="el-icon-user-solid"></i>Become a Saler</el-menu-item>
+                    <el-menu-item index="4-3"><i class="el-icon-menu"></i>My Service</el-menu-item>
                 </el-submenu>
                 <el-menu-item index="2"><i class="el-icon-thumb"></i><span>About Us</span></el-menu-item>
                 <!-- </el-menu> -->

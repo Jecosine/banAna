@@ -122,4 +122,17 @@ public class UserService extends BaseService<User, UserMapper>
         response.setData(user);
         return response;
     }
+    @Transactional
+	public void setSaler(User user) {
+        user.setIsSaler(1);
+        SqlSession session = sqlSessionFactory.openSession();
+        mapper = session.getMapper(UserMapper.class);
+        try {
+            mapper.update(user);
+            session.commit();
+        } catch (Exception e) {
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        	System.out.println("failed to add" + e.getMessage());
+        }
+	}
 }
