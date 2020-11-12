@@ -15,7 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 
 import org.apache.commons.logging.Log;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +42,7 @@ import swu.smxy.banana.entity.User;
 import swu.smxy.banana.service.FileService;
 import swu.smxy.banana.service.ItemService;
 import swu.smxy.banana.service.OrderService;
+import swu.smxy.banana.service.UserService;
 
 // @RestController
 @Log4j2
@@ -55,6 +61,18 @@ public class MainController
     private FileService fileService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+    @Value("${banana.order.exchange}")
+    private String exchangeName;
+    @Value("${banana.order.queue}")
+    private String queueName;
+    @Value("${banana.order.routekey}")
+    private String directKey;
+
     @RequestMapping("/")
     public String index(Model model)
     {
@@ -65,10 +83,26 @@ public class MainController
     {
         return "personal.html";
     }
+    
     @RequestMapping("/register")
     public String register(Model model)
     {
         return "register.html";
+    }
+    @RequestMapping("/becomeSaler")
+    public String becomeSaler(HttpServletRequest request)
+    {
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user != null)
+        {
+            if(user.getUserId() != null)
+            {
+                userService.setSaler(user);
+                return "redirect:/console";
+
+            }
+        }
+        return "redirect:/login";        
     }
     @ResponseBody
     @RequestMapping("/searchresult")
@@ -100,9 +134,11 @@ public class MainController
     // @Controller
     public String login(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        if (request.getSession().getAttribute("user_auth") != null)
+        User user = (User)request.getSession().getAttribute("user_auth");
+        if (user != null)
         {
-            response.sendRedirect("/");
+            if(user.getUserId() != null)
+                response.sendRedirect("/");
         }
         return "login.html";
     }
@@ -112,8 +148,21 @@ public class MainController
     {
         User user = (User)request.getSession().getAttribute("user_auth");
         ResponseType<String> result = itemService.generateOrder(items, user);
+        rabbitTemplate.convertAndSend(exchangeName,directKey, result.getData(), messagePostProcessor());
         return result;
     }
+
+    private MessagePostProcessor messagePostProcessor(){
+        return  new MessagePostProcessor() {
+            @Override
+            public Message postProcessMessage(Message message) throws AmqpException {
+                //message.getMessageProperties().setExpiration("1800000");
+                message.getMessageProperties().setExpiration("10000");
+                return message;
+            }
+        };
+    }
+
     @ResponseBody
     @RequestMapping("/order/getById")
     public ResponseType<List<Order>> getOrderByParentId(@RequestParam String id)
@@ -121,14 +170,23 @@ public class MainController
         return orderService.getByParentId(id);
     }
     @ResponseBody
+    @RequestMapping(value="/order/update", method=RequestMethod.POST)
+    public ResponseType<String> updateOrder(@RequestBody List<Order> orders)
+    {
+        return orderService.updateOrder(orders);
+
+    }
+    @ResponseBody
     @RequestMapping("/order/getByUserId")
     public ResponseType<List<Order>> getOrderByUserId(HttpServletRequest request, HttpServletResponse response)
             throws IOException
     {
         User user = (User)request.getSession().getAttribute("user_auth");
-        if (user == null)
+        if (user == null || user.getUserId()==null)
         {
-            response.sendRedirect("/login");
+            ResponseType<List<Order>> resp = new ResponseType<List<Order>>();
+            resp.setStatus(-1);
+            return resp;
         }
 
         return orderService.getByUserId(user.getUserId());

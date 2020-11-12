@@ -23,8 +23,10 @@ public class User implements Serializable, BaseEntity
     private String qq;
     private String email;
     private String phone;
-    private List<Address> address;
+    private String contact;
     private String avatarUrl;
+    private Float point;
+    private Integer isSaler;
     @Override
     public String toString()
     {
@@ -108,21 +110,6 @@ public class User implements Serializable, BaseEntity
     }
 
     /**
-     * @return List<Address> return the address
-     */
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(List<Address> address) {
-        this.address = address;
-    }
-
-
-    /**
      * @return String return the phone
      */
     public String getPhone() {
@@ -169,7 +156,6 @@ public class User implements Serializable, BaseEntity
     //     return state;
     // }
 
-
     /**
      * @return String return the avatarUrl
      */
@@ -182,6 +168,51 @@ public class User implements Serializable, BaseEntity
      */
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+
+    /**
+     * @return String return the contact
+     */
+    public String getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+
+    /**
+     * @return Float return the point
+     */
+    public Float getPoint() {
+        return point;
+    }
+
+    /**
+     * @param point the point to set
+     */
+    public void setPoint(Float point) {
+        this.point = point;
+    }
+
+
+    /**
+     * @return Integer return the isSaler
+     */
+    public Integer getIsSaler() {
+        return isSaler;
+    }
+
+    /**
+     * @param isSaler the isSaler to set
+     */
+    public void setIsSaler(Integer isSaler) {
+        this.isSaler = isSaler;
     }
 
 }

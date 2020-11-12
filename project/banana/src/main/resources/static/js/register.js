@@ -43,8 +43,8 @@ var a = new Vue({
         };
     },
     methods: {
-        submitForm: function(formName) {
-            let that = this;
+        submitForm(formName) {
+            var that = this;
             console.log("press submit");
             this.loading = true;
             this.$refs[formName].validate((valid) => {
@@ -59,18 +59,15 @@ var a = new Vue({
                 }
             });
             $.ajax({
-                url: "/user/loginService",
-                contentType: "application/x-www-form-urlencoded",
+                url: "/user/registerService",
+                contentType: "application/json",
                 type: "post",
-                data: $("#login-form").serialize(),
+                data: JSON.stringify(that.loginForm),
                 success: (res) => {
                     console.log(res);
                     if(res.status === 0) {
                         window.location.href = '/';
                         window.localStorage.setItem("user_data", JSON.stringify(res.data));
-                    } else {
-                    console.log("login failed!");
-                    that.$message.error("Login Failed, check your username or password.");
                     }
                     $("#err").text((res["status"] == -1) ? res["message"] : "");
                 },

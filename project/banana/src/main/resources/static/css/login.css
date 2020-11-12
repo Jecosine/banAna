@@ -22,7 +22,7 @@
     max-width: 100%;
     padding-left: 40px;
     line-height: 20vh;
-    z-index: 9999;
+    z-index: 99;
     background-color: white;
 }
 #login-container {

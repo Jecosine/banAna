@@ -72,11 +72,10 @@
                 show-overflow-tooltip>
               </el-table-column>
               <el-table-column
-                prop="selected"
                 label="Type"
                 width="140">
                 <template slot-scope="scope">
-                    <el-tag type="info">{{scope.row.selected}}</el-tag>
+                    <el-tag type="info">{{scope.row.typeJson[scope.row.typeCode]}}</el-tag>
                 </template>
               </el-table-column>
               <el-table-column
@@ -105,11 +104,14 @@
         <div id="order-info-container" class="cover-box">
           <div class="section-title"><i class="fa fa-map-marker" aria-hidden="true"></i> Delivery Information </div>
           <el-divider></el-divider>
-          <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in addressInfo">
+          <el-radio v-model="addressSelect" :label="i" border class="address-selection" v-for="(item, i) in userData.contact">
             <div class="address-title">
               {{item.name}}
             </div>
             <div class="address-phone"><i class="el-icon-mobile"></i>{{item.phone}}</div>
+            <div class="address-content">
+              <i class="el-icon-location-outline"></i> {{item.location1}}
+            </div>            
             <div class="address-content">
               <i class="el-icon-location-outline"></i> {{item.address}}
             </div>            
@@ -119,13 +121,13 @@
           <el-divider></el-divider>
           <div class="inline-block order-summary" ><i class="fa fa-check-circle" aria-hidden="true"></i> Selected Price:&nbsp;&nbsp;<span class="item-price">$ {{totalPrice}}</span></div>
           <div class="float-right">
-              <el-button type="primary">Submit Order</el-button>
+              <el-button type="primary" :loading="orderLoading" @click="confirmOrder">Conform</el-button>
           </div>
         </div>
-        
       </el-col>
     </el-row>
   </div>
+  <script src="/js/addresspicker.js"></script>
   <script src="/js/components.js"></script>
   <script src="/js/order.js"></script>
 </body>

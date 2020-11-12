@@ -42,6 +42,32 @@ public class OrderService extends BaseService<Order, OrderMapper> {
   }
 
   @Transactional
+  public ResponseType<String> updateOrder(List<Order> orders)
+  {
+    ResponseType<String> response = new ResponseType<String>();
+    session = sqlSessionFactory.openSession();
+    mapper = session.getMapper(OrderMapper.class);
+    try {
+      for (Order order : orders) {
+        mapper.update(order);
+      }
+    } catch (Exception e) {
+      TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+      
+      response.setStatus(-1);
+      response.setMessage("Error update order");
+      response.setData(e.getMessage());
+      System.out.println(response.getData());
+      return response;
+    }
+    session.commit();
+    System.out.println("Success?");
+    
+    response.setMessage("Successfully update");
+
+    return response;
+  }
+  @Transactional
   public ResponseType<String> newOrder(List<Order> orders) {
     ResponseType<String> response = new ResponseType<String>();
     session = sqlSessionFactory.openSession();
@@ -50,11 +76,12 @@ public class OrderService extends BaseService<Order, OrderMapper> {
       for (Order order : orders) {
         System.out.println(new ObjectMapper().writeValueAsString(order.getOrderItemList()));
         order.setOrderItemListParsed(new ObjectMapper().writeValueAsString(order.getOrderItemList()));
+        order.setAddress("{}");
         mapper.newOrder(order);
       }
     } catch (Exception e) {
       TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-      session.close();
+      
       response.setStatus(-1);
       response.setMessage("Error insertint order");
       response.setData(e.getMessage());
@@ -63,7 +90,7 @@ public class OrderService extends BaseService<Order, OrderMapper> {
       return response;
     }
     session.commit();
-    session.close();
+    
     response.setMessage("Successful");
 
     return response;
@@ -77,8 +104,16 @@ public class OrderService extends BaseService<Order, OrderMapper> {
     response.setMessage("Successful");
     response.setData(orders);
     session.clearCache();
-    session.close();
+    
     return response;
   }
-
+  @Transactional
+  public void cancelOrder(Order order) 
+  {
+    session = sqlSessionFactory.openSession();
+    mapper = session.getMapper(OrderMapper.class);
+    order.setOrderStatus("Canceled");
+    mapper.update(order);
+    session.commit();
+  }
 }
