@@ -1,7 +1,7 @@
 /*
  * @Date: 2020-07-25 15:56:36
  * @LastEditors: Jecosine
- * @LastEditTime: 2020-09-01 18:33:23
+ * @LastEditTime: 2020-11-12 21:46:07
  * @FilePath: \banana\src\main\java\swu\smxy\banana\entity\User.java
  */
 package swu.smxy.banana.entity;
@@ -165,9 +165,9 @@ public class User implements Serializable, BaseEntity
         this.email = email;
     }
     
-    public byte getState() {
-        return state;
-    }
+    // public byte getState() {
+    //     return state;
+    // }
 
 
     /**
